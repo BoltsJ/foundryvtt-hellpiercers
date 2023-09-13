@@ -1,0 +1,16 @@
+{
+    "Actor": {
+        "types": ["hellpiercer", "demon"],
+        "htmlFields": ["biography"],
+        "hellpiercer": {},
+        "demon": {}
+    },
+    "Item": {
+        "types": ["weapon", "armor", "class", "gear"],
+        "htmlFields": ["description"],
+        "weapon": {},
+        "armor": {},
+        "class": {},
+        "gear": {}
+    }
+}

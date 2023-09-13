@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "ES2022",
+    "moduleResolution": "bundler"
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*", "client/**/*", "common/**/*"]
+}

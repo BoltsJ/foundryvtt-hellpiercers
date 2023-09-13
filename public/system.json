@@ -1,0 +1,26 @@
+{
+  "id": "hellpiercers",
+  "title": "HELLPIERCERS: Tactical Harrowing Action",
+  "description": "HELL IS A PRISON. BREAK ITS BARS. Tactical Hell-slaying action with base building, overwhelming build options, and map based strategy.",
+  "version": "0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "authors": [{ "name": "Bolts" }],
+  "esmodules": ["./hellpiercers.mjs"],
+  "styles": ["./style.css"],
+  "packs": [],
+  "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
+  "socket": false,
+  "initiative": null,
+  "gridDistance": 1,
+  "gridUnits": "",
+  "primaryTokenAttribute": "",
+  "secondaryTokenAttribute": "",
+  "url": "",
+  "background": "systems/hellpiercers/assets/splash.jpg",
+  "manifest": "",
+  "download": ""
+}

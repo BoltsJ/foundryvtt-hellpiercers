@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "build:serve": "fvtt launch & npm run build && vite",
+    "build:packs": "true",
+    "clean": "rm -fr dist",
+    "format": "prettier --write src/"
+  },
+  "imports": {
+    "#runtime/*": "@typhonjs-fvtt/runtime/*",
+    "#standard/*": "@typhonjs-fvtt/svelte-standard/*"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.0-rc.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@sveltejs/vite-plugin-svelte": "^2.4.5",
+    "prettier": "^3.0.3",
+    "sass": "^1.66.1",
+    "vite": "^4.4.0"
+  },
+  "dependencies": {
+    "@typhonjs-fvtt/runtime": "^0.1.2",
+    "@typhonjs-fvtt/svelte-standard": "^0.1.0",
+    "svelte": "^4.2.0"
+  }
+}
