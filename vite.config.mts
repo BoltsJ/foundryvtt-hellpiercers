@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte"
+import { svelte, vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import path from "path";
 
 export default defineConfig({
@@ -28,5 +28,5 @@ export default defineConfig({
       fileName: "hellpiercers",
     },
   },
-  plugins: [svelte()],
+  plugins: [svelte({ preprocess: vitePreprocess() })],
 });
