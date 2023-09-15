@@ -1,3 +1,25 @@
 :root {
   --hellpiercers-test-property: true;
+  // --hellpiercers-primary-background: null;
+  // --hellpiercers-primary-foreground: pink;
+}
+
+.hellpiercers {
+  // &.sheet.tjs-window-app.tjs-app {
+  //   border-radius: var(--hellpiercers-sheet-corner-radius, var(--tjs-app-border-radius, 5px));
+  // }
+  // .window-header {
+  // }
+  &.sheet.actor {
+    section.window-content {
+      height: 100%;
+      overflow: visible;
+      background: var(--hellpiercers-primary-background, url(../ui/parchment.jpg) repeat);
+      color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
+      // padding: 0;
+      input {
+        color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
+      }
+    }
+  }
 }

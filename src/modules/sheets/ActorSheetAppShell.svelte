@@ -3,18 +3,19 @@
 <script>
   import { TJSApplicationShell } from "#runtime/svelte/component/core";
   import { setContext } from "svelte";
-  import { slide } from "svelte/transition"
+  import { slide } from "svelte/transition";
+  import HellpiercerSheet from "./HellpiercerSheet.svelte";
 
   export let elementRoot;
-  export let tjs_doc;
+  export let actor;
 
-  setContext("tjs_doc", tjs_doc);
+  setContext("tjs_doc", actor);
 </script>
 
 <TJSApplicationShell bind:elementRoot transition={slide} transitionOptions={{ duration: 100 }}>
-  {#if $tjs_doc.type === "hellpiercer"}
-    <!-- TODO -->
-  {:else if $tjs_doc.type === "demon"}
+  {#if $actor.type == "hellpiercer"}
+    <HellpiercerSheet />
+  {:else if $actor.type == "demon"}
     <!-- TODO -->
   {/if}
 </TJSApplicationShell>
