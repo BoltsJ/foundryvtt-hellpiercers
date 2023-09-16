@@ -5,6 +5,7 @@
   import { TabStore } from "../util/stores.mjs";
   import { updateDoc } from "../util/updatedoc.mjs";
 
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument}*/
   let actor = getContext("tjs_doc");
 
   const tabs = ["Notes", "DOCUMENT.Items"];
@@ -39,7 +40,13 @@
         use:updateDoc
       />
       /
-      <input type="number" name="system.health.max" data-dtype="Number" disabled use:updateDoc />
+      <input
+        type="number"
+        name="system.health.max"
+        data-dtype="Number"
+        disabled={!!$actor.itemTypes.class.length}
+        use:updateDoc
+      />
     </div>
   </header>
 
@@ -56,7 +63,11 @@
       <h3>{localize("Notes")}:</h3>
       <TJSProseMirror options={pm_opts} />
     {:else if $current_tab === "DOCUMENT.Items"}
-      AAA
+      {#each $actor.items as item}
+        <p><!-- TODO: Icons (No fontawesome as it's a footgun wrt licensing) -->{item.name}</p>
+      {:else}
+        <p>No items</p>
+      {/each}
     {/if}
   </section>
 </main>

@@ -6,6 +6,9 @@
   import { slide } from "svelte/transition";
   import HellpiercerSheet from "./HellpiercerSheet.svelte";
 
+  const sheets = {
+    ["hellpiercer"]: HellpiercerSheet,
+  };
   export let elementRoot;
   export let actor;
 
@@ -13,9 +16,5 @@
 </script>
 
 <TJSApplicationShell bind:elementRoot transition={slide} transitionOptions={{ duration: 100 }}>
-  {#if $actor.type == "hellpiercer"}
-    <HellpiercerSheet />
-  {:else if $actor.type == "demon"}
-    <!-- TODO -->
-  {/if}
+  <svelte:component this={sheets[$actor.type]} />
 </TJSApplicationShell>
