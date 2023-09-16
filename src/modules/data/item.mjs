@@ -6,6 +6,7 @@ export class WeaponModel extends foundry.abstract.DataModel {
     const fields = foundry.data.fields;
     fields.DocumentIdField;
     return {
+      description: new fields.HTMLField({ required: true }),
       damage: new fields.StringField({
         required: true,
         initial: "1d6",
@@ -18,7 +19,7 @@ export class WeaponModel extends foundry.abstract.DataModel {
         }),
         { initial: [{ row: 1, col: 0 }] }
       ),
-      special: new fields.SchemaField({
+      ability: new fields.SchemaField({
         name: new fields.StringField({ required: true, initial: "Special Ability" }),
         kind: new fields.StringField({
           required: true,
