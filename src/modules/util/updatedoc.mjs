@@ -2,33 +2,38 @@ import { getContext } from "svelte";
 
 /**
  * Svelte action for syncing an Input with a Document
- * @type {import("svelte/action").Action<HTMLInputElement>}
+ * @type {import("svelte/action").Action<HTMLFormElement, import("#runtime/svelte/store/fvtt/document").TJSDocument>}
  */
-export function updateDoc(node) {
-  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument} */
-  const tjs_doc = getContext("tjs_doc");
-  let path = node.name;
-  let current_value;
-  let unsubscribe = tjs_doc.subscribe(onUpdate);
+export function updateDoc(node, document) {
+  /** @type {Map<string, { element: HTMLInputElement}>} */
+  let inputs = new Map(
+    Array.from(node.elements)
+      .filter(e => !!e.name)
+      .map(e => [e.name, { element: e, current: undefined }])
+  );
+  let unsubscribe = document.subscribe(onUpdate);
+
 
   /** @param {Event} ev */
   function onChange(ev) {
-    const document = tjs_doc.get();
-    if (!document) return;
+    const doc = document.get();
+    if (!doc) return;
     /** @type HTMLInputElement */
     const target = ev.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const data_type = target.dataset.dtype;
-    document.update({ [path]: data_type === "Number" ? parseFloat(value) : value });
+    doc.update({ [target.name]: data_type === "Number" ? parseFloat(value) : value });
   }
 
-  /** @param {globalThis.foundry.abstract.Document} document */
-  function onUpdate(document) {
-    const value = foundry.utils.getProperty(document, path);
-    if (value === current_value) return;
-    if (typeof value === "boolean") node.checked = value;
-    else node.value = value;
-    current_value = value;
+  /** @param {globalThis.foundry.abstract.Document} doc */
+  function onUpdate(doc) {
+    Array.from(inputs.keys()).forEach(k => {
+      const new_val = foundry.utils.getProperty(doc, k);
+      if (new_val === inputs.get(k).current) return;
+      const input = inputs.get(k).element;
+      if (typeof new_val === "boolean") input.checked = new_val;
+      else input.value = new_val;
+    });
   }
 
   function activateListeners() {
@@ -42,14 +47,19 @@ export function updateDoc(node) {
   activateListeners();
 
   return {
-    update() {
+    update(new_doc) {
       if (unsubscribe) unsubscribe();
-      tjs_doc = getContext("tjs_doc");
-      unsubscribe = tjs_doc.subscribe(onUpdate);
+      inputs = new Map(
+        Array.from(node.elements)
+          .filter(e => !!e.name)
+          .map(e => [e.name, { element: e, current: undefined }])
+      );
+      document = new_doc;
+      unsubscribe = document.subscribe(onUpdate);
     },
     destroy() {
       deactivateListeners();
-      unsubscribe();
+      if (unsubscribe) unsubscribe();
     },
   };
 }

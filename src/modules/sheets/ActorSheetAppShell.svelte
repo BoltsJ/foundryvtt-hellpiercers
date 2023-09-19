@@ -4,10 +4,10 @@
   import { TJSApplicationShell } from "#runtime/svelte/component/core";
   import { setContext } from "svelte";
   import { slide } from "svelte/transition";
-  import HellpiercerSheet from "./HellpiercerSheet.svelte";
+  import HumanSheet from "./HumanSheet.svelte";
 
   const sheets = {
-    ["hellpiercer"]: HellpiercerSheet,
+    ["human"]: HumanSheet,
   };
   export let elementRoot;
   export let actor;

@@ -9,18 +9,18 @@
     "maximum": "11"
   },
   "authors": [{ "name": "Bolts" }],
-  "esmodules": ["./hellpiercers.mjs"],
-  "styles": ["./style.css"],
+  "esmodules": ["hellpiercers.mjs"],
+  "styles": ["style.css"],
   "packs": [],
   "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
   "socket": false,
   "initiative": null,
   "gridDistance": 1,
   "gridUnits": "",
-  "primaryTokenAttribute": "",
+  "primaryTokenAttribute": "system.health",
   "secondaryTokenAttribute": "",
-  "url": "",
+  "url": "https://github.com/BoltsJ/foundryvtt-hellpiercers",
   "background": "systems/hellpiercers/assets/splash.jpg",
-  "manifest": "",
+  "manifest": "https://github.com/BoltsJ/foundryvtt-hellpiercers/releases/latest/system.json",
   "download": ""
 }

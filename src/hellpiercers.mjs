@@ -1,10 +1,21 @@
 import "./hellpiercers.scss";
-import * as documents from "./modules/documents/index.mjs";
 import * as datamodels from "./modules/data/index.mjs";
+import * as documents from "./modules/documents/index.mjs";
 import * as sheets from "./modules/sheets/index.mjs";
-import BasicApplication from "./modules/view/BasicApllication.mjs";
+// import BasicApplication from "./modules/view/BasicApllication.mjs";
+// import * as util from "./modules/util/index.mjs"
 
-const ascii_logo = `\
+globalThis.hellpiercers = {
+  applications: {
+    // test: BasicApplication,
+  },
+  datamodels,
+  documents,
+  sheets,
+  util: {},
+};
+
+const ascii_logo = ` 
 ░█░█░█▀▀░█░░░█░░░█▀█░▀█▀░█▀▀░█▀▄░█▀▀░█▀▀░█▀▄░█▀▀
 ░█▀█░█▀▀░█░░░█░░░█▀▀░░█░░█▀▀░█▀▄░█░░░█▀▀░█▀▄░▀▀█
 ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
@@ -12,23 +23,17 @@ const ascii_logo = `\
 Hooks.once("init", () => {
   console.log("hellpiercers | Initializing HELLPIERCERS System", ascii_logo);
 
-  globalThis.hellpiercers = {
-    applications: {
-      test: BasicApplication,
-    },
-    datamodels,
-    documents,
-    util: {},
-  };
-
   // Actors
-  CONFIG.Actor.dataModels.hellpiercer = datamodels.actors.HellpiecerModel;
+  CONFIG.Actor.dataModels.human = datamodels.HumanModel;
+  CONFIG.Actor.dataModels.demon = datamodels.DemonModel;
+  CONFIG.Actor.dataModels.boss = datamodels.BossModel;
+  CONFIG.Actor.dataModels.faction = datamodels.FactionModel;
   CONFIG.Actor.documentClass = documents.HellpiercersActorProxy;
   Actors.registerSheet("hellpiercers", sheets.TJSActorSheet, {
-    types: ["hellpiercer"],
+    types: ["human"],
     makeDefault: true,
   });
 
   // Items
-  CONFIG.Item.dataModels.weapon = datamodels.items.WeaponModel;
+  CONFIG.Item.dataModels.weapon = datamodels.WeaponModel;
 });

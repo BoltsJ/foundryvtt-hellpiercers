@@ -1,2 +1,2 @@
-export * as actors from "./actor.mjs";
-export * as items from "./item.mjs";
+export * from "./actor.mjs";
+export * from "./item.mjs";

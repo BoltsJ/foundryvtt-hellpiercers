@@ -1,6 +1,6 @@
 import { BaseActorHellpiercers } from "./baseactor.mjs";
 
-export class HellpiercerActor extends BaseActorHellpiercers {
+export class HumanActor extends BaseActorHellpiercers {
   get weapon() {
     return this.items.find(i => i.type === "weapon" && i.system.equipped);
   }

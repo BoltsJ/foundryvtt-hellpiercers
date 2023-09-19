@@ -1,17 +1,19 @@
 <script>
-  import { getContext } from "svelte";
-  import { TJSProseMirror } from "#standard/component";
   import { localize } from "#runtime/svelte/helper";
+  import { TJSProseMirror } from "#standard/component";
+  import { getContext } from "svelte";
   import { TabStore } from "../util/stores.mjs";
   import { updateDoc } from "../util/updatedoc.mjs";
 
-  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument}*/
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Actor>}*/
   let actor = getContext("tjs_doc");
 
   const tabs = ["Notes", "DOCUMENT.Items"];
 
   let current_tab = TabStore.get($actor.uuid, tabs[0]);
+  let form;
 
+  $: console.log(form);
   let pm_opts;
   $: pm_opts = {
     document: $actor,
@@ -23,11 +25,11 @@
   };
 </script>
 
-<main class="flexcol">
+<form class="flexcol" autocomplete="off" method="dialog" use:updateDoc={actor}>
   <header>
     <div class="nameplate flexrow">
       <label for="name">{localize("Name")}:&nbsp;</label>
-      <input type="text" name="name" use:updateDoc />
+      <input type="text" name="name" />
     </div>
     <div class="bar-display flexrow">
       <label for="system.health.value">{localize("HELLPIERCERS.HP")}:&nbsp;</label>
@@ -37,46 +39,49 @@
         data-dtype="Number"
         max={$actor.system.health.max}
         min="0"
-        use:updateDoc
       />
       /
       <input
         type="number"
         name="system.health.max"
         data-dtype="Number"
+        min="0"
         disabled={!!$actor.itemTypes.class.length}
-        use:updateDoc
       />
     </div>
   </header>
 
-  <div class="tabs flexrow">
+  <nav class="tabs flexrow">
     {#each tabs as tab}
-      <button class="tab" class:active={tab === $current_tab} on:click={() => ($current_tab = tab)}>
+      <button
+        type="button"
+        class="tab"
+        class:active={tab === $current_tab}
+        on:click={() => ($current_tab = tab)}
+      >
         {localize(tab)}
       </button>
     {/each}
-  </div>
+  </nav>
 
   <section class="tab-content flexcol">
     {#if $current_tab === "Notes"}
-      <h3>{localize("Notes")}:</h3>
       <TJSProseMirror options={pm_opts} />
     {:else if $current_tab === "DOCUMENT.Items"}
       {#each $actor.items as item}
-        <p><!-- TODO: Icons (No fontawesome as it's a footgun wrt licensing) -->{item.name}</p>
+        <p>{item.name}</p>
       {:else}
         <p>No items</p>
       {/each}
     {/if}
   </section>
-</main>
+</form>
 
 <style lang="scss">
   // * {
   //   border: 1px dotted red !important;
   // }
-  main {
+  form {
     height: 100%;
     flex: 0 0 100%;
     header {
@@ -96,9 +101,9 @@
         }
       }
     }
-    div.tabs {
+    nav.tabs {
       button.tab {
-        flex: 0 1 10rem;
+        flex: 0 1 auto;
         background: none;
         border: none;
         font-size: large;
@@ -116,9 +121,12 @@
       height: 100%;
       overflow: scroll;
       // background: lightblue;
-      h3 {
-        flex: 0 0 auto;
-      }
+      // h4 {
+      //   flex: 0 0 auto;
+      // }
+    }
+    :global(.editor .menu) {
+      position: absolute;
     }
   }
 </style>
