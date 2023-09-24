@@ -2,15 +2,21 @@
 
 <script>
   import { TJSApplicationShell } from "#runtime/svelte/component/core";
-  import { setContext } from "svelte";
+  import { getContext, setContext } from "svelte";
   import { slide } from "svelte/transition";
   import HumanSheet from "./HumanSheet.svelte";
+
+  export let elementRoot;
+  export let actor;
+
+  const external = getContext("#external");
+  console.log(external);
+
+  $: external.application.reactive.title = $actor.name + ($actor.isToken ? " [Token]" : "");
 
   const sheets = {
     ["human"]: HumanSheet,
   };
-  export let elementRoot;
-  export let actor;
 
   setContext("tjs_doc", actor);
 </script>

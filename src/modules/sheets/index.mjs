@@ -1,1 +1,1 @@
-export { default as TJSActorSheet } from "./ActorSheetApp.mjs";
+export { default as HellpiercersActorSheet } from "./ActorSheetApp.mjs";

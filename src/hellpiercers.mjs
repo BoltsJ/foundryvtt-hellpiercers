@@ -29,9 +29,10 @@ Hooks.once("init", () => {
   CONFIG.Actor.dataModels.boss = datamodels.BossModel;
   CONFIG.Actor.dataModels.faction = datamodels.FactionModel;
   CONFIG.Actor.documentClass = documents.HellpiercersActorProxy;
-  Actors.registerSheet("hellpiercers", sheets.TJSActorSheet, {
+  Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
     types: ["human"],
     makeDefault: true,
+    label: "HELLPIERCERS.ActorSheet",
   });
 
   // Items
