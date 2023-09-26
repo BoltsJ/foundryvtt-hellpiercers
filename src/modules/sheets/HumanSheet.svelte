@@ -2,6 +2,7 @@
   import { localize } from "#runtime/svelte/helper";
   import { TabStore } from "../util/stores.mjs";
   import TagEditor from "./TagEditor.svelte";
+  import { updateDoc } from "./actions/updatedoc.mjs";
   import BiographyTab from "./components/BiographyTab.svelte";
 
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Actor>}*/
@@ -12,16 +13,6 @@
   let current_tab = TabStore.get($actor.uuid, tabs[0]);
 
   let tagEditor = false;
-
-  /** @param {Event} change */
-  function update(change) {
-    /** @type {HTMLInputElement} */
-    const target = change.target;
-    if (!foundry.utils.hasProperty($actor, target.name)) return;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const data_type = target.dataset.dtype;
-    $actor.update({ [target.name]: data_type === "Number" ? parseFloat(value) : value });
-  }
 
   /** @param {DragEvent} drop */
   async function handleDrop(drop) {
@@ -39,7 +30,7 @@
   }
 </script>
 
-<main on:change={update} class="flexcol" autocomplete="off" on:drop|preventDefault={handleDrop}>
+<main class="flexcol" autocomplete="off" on:drop|preventDefault={handleDrop} use:updateDoc>
   <header>
     <div class="flexrow">
       <label for="name">{localize("Name")}:&nbsp;</label>
