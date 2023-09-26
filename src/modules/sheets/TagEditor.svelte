@@ -1,11 +1,14 @@
 <script>
+  /** @type {boolean} */
   export let tagEditor;
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument}*/
   export let document;
+  export let path = "system.tags";
 
   /** @type {HTMLDialogElement} */
   let dialog;
 
-  $: tags = Array.from($document.system.tags);
+  $: tags = Array.from(foundry.utils.getProperty($document, path));
   $: if (dialog && tagEditor) dialog.show();
 </script>
 
@@ -13,11 +16,12 @@
   bind:this={dialog}
   on:close={() => {
     tagEditor = false;
+    /** @type {string[]}*/
     const newtags = dialog.firstChild.value
       .split(",")
       .map(t => t.trim())
       .filter(Boolean);
-    $document.update({ "system.tags": newtags });
+    $document.update({ [path]: newtags });
   }}
 >
   <input type="text" value={tags.join(",")} />

@@ -1,5 +1,4 @@
 import { SvelteApplication } from "#runtime/svelte/application";
-import { TJSDocument } from "#runtime/svelte/store/fvtt/document";
 import ActorSheetAppShell from "./ActorSheetAppShell.svelte";
 
 export default class HellpiercersActorSheet extends SvelteApplication {
@@ -7,28 +6,24 @@ export default class HellpiercersActorSheet extends SvelteApplication {
   constructor(actor, options = {}) {
     super(
       foundry.utils.mergeObject(
-        {
-          id: `doc_${actor.uuid.replaceAll(".", "_")}`,
-          svelte: {
-            props: {
-              actor: new TJSDocument(actor),
-            },
-          },
-        },
+        { id: `HellpiercersActorSheet_${actor.uuid.replaceAll(".", "_")}` },
         options
       )
     );
-    // this.isEditable = true;
     this.actor = actor;
     this.object = actor;
     this.document = actor;
   }
 
+  /** @returns {ApplicationOptions} */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["hellpiercers", "sheet", "actor"],
+      resizable: true,
       width: 600,
       height: 600,
+      ["minWidth"]: 600,
+      ["minHeight"]: 400,
       sheetConfig: true,
       svelte: {
         class: ActorSheetAppShell,

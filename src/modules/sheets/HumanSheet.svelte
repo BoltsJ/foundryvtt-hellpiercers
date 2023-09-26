@@ -1,14 +1,11 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
-  import { TJSTinyMCE } from "#standard/component";
-  import { getContext } from "svelte";
   import { TabStore } from "../util/stores.mjs";
   import TagEditor from "./TagEditor.svelte";
+  import BiographyTab from "./components/BiographyTab.svelte";
 
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Actor>}*/
-  let actor = getContext("tjs_doc");
-  /** @type {HTMLFormElement} */
-  let form;
+  export let actor;
 
   const tabs = ["Notes", "DOCUMENT.Items"];
 
@@ -18,53 +15,67 @@
 
   /** @param {Event} change */
   function update(change) {
+    /** @type {HTMLInputElement} */
     const target = change.target;
+    if (!foundry.utils.hasProperty($actor, target.name)) return;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const data_type = target.dataset.dtype;
     $actor.update({ [target.name]: data_type === "Number" ? parseFloat(value) : value });
   }
 
-  let pm_opts;
-  $: pm_opts = {
-    document: $actor,
-    fieldName: "system.biography",
-    collaborate: true,
-    editable: true,
-    enrichContent: true,
-    initialSelection: "start",
-  };
+  /** @param {DragEvent} drop */
+  async function handleDrop(drop) {
+    const dropdata = drop.dataTransfer.getData("text/plain") ?? "";
+    try {
+      const { type: doctype, uuid } = JSON.parse(dropdata);
+      if (doctype !== "Item") return;
+
+      const item = await fromUuid(uuid);
+
+      $actor.createEmbeddedDocuments("Item", [item]);
+    } catch (_) {
+      console.warn("Invalid Drop data.");
+    }
+  }
 </script>
 
-<form bind:this={form} class="flexcol" autocomplete="off" method="dialog">
+<main on:change={update} class="flexcol" autocomplete="off" on:drop|preventDefault={handleDrop}>
   <header>
-    <div class="nameplate flexrow">
+    <div class="flexrow">
       <label for="name">{localize("Name")}:&nbsp;</label>
-      <input type="text" name="name" value={$actor.name} on:change={update} />
+      <input name="name" value={$actor.name} type="text" />
     </div>
-    <div class="bar-display flexrow">
+    <div class="flexrow">
+      <label for="system.pronouns">{localize("HELLPIERCERS.Pronouns")}:&nbsp</label>
+      <input
+        name="system.pronouns"
+        value={$actor.system.pronouns}
+        type="text"
+        placeholder="any/all"
+      />
+    </div>
+    <div class="flexrow">
       <label for="system.health.value">{localize("HELLPIERCERS.HP")}:&nbsp;</label>
       <input
-        type="number"
         name="system.health.value"
+        value={$actor.system.health.value}
+        type="number"
         data-dtype="Number"
         max={$actor.system.health.max}
         min="0"
-        value={$actor.system.health.value}
-        on:change={update}
       />
       /
       <input
-        type="number"
         name="system.health.max"
+        value={$actor.system.health.max}
+        type="number"
         data-dtype="Number"
         min="0"
         disabled={!!$actor.itemTypes.class.length}
-        value={$actor.system.health.max}
-        on:change={update}
       />
     </div>
-    <div class="tag-list flexrow">
-      <span>{localize("HELLPIERCERS.Tags")}:</span>
+    <div class="flexrow">
+      <span>{localize("HELLPIERCERS.Tags")}:&nbsp;</span>
       <TagEditor bind:tagEditor document={actor} />
       {#each $actor.system.tags as tag}
         <span class="tag">{tag}</span>
@@ -73,9 +84,20 @@
         <i class="fas fa-edit"></i>
       </button>
     </div>
+    <div class="flexrow">
+      <label for="system.speed">{localize("HELLPIERCERS.Speed")}:&nbsp;</label>
+      <input
+        name="system.speed"
+        value={$actor.system.speed}
+        type="number"
+        data-dtype="Number"
+        min="1"
+        disabled={!!$actor.itemTypes.armor.length}
+      />
+    </div>
   </header>
 
-  <nav class="tabs flexrow">
+  <div class="tabs flexrow" role="tablist">
     {#each tabs as tab}
       <button
         role="tab"
@@ -87,99 +109,54 @@
         {localize(tab)}
       </button>
     {/each}
-  </nav>
+  </div>
 
-  <section class="tab-content flexcol">
+  <section class="sheetbody flexcol" role="tabpanel">
     {#if $current_tab === "Notes"}
-      <TJSTinyMCE options={pm_opts} />
+      <BiographyTab {actor} />
     {:else if $current_tab === "DOCUMENT.Items"}
-      {#each $actor.items as item}
-        <p>{item.name}</p>
-      {:else}
-        <p>No items</p>
-      {/each}
+      <div id="items-tab" class="flexcol" role="tabpanel">
+        {#each $actor.items as item}
+          <div class="flexrow">
+            <span>{item.name} &mdash; {item.type}</span>
+            <button type="button" on:click={() => item.sheet.render(true)}>
+              <i class="fas fa-edit"></i>
+            </button>
+            <button type="button" on:click={() => item.deleteDialog()}>
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        {:else}
+          <p>No items</p>
+        {/each}
+      </div>
     {/if}
   </section>
-</form>
+</main>
 
 <style lang="scss">
-  // * {
-  //   border: 1px dotted red !important;
-  // }
-  form {
-    height: 100%;
-    flex: 0 0 100%;
+  main {
+    height: 0%;
+    flex: 1 0 auto;
+    overflow: unset;
     header {
-      flex: 0 1 auto;
-      // background: lightcoral;
-      .nameplate {
-        label {
-          flex: 0 0 auto;
-        }
-      }
-      .bar-display {
-        label {
-          flex: 0 0 auto;
-        }
-        input {
-          flex: 0 0 2rem;
-          text-align: center;
-        }
-      }
-      .tag-list {
-        * {
-          flex: 0 0 auto;
-        }
-        .tag {
-          border: 1px solid #00000030;
-          background: #00000030;
-          border-radius: 0.25rem;
-          padding: 0 0.25rem;
-        }
-        .tag-edit {
-          flex: 0 0 auto;
-          width: auto;
-          line-height: normal;
-          background: none;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          &:hover,
-          &:focus {
-            box-shadow: none;
-            text-shadow: 0 0 8px var(--color-shadow-primary);
-          }
-          &:active {
-            box-shadow: none;
-            text-shadow: 0 0 8px var(--color-shadow-primary);
-          }
-        }
-      }
+      flex: 0 0 auto;
     }
-    nav.tabs {
-      button.tab {
-        flex: 0 1 auto;
-        background: none;
-        border: none;
-        font-size: large;
-        &:hover,
-        &:focus {
-          box-shadow: none;
-          text-shadow: 0 0 8px var(--color-shadow-primary);
-        }
-        &.active {
-          text-decoration: underline;
+    div.tabs {
+      flex: 0 0 auto;
+    }
+    .sheetbody {
+      flex: 1 0 auto;
+      height: 0%;
+      max-height: 100%;
+      #items-tab {
+        overflow: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: black #00000000;
+        div {
+          flex: 0 0 auto;
         }
       }
-    }
-    .tab-content {
-      flex: 0 1 100%;
-      height: 100%;
-      overflow: scroll;
-      // background: lightblue;
-      // h4 {
-      //   flex: 0 0 auto;
-      // }
     }
   }
 </style>
