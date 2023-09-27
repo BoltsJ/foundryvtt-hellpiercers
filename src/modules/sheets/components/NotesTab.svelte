@@ -1,11 +1,12 @@
 <script>
   import { TJSTinyMCE } from "#standard/component";
 
-  export let actor;
+  export let document;
+  export let property = "system.biography";
 
   let options = {
-    document: $actor,
-    fieldName: "system.biography",
+    document: $document,
+    fieldName: property,
     collaborate: true,
     editable: true,
     enrichContent: true,
@@ -16,3 +17,12 @@
 <div class="tab" role="tabpanel">
   <TJSTinyMCE {options} />
 </div>
+
+<style lang="scss">
+  div.tab {
+    overflow: scroll;
+    :global(.editor-content) {
+      scrollbar-width: thin;
+    }
+  }
+</style>

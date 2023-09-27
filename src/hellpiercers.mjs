@@ -37,4 +37,10 @@ Hooks.once("init", () => {
 
   // Items
   CONFIG.Item.dataModels.weapon = datamodels.WeaponModel;
+  CONFIG.Item.dataModels.class = datamodels.ClassModel;
+  Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
+    types: ["class"],
+    makeDefault: true,
+    label: "HELLPIERCERS.ItemSheet",
+  });
 });

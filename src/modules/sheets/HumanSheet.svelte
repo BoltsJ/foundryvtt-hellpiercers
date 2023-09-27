@@ -1,9 +1,10 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
   import { TabStore } from "../util/stores.mjs";
-  import TagEditor from "./TagEditor.svelte";
+  import TagEditor from "./components/TagEditor.svelte";
   import { updateDoc } from "./actions/updatedoc.mjs";
-  import BiographyTab from "./components/BiographyTab.svelte";
+  import NotesTab from "./components/NotesTab.svelte";
+  import Portrait from "./components/Portrait.svelte";
 
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Actor>}*/
   export let actor;
@@ -32,6 +33,7 @@
 
 <main class="flexcol" autocomplete="off" on:drop|preventDefault={handleDrop} use:updateDoc>
   <header>
+    <Portrait document={actor} />
     <div class="flexrow">
       <label for="name">{localize("Name")}:&nbsp;</label>
       <input name="name" value={$actor.name} type="text" />
@@ -102,18 +104,41 @@
     {/each}
   </div>
 
-  <section class="sheetbody flexcol" role="tabpanel">
+  <section class="sheetbody flexcol">
     {#if $current_tab === "Notes"}
-      <BiographyTab {actor} />
+      <NotesTab document={actor} />
     {:else if $current_tab === "DOCUMENT.Items"}
       <div id="items-tab" class="flexcol" role="tabpanel">
         {#each $actor.items as item}
           <div class="flexrow">
+            <img
+              src={item.img}
+              alt="{item.name} icon"
+              height="20"
+              width="20"
+              style="flex: 0 0 auto;"
+            />
             <span>{item.name} &mdash; {item.type}</span>
+            {#if item.type !== "gear"}
+              <input
+                type="checkbox"
+                checked={item.system.equipped}
+                on:change|stopPropagation={change =>
+                  item.update({ "system.equipped": change.target.checked })}
+              />
+            {:else}
+              <span style="width: 20px; height: 20px; flex: 0 0 20px; margin: 3px 5px;"></span>
+            {/if}
             <button type="button" on:click={() => item.sheet.render(true)}>
               <i class="fas fa-edit"></i>
             </button>
-            <button type="button" on:click={() => item.deleteDialog()}>
+            <button
+              type="button"
+              on:click={() => {
+                item.sheet.close();
+                item.deleteDialog();
+              }}
+            >
               <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -127,7 +152,10 @@
 
 <style lang="scss">
   main {
-    height: 0%;
+    label {
+      flex: 0 0 auto;
+    }
+    height: 100%;
     flex: 1 0 auto;
     overflow: unset;
     header {

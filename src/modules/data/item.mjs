@@ -36,14 +36,28 @@ export class WeaponModel extends foundry.abstract.DataModel {
 export class ArmorModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
-    return {};
+    return {
+      equipped: new fields.BooleanField({ required: true, initial: false }),
+    };
   }
 }
 
 export class ClassModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
-    return {};
+    return {
+      description: new fields.HTMLField({ required: true }),
+      health: new fields.NumberField({ integer: true }),
+      active: new fields.SchemaField({
+        name: new fields.StringField({ required: true, initial: "Active Ability" }),
+        description: new fields.HTMLField({ required: true, initial: "Description..." }),
+      }),
+      passive: new fields.SchemaField({
+        name: new fields.StringField({ required: true, initial: "Passive Ability" }),
+        description: new fields.HTMLField({ required: true, initial: "Description..." }),
+      }),
+      equipped: new fields.BooleanField({ required: true, initial: false }),
+    };
   }
 }
 

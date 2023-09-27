@@ -53,8 +53,16 @@ export class HumanActor extends BaseActorHellpiercers {
     return this.updateEmbeddedDocuments("Item", updates);
   }
 
-  /** @override */
-  isHellpiercer() {
+  /** @inheritdoc */
+  prepareBaseData() {
+    super.prepareBaseData();
+    this.system.updateSource({ "health.max": this.class?.system.health ?? 10 });
+  }
+
+  /** @override
+   * @returns {this is HumanActor}
+   */
+  isHuman() {
     return true;
   }
 }
