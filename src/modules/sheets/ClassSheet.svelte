@@ -1,7 +1,6 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
   import { TabStore } from "../util/stores.mjs";
-  import TagEditor from "./components/TagEditor.svelte";
   import { updateDoc } from "./actions/updatedoc.mjs";
   import NotesTab from "./components/NotesTab.svelte";
   import Portrait from "./components/Portrait.svelte";
@@ -12,8 +11,6 @@
   const tabs = ["Description", "HELLPIERCERS.ItemDetails"];
 
   let current_tab = TabStore.get($item.uuid, tabs[0]);
-
-  let tagEditor = false;
 </script>
 
 <main class="flexcol" autocomplete="off" use:updateDoc>
