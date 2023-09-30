@@ -57,6 +57,7 @@ export class HumanActor extends BaseActorHellpiercers {
   prepareBaseData() {
     super.prepareBaseData();
     this.system.updateSource({ "health.max": this.class?.system.health ?? 10 });
+    this.system.updateSource({ speed: this.armor?.system.speed ?? 3 });
   }
 
   /** @override

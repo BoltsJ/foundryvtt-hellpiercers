@@ -2,7 +2,11 @@ import { SvelteApplication } from "#runtime/svelte/application";
 import ItemSheetAppShell from "./ItemSheetAppShell.svelte";
 
 export default class HellpiercersItemSheet extends SvelteApplication {
-  /** @inheritdoc */
+  /**
+   * @param {Item} item
+   * @param {Object} options
+   * @inheritdoc
+   */
   constructor(item, options = {}) {
     super(
       foundry.utils.mergeObject(
@@ -10,8 +14,11 @@ export default class HellpiercersItemSheet extends SvelteApplication {
         options
       )
     );
+    /** @type {Item} */
     this.item = item;
+    /** @type {Item} */
     this.object = item;
+    /** @type {Item} */
     this.document = item;
   }
 

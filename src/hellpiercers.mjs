@@ -23,6 +23,8 @@ const ascii_logo = `
 Hooks.once("init", () => {
   console.log("hellpiercers | Initializing HELLPIERCERS System", ascii_logo);
 
+  CONFIG.ActiveEffect.legacyTransferral = false;
+
   // Actors
   CONFIG.Actor.dataModels.human = datamodels.HumanModel;
   CONFIG.Actor.dataModels.demon = datamodels.DemonModel;
@@ -37,9 +39,10 @@ Hooks.once("init", () => {
 
   // Items
   CONFIG.Item.dataModels.weapon = datamodels.WeaponModel;
+  CONFIG.Item.dataModels.armor = datamodels.ArmorModel;
   CONFIG.Item.dataModels.class = datamodels.ClassModel;
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
-    types: ["class"],
+    types: ["class", "armor", "weapon"],
     makeDefault: true,
     label: "HELLPIERCERS.ItemSheet",
   });

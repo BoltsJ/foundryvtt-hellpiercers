@@ -1,4 +1,3 @@
-
 /** @type { typeof Human | typeof DemonActor} */
 export const HellpiercersItemProxy = new Proxy(BaseItemHellpiercers, {
   construct(BaseItemHellpiercers, args) {

@@ -3,7 +3,7 @@
 
 <script>
   import { ApplicationShell } from "#runtime/svelte/component/core";
-  import { localize } from "#runtime/svelte/helper"
+  import { localize } from "#runtime/svelte/helper";
 
   export let elementRoot;
 </script>

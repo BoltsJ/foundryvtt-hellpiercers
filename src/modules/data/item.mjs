@@ -37,6 +37,14 @@ export class ArmorModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
+      description: new fields.HTMLField({ required: true }),
+      speed: new fields.NumberField({ required: true }),
+      movement: new fields.HTMLField({ required: true }),
+      resistances: new fields.SetField(new fields.StringField()),
+      special: new fields.SchemaField({
+        name: new fields.StringField({ required: true, initial: "Active Ability" }),
+        description: new fields.HTMLField({ required: true, initial: "Description..." }),
+      }),
       equipped: new fields.BooleanField({ required: true, initial: false }),
     };
   }
@@ -64,7 +72,9 @@ export class ClassModel extends foundry.abstract.DataModel {
 export class GearModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
-    return {};
+    return {
+      description: new fields.HTMLField({ required: true }),
+    };
   }
 }
 

@@ -11,6 +11,7 @@
   export let elementRoot;
 
   const external = getContext("#external");
+  /** @type {TJSDocument<Actor>} */
   let actor = new TJSDocument(external.application.actor);
 
   $: external.application.reactive.title =
