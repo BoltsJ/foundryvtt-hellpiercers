@@ -1,4 +1,4 @@
-import { BaseItemHellpiercers } from "./baseitem.mjs"
+import { BaseItemHellpiercers } from "./baseitem.mjs";
 import { HellpiercersWeapon } from "./weapon.mjs";
 
 /** @type { typeof HellpiercersWeapon | typeof BaseItemHellpiercers } */

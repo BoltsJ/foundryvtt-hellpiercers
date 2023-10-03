@@ -4,7 +4,6 @@ import * as documents from "./modules/documents/index.mjs";
 import * as sheets from "./modules/sheets/index.mjs";
 // import BasicApplication from "./modules/view/BasicApllication.mjs";
 // import * as util from "./modules/util/index.mjs"
-import {a} from "./modules/util/gen_range_svg.mjs";
 
 globalThis.hellpiercers = {
   applications: {
@@ -13,9 +12,7 @@ globalThis.hellpiercers = {
   datamodels,
   documents,
   sheets,
-  util: {
-    a
-  },
+  util: {},
 };
 
 const ascii_logo = ` 
@@ -44,7 +41,7 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels.weapon = datamodels.WeaponModel;
   CONFIG.Item.dataModels.armor = datamodels.ArmorModel;
   CONFIG.Item.dataModels.class = datamodels.ClassModel;
-  CONFIG.Item.documentClass=documents.HellpiercersItemProxy
+  CONFIG.Item.documentClass = documents.HellpiercersItemProxy;
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
     types: ["class", "armor", "weapon"],
     makeDefault: true,

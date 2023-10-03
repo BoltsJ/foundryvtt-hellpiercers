@@ -1,4 +1,3 @@
-import { SVG } from "@svgdotjs/svg.js";
 import { BaseItemHellpiercers } from "./baseitem.mjs";
 
 export class HellpiercersWeapon extends BaseItemHellpiercers {
