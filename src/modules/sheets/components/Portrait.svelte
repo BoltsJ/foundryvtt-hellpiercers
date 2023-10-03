@@ -14,11 +14,11 @@
 <!-- svelte-ignore a11y-click-events-have-key-events svelte-ignore a11y-no-noninteractive-element-interactions -->
 <img
   class="portrait"
-  src={$document.img}
-  title={$document.name}
+  src={$document?.img}
+  title={$document?.name}
   width="100"
   height="100"
-  alt="{$document.name} portrait"
+  alt="{$document?.name} portrait"
   on:click={pick}
 />
 

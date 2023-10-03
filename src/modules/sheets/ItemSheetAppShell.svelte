@@ -12,6 +12,7 @@
   import { updateDoc } from "./actions/updatedoc.mjs";
   import NotesTab from "./components/NotesTab.svelte";
   import Portrait from "./components/Portrait.svelte";
+  import WeaponTab from "./WeaponTab.svelte";
 
   export let elementRoot;
 
@@ -21,12 +22,12 @@
   const tabs = ["Description", "HELLPIERCERS.ItemDetails", "HELLPIERCERS.Effects"];
   let current_tab = TabStore.get($item.uuid, tabs[0]);
 
-  $: external.application.reactive.title =
-    $item.name + ($item.isToken ? ` [${localize("Token")}]` : "");
+  $: external.application.reactive.title = $item?.name;
 
   const sheets = {
     ["class"]: ClassTab,
     ["armor"]: ArmorTab,
+    ["weapon"]: WeaponTab,
   };
 </script>
 

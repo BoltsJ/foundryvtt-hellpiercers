@@ -8,39 +8,40 @@
 
 <div class="tab flexcol" role="tabpanel">
   <div class="flexrow">
-    <label for="system.health">{localize("HELLPIERCERS.HP")}:&nbsp;</label>
-    <input
-      name="system.health"
-      value={$item.system.health}
-      type="number"
-      data-dtype="Number"
-      min="0"
-    />
+    <label>
+      {localize("HELLPIERCERS.WeaponDamage")}
+      <input name="system.damage" value={$item.system.damage} type="text" placeholder="0 + 1d6" />
+    </label>
+  </div>
+  <div>
+    <span>{localize("HELLPIERCERS.WeaponRange")}</span>
+    <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre>
   </div>
   <div class="ability flexcol">
     <div class="flexrow">
-      <label for="system.active.name">{localize("HELLPIERCERS.ActiveName")}</label>
-      <input name="system.active.name" value={$item.system.active.name} type="text" />
+      <label>
+        {localize("HELLPIERCERS.WeaponAbility")}
+        <input
+          name="system.ability.name"
+          value={$item.system.ability.name}
+          type="text"
+          placeholder={localize("HELLPIERCERS.WeaponAbility")}
+        />
+      </label>
+    </div>
+    <div class="flexrow">
+      <label for="system.ability.kind">
+        {localize("HELLPIERCERS.WeaponAbilityActivation")}
+        <select name="system.ability.kind" value={$item.system.ability.kind}>
+          <option value="trigger">{localize("HELLPIERCERS.WeaponTrigger")}</option>
+          <option value="action">{localize("HELLPIERCERS.WeaponAction")}</option>
+        </select>
+      </label>
     </div>
     <TJSTinyMCE
       options={{
         document: $item,
-        fieldName: "system.active.description",
-        editable: true,
-        enrichContent: true,
-        initialSelection: "start",
-      }}
-    />
-  </div>
-  <div class="ability flexcol">
-    <div class="flexrow">
-      <label for="system.passive.name">{localize("HELLPIERCERS.PassiveName")}</label>
-      <input name="system.passive.name" value={$item.system.passive.name} type="text" />
-    </div>
-    <TJSTinyMCE
-      options={{
-        document: $item,
-        fieldName: "system.passive.description",
+        fieldName: "system.ability.description",
         editable: true,
         enrichContent: true,
         initialSelection: "start",
@@ -51,6 +52,9 @@
 
 <style lang="scss">
   div.tab {
+    overflow: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: black #00000000;
     .flexrow {
       flex: 0 0 auto;
     }

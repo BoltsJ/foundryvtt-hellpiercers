@@ -137,7 +137,6 @@
             <button
               type="button"
               on:click={() => {
-                item.sheet.close();
                 item.deleteDialog();
               }}
             >

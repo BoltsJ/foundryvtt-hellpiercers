@@ -1,11 +1,12 @@
-/** @type { typeof Human | typeof DemonActor} */
+import { BaseItemHellpiercers } from "./baseitem.mjs"
+import { HellpiercersWeapon } from "./weapon.mjs";
+
+/** @type { typeof HellpiercersWeapon | typeof BaseItemHellpiercers } */
 export const HellpiercersItemProxy = new Proxy(BaseItemHellpiercers, {
   construct(BaseItemHellpiercers, args) {
     switch (args[0]?.type) {
-      case "hellpiercer":
-        return new HumanActor(...args);
-      case "demon":
-        return new DemonActor(...args);
+      case "weapon":
+        return new HellpiercersWeapon(...args);
       default:
         break;
     }

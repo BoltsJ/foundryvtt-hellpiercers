@@ -20,7 +20,12 @@
   <div class="ability flexcol">
     <div class="flexrow">
       <label for="system.active.name">{localize("HELLPIERCERS.ActiveName")}</label>
-      <input name="system.active.name" value={$item.system.active.name} type="text" />
+      <input
+        name="system.active.name"
+        value={$item.system.active.name}
+        type="text"
+        placeholder={localize("HELLPIERCERS.ActiveName")}
+      />
     </div>
     <TJSTinyMCE
       options={{
@@ -35,7 +40,12 @@
   <div class="ability flexcol">
     <div class="flexrow">
       <label for="system.passive.name">{localize("HELLPIERCERS.PassiveName")}</label>
-      <input name="system.passive.name" value={$item.system.passive.name} type="text" />
+      <input
+        name="system.passive.name"
+        value={$item.system.passive.name}
+        type="text"
+        placeholder={localize("HELLPIERCERS.PassiveName")}
+      />
     </div>
     <TJSTinyMCE
       options={{
