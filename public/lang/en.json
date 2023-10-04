@@ -1,6 +1,24 @@
 {
-    "HELLPIERCERS": {
-        "title": "HELLPIERCERS",
-        "tagline": "Hell is a prison. Break its bars."
-    }
+  "HELLPIERCERS": {
+    "title": "HELLPIERCERS",
+    "tagline": "Hell is a prison. Break its bars.",
+    "Abilities": "Abilities",
+    "ActiveName": "Active",
+    "Effects": "Effects",
+    "HP": "HP",
+    "ItemDetails": "Details",
+    "Movement": "Movement",
+    "PassiveName": "Passive",
+    "Pronouns": "Pronouns",
+    "Resistances": "Resistances",
+    "SpecialName": "Special",
+    "Speed": "Speed",
+    "Tags": "Tags",
+    "WeaponAbility": "Ability",
+    "WeaponAbilityActivation": "Activation",
+    "WeaponAction": "Action",
+    "WeaponDamage": "Damage",
+    "WeaponRange": "Range",
+    "WeaponTrigger": "Trigger"
+  }
 }
