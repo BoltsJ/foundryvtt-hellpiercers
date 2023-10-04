@@ -15,7 +15,8 @@
   </div>
   <div>
     <span>{localize("HELLPIERCERS.WeaponRange")}</span>
-    <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre>
+    <div>{@html $item.rangeSvg.outerHTML}</div>
+    <!-- <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
   </div>
   <div class="ability flexcol">
     <div class="flexrow">

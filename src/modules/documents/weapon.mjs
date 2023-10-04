@@ -24,42 +24,64 @@ export class HellpiercersWeapon extends BaseItemHellpiercers {
       [0, 0, 0, 0, 0, 0]
     );
 
-    const m = Array(size[1])
-      .fill(Array(size[0]).fill("."))
+    const m = Array(size[0])
+      .fill(Array(size[1]).fill("."))
       .map(a => [...a]);
 
     for (let r = 0; r < size[0]; r++) {
       for (let c = 0; c < size[1]; c++) {
-        if (c === -size[4] && r === -size[2]) m[c][r] = "@";
+        if (c === -size[4] && r === -size[2]) m[r][c] = "@";
         if (range.some(space => space.row === r + size[2] && space.col === c + size[4]))
-          m[c][r] = "O";
+          m[r][c] = "O";
       }
     }
     return m;
   }
 
-  // get rangeSvg() {
-  //   const grid = this.rangeGrid;
-  //   const rows = grid[0].length;
-  //   const cols = grid.length;
+  get rangeSvg() {
+    const square_size = 15;
+    const grid = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-  //   /** @param {number} i
-  //    * @param {number} j
-  //    */
-  //   function generateSquare(i, j) {
-  //     const group = draw.group().addClass("draw-block");
-  //     group.rect(100, 100).fill("white").stroke("black").move(i * 100, j * 100);
-  //   }
+    let matrix = this.rangeGrid;
+    // Rotate -90° so it points right instead of down
+    matrix = matrix[0].map((_, i) => matrix.map(r => r[r.length-1-i]));
+    const rows = matrix.length;
+    const cols = matrix[0]?.length;
 
-  //   const draw = SVG().size("100%", "100%").viewbox(`0 0 ${rows * 100} ${cols * 100}`)
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        let square = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        square.setAttribute("width", square_size);
+        square.setAttribute("height", square_size);
 
-  //   for (let i = 0; i < rows; i++) {
-  //     for (let j = 0; j < rows; j++) {
-  //       generateSquare(i, j);
-  //     }
-  //   }
+        square.setAttribute("x", 5 + col * square_size);
+        square.setAttribute("y", 5 + row * square_size);
 
-  //   console.log(draw);
-  //   return draw;
-  // }
+        let color;
+        switch (matrix[row][col]) {
+          case ".":
+            color = "none";
+            break;
+          case "@":
+            color = "blue";
+            break;
+          case "O":
+            color = "yellow";
+            break;
+        }
+
+        square.setAttribute(
+          "style",
+          `fill: ${color}; stroke: black; stroke-width: 2; fill-opacity: 0.8; stroke-opacity: 1`
+        );
+
+        grid.appendChild(square);
+      }
+    }
+
+    grid.setAttribute("width", 10 + square_size * cols);
+    grid.setAttribute("height", 10 + square_size * rows);
+
+    return grid;
+  }
 }
