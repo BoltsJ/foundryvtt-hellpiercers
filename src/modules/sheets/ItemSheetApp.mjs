@@ -25,7 +25,7 @@ export default class HellpiercersItemSheet extends SvelteApplication {
   /** @returns {ApplicationOptions} */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["hellpiercers", "sheet", "actor"],
+      classes: ["hellpiercers", "sheet", "item"],
       resizable: true,
       width: 400,
       height: 500,

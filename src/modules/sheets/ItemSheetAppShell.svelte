@@ -3,16 +3,16 @@
 <script>
   import { TJSApplicationShell } from "#runtime/svelte/component/core";
   import { localize } from "#runtime/svelte/helper";
-  import { TJSDocument } from "@typhonjs-fvtt/runtime/svelte/store/fvtt/document";
+  import { TJSDocument } from "#runtime/svelte/store/fvtt/document";
   import { getContext } from "svelte";
   import { slide } from "svelte/transition";
   import { TabStore } from "../util/stores.mjs";
-  import ArmorTab from "./ArmorTab.svelte";
-  import ClassTab from "./ClassTab.svelte";
   import { updateDoc } from "./actions/updatedoc.mjs";
   import NotesTab from "./components/NotesTab.svelte";
   import Portrait from "./components/Portrait.svelte";
-  import WeaponTab from "./WeaponTab.svelte";
+  import ArmorTab from "./itemtabs/ArmorTab.svelte";
+  import ClassTab from "./itemtabs/ClassTab.svelte";
+  import WeaponTab from "./itemtabs/WeaponTab.svelte";
 
   export let elementRoot;
 
@@ -25,8 +25,8 @@
   $: external.application.reactive.title = $item?.name;
 
   const sheets = {
-    ["class"]: ClassTab,
     ["armor"]: ArmorTab,
+    ["class"]: ClassTab,
     ["weapon"]: WeaponTab,
   };
 </script>

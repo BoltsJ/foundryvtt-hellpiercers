@@ -5,12 +5,25 @@
 }
 
 .hellpiercers {
-  &.sheet.actor {
-    section.window-content {
-      background: var(--hellpiercers-primary-background, url(../ui/parchment.jpg) repeat);
-      color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
-      input {
+  &.sheet {
+    &.item,
+    &.actor {
+      section.window-content {
+        background: var(--hellpiercers-primary-background, url(../ui/parchment.jpg) repeat);
         color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
+        input {
+          color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
+        }
+      }
+    }
+  }
+  &.sheet.item {
+    svg {
+      rect {
+        stroke: black;
+        stroke-width: 2;
+        fill: black;
+        fill-opacity: 0.5;
       }
     }
   }

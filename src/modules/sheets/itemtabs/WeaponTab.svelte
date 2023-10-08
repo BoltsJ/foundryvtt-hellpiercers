@@ -2,7 +2,8 @@
   import { localize } from "#runtime/svelte/helper";
   import { TJSTinyMCE } from "#standard/component";
 
-  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Item>}*/
+  /** @typedef {import("../../documents/weapon.mjs").HellpiercersWeapon} HellpiercersWeapon */
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<HellpiercersWeapon>}*/
   export let item;
 </script>
 
@@ -13,10 +14,11 @@
       <input name="system.damage" value={$item.system.damage} type="text" placeholder="0 + 1d6" />
     </label>
   </div>
-  <div>
+  <div class="flexrow">
     <span>{localize("HELLPIERCERS.WeaponRange")}</span>
     <div>{@html $item.rangeSvg.outerHTML}</div>
     <!-- <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
+    <button type="button"><i class="fa-solid fa-edit" /></button>
   </div>
   <div class="ability flexcol">
     <div class="flexrow">
@@ -33,9 +35,13 @@
     <div class="flexrow">
       <label for="system.ability.kind">
         {localize("HELLPIERCERS.WeaponAbilityActivation")}
-        <select name="system.ability.kind" value={$item.system.ability.kind}>
-          <option value="trigger">{localize("HELLPIERCERS.WeaponTrigger")}</option>
-          <option value="action">{localize("HELLPIERCERS.WeaponAction")}</option>
+        <select name="system.ability.kind">
+          <option value="trigger" selected={$item.system.ability.kind === "trigger"}>
+            {localize("HELLPIERCERS.WeaponTrigger")}
+          </option>
+          <option value="action" selected={$item.system.ability.kind === "action"}>
+            {localize("HELLPIERCERS.WeaponAction")}
+          </option>
         </select>
       </label>
     </div>
