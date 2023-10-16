@@ -28,7 +28,7 @@ export class WeaponModel extends foundry.abstract.DataModel {
         }),
         description: new fields.HTMLField({ required: true }),
       }),
-      equipped: new fields.BooleanField({ required: true, initial: false }),
+      active: new fields.BooleanField({ required: true, initial: false }),
     };
   }
 }
@@ -45,7 +45,6 @@ export class ArmorModel extends foundry.abstract.DataModel {
         name: new fields.StringField({ required: true }),
         description: new fields.HTMLField({ required: true }),
       }),
-      equipped: new fields.BooleanField({ required: true, initial: false }),
     };
   }
 }
@@ -64,7 +63,6 @@ export class ClassModel extends foundry.abstract.DataModel {
         name: new fields.StringField({ required: true }),
         description: new fields.HTMLField({ required: true }),
       }),
-      equipped: new fields.BooleanField({ required: true, initial: false }),
     };
   }
 }

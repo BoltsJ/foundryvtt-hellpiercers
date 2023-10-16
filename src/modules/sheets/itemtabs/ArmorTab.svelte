@@ -1,7 +1,7 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
   import { TJSTinyMCE } from "#standard/component";
-  import TagEditor from "./components/TagEditor.svelte";
+  import TagEditor from "../components/TagEditor.svelte";
 
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Item>}*/
   export let item;

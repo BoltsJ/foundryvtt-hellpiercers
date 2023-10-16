@@ -1,18 +1,13 @@
 import "./hellpiercers.scss";
-import * as datamodels from "./modules/data/index.mjs";
+import * as dataModels from "./modules/data/index.mjs";
 import * as documents from "./modules/documents/index.mjs";
 import * as sheets from "./modules/sheets/index.mjs";
-// import BasicApplication from "./modules/view/BasicApllication.mjs";
-// import * as util from "./modules/util/index.mjs"
 
 globalThis.hellpiercers = {
-  applications: {
-    // test: BasicApplication,
-  },
-  datamodels,
+  applications: {},
+  dataModels,
   documents,
   sheets,
-  util: {},
 };
 
 const ascii_logo = ` 
@@ -26,10 +21,10 @@ Hooks.once("init", () => {
   CONFIG.ActiveEffect.legacyTransferral = false;
 
   // Actors
-  CONFIG.Actor.dataModels.human = datamodels.HumanModel;
-  CONFIG.Actor.dataModels.demon = datamodels.DemonModel;
-  CONFIG.Actor.dataModels.boss = datamodels.BossModel;
-  CONFIG.Actor.dataModels.faction = datamodels.FactionModel;
+  CONFIG.Actor.dataModels.human = dataModels.HumanModel;
+  CONFIG.Actor.dataModels.demon = dataModels.DemonModel;
+  CONFIG.Actor.dataModels.boss = dataModels.BossModel;
+  CONFIG.Actor.dataModels.faction = dataModels.FactionModel;
   CONFIG.Actor.documentClass = documents.HellpiercersActorProxy;
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
     types: ["human"],
@@ -38,9 +33,9 @@ Hooks.once("init", () => {
   });
 
   // Items
-  CONFIG.Item.dataModels.weapon = datamodels.WeaponModel;
-  CONFIG.Item.dataModels.armor = datamodels.ArmorModel;
-  CONFIG.Item.dataModels.class = datamodels.ClassModel;
+  CONFIG.Item.dataModels.weapon = dataModels.WeaponModel;
+  CONFIG.Item.dataModels.armor = dataModels.ArmorModel;
+  CONFIG.Item.dataModels.class = dataModels.ClassModel;
   CONFIG.Item.documentClass = documents.HellpiercersItemProxy;
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
     types: ["class", "armor", "weapon"],

@@ -1,11 +1,31 @@
-/** @param {string} string
- * @returns {string}
+/**
+ * @property {string} biography
  */
-function localize(string) {
-  return game.i18n?.localize(string) ?? string;
+export class HumanModel extends foundry.abstract.DataModel {
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return {
+      biography: new fields.HTMLField({ required: true }),
+      faction: new fields.StringField(),
+      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
+      health: new fields.SchemaField({
+        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+        max: new fields.NumberField({ integer: true }),
+      }),
+      scale: new fields.NumberField(),
+      speed: new fields.NumberField({
+        required: true,
+        initial: 4,
+        integer: true,
+      }),
+      actions: new fields.StringField({ initial: "1" }),
+      pronouns: new fields.StringField({ required: true }),
+      callsign: new fields.StringField({ required: true }),
+    };
+  }
 }
 
-class CreatureModel extends foundry.abstract.DataModel {
+export class DemonModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
@@ -27,29 +47,24 @@ class CreatureModel extends foundry.abstract.DataModel {
   }
 }
 
-export class HumanModel extends CreatureModel {
+export class BossModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
-      ...super.defineSchema(),
-      pronouns: new fields.StringField({ required: true }),
-      callsign: new fields.StringField({ required: true }),
-    };
-  }
-}
-
-export class DemonModel extends foundry.abstract.DataModel {
-  static defineSchema() {
-    const fields = foundry.data.fields;
-    return {};
-  }
-}
-
-export class BossModel extends DemonModel {
-  static defineSchema() {
-    const fields = foundry.data.fields;
-    return {
-      ...super.defineSchema(),
+      biography: new fields.HTMLField({ required: true }),
+      faction: new fields.StringField(),
+      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
+      health: new fields.SchemaField({
+        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+        max: new fields.NumberField({ integer: true }),
+      }),
+      scale: new fields.NumberField(),
+      speed: new fields.NumberField({
+        required: true,
+        initial: 4,
+        integer: true,
+      }),
+      actions: new fields.StringField({ initial: "1" }),
       health: new fields.SchemaField({
         value: new fields.NumberField({ required: true, initial: 50, integer: true }),
         max: new fields.NumberField({ required: true, initial: 50, integer: true }),

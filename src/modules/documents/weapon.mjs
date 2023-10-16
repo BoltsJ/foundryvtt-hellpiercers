@@ -39,12 +39,12 @@ export class HellpiercersWeapon extends BaseItemHellpiercers {
   }
 
   get rangeSvg() {
-    const square_size = 15;
+    const square_size = 20;
     const grid = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
     let matrix = this.rangeGrid;
     // Rotate -90° so it points right instead of down
-    matrix = matrix[0].map((_, i) => matrix.map(r => r[r.length-1-i]));
+    matrix = matrix[0].map((_, i) => matrix.map(r => r[r.length - 1 - i]));
     const rows = matrix.length;
     const cols = matrix[0]?.length;
 
@@ -57,25 +57,34 @@ export class HellpiercersWeapon extends BaseItemHellpiercers {
         square.setAttribute("x", 5 + col * square_size);
         square.setAttribute("y", 5 + row * square_size);
 
-        let color;
+        let css;
+        let img;
         switch (matrix[row][col]) {
           case ".":
-            color = "none";
+            css = "";
             break;
           case "@":
-            color = "blue";
+            css = "origin";
+            img = "icons/svg/mystery-man.svg";
             break;
           case "O":
-            color = "yellow";
+            css = "target";
+            img = "icons/svg/target.svg";
             break;
         }
 
-        square.setAttribute(
-          "style",
-          `fill: ${color}; stroke: black; stroke-width: 2; fill-opacity: 0.8; stroke-opacity: 1`
-        );
-
+        square.setAttribute("class", css);
         grid.appendChild(square);
+        if (img) {
+          let image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+          image.setAttribute("height", square_size);
+          image.setAttribute("width", square_size);
+          image.setAttribute("x", 5 + col * square_size);
+          image.setAttribute("y", 5 + row * square_size);
+          image.setAttribute("href", img);
+          image.setAttribute("title", img);
+          grid.appendChild(image);
+        }
       }
     }
 
