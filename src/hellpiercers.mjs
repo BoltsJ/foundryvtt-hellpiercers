@@ -2,9 +2,10 @@ import "./hellpiercers.scss";
 import * as dataModels from "./modules/data/index.mjs";
 import * as documents from "./modules/documents/index.mjs";
 import * as sheets from "./modules/sheets/index.mjs";
+import { RangeEditorApp } from "./modules/sheets/dialogs/RangeEditorApp.mjs";
 
 globalThis.hellpiercers = {
-  applications: {},
+  applications: { RangeEditorApp },
   dataModels,
   documents,
   sheets,

@@ -6,7 +6,11 @@ export class HellpiercersWeapon extends BaseItemHellpiercers {
     return true;
   }
 
-  /** @returns {("@"|"."|"O")[][]} */
+  /**
+   * Return a 2d array that represents the targeting of the weapon. Oriented as
+   * if the wielder is facing South.
+   * @returns {("@"|"."|"O")[][]}
+   */
   get rangeGrid() {
     /** @type {{row: number, col: number}[]} */
     const range = this.system.range;

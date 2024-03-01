@@ -1,6 +1,7 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
   import { TJSTinyMCE } from "#standard/component";
+  import { RangeEditorApp } from "../dialogs/RangeEditorApp.mjs";
 
   /** @typedef {import("../../documents/weapon.mjs").HellpiercersWeapon} HellpiercersWeapon */
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<HellpiercersWeapon>}*/
@@ -18,7 +19,12 @@
     <span>{localize("HELLPIERCERS.WeaponRange")}</span>
     <div>{@html $item.rangeSvg.outerHTML}</div>
     <!-- <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
-    <button type="button"><i class="fa-solid fa-edit" /></button>
+    <button
+      type="button"
+      on:click={() => {
+        new RangeEditorApp($item).render(true);
+      }}><i class="fa-solid fa-edit" /></button
+    >
   </div>
   <div class="ability flexcol">
     <div class="flexrow">

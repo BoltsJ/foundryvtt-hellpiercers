@@ -15,11 +15,7 @@ export default class HellpiercersItemSheet extends SvelteApplication {
       )
     );
     /** @type {Item} */
-    this.item = item;
-    /** @type {Item} */
-    this.object = item;
-    /** @type {Item} */
-    this.document = item;
+    this.item = this.object = this.document = item;
   }
 
   /** @returns {ApplicationOptions} */
