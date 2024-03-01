@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "es2022",
     "target": "ES2022",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist"],
   "include": ["src", "client", "common"]

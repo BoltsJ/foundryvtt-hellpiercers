@@ -3,10 +3,11 @@
     "build": "vite build",
     "build:watch": "vite build --watch",
     "build:serve": "npm run start",
-    "build:packs": "true",
+    "build:packs": "./scripts/pack.mjs",
     "clean": "rm -fr dist",
     "format": "prettier --write src/",
     "lint": "eslint --max-warnings 0 src/**/*.{mjs,svelte}",
+    "lint:style": "prettier --check src/",
     "start": "fvtt launch & npm run build && vite"
   },
   "imports": {
