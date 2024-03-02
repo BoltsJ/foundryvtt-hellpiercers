@@ -1,6 +1,5 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
-  import { HumanActor } from "../documents/human.mjs";
   import { TabStore } from "../util/stores.mjs";
   import { updateDoc } from "./actions/updatedoc.mjs";
   import NotesTab from "./components/NotesTab.svelte";
