@@ -25,6 +25,6 @@
 <style>
   img {
     object-fit: cover;
-    /* object-position: 50% 0; */
+    object-position: 50% 0;
   }
 </style>
