@@ -55,8 +55,9 @@ export class BossModel extends foundry.abstract.DataModel {
       faction: new fields.StringField(),
       tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
       health: new fields.SchemaField({
-        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
-        max: new fields.NumberField({ integer: true }),
+        value: new fields.NumberField({ required: true, initial: 50, integer: true }),
+        max: new fields.NumberField({ required: true, initial: 50, integer: true }),
+        agnosia: new fields.NumberField({ required: true, initial: 10 }),
       }),
       scale: new fields.NumberField(),
       speed: new fields.NumberField({
@@ -65,11 +66,6 @@ export class BossModel extends foundry.abstract.DataModel {
         integer: true,
       }),
       actions: new fields.StringField({ initial: "1" }),
-      health: new fields.SchemaField({
-        value: new fields.NumberField({ required: true, initial: 50, integer: true }),
-        max: new fields.NumberField({ required: true, initial: 50, integer: true }),
-        agnosia: new fields.NumberField({ required: true, initial: 10 }),
-      }),
     };
   }
 }
