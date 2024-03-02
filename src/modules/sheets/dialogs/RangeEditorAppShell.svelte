@@ -10,14 +10,14 @@
 
   let external = getContext("#external");
 
-  let range = [["."]];
+  let range = [["@"]];
   function resetGrid() {
     range = external.application.weapon.rangeGrid;
   }
   resetGrid();
 
   /**
-   * @param {string[][]} grid}
+   * @param {string[][]} grid
    * @returns {{ row: number; col: number }[]}
    */
   function gridToArray(grid) {
@@ -31,8 +31,6 @@
       .filter(s => s !== undefined);
     return res;
   }
-
-  $: console.log(gridToArray(range));
 </script>
 
 <TJSApplicationShell bind:elementRoot>

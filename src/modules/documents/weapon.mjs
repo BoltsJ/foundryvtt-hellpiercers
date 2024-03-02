@@ -25,7 +25,7 @@ export class HellpiercersWeapon extends BaseItemHellpiercers {
         acc[1] = acc[5] - acc[4] + 1;
         return acc;
       },
-      [0, 0, 0, 0, 0, 0]
+      [1, 1, 0, 0, 0, 0]
     );
 
     const m = Array(size[0])
