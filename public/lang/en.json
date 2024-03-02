@@ -1,4 +1,19 @@
 {
+  "TYPES": {
+    "Actor": {
+      "human": "Hellpiercer",
+      "demon": "Demon",
+      "boss": "Boss",
+      "faction": "Faction"
+    },
+    "Item": {
+      "armor": "Armor",
+      "class": "Class",
+      "equipment": "Equipment",
+      "gear": "Gear",
+      "weapon": "Weapon"
+    }
+  },
   "HELLPIERCERS": {
     "title": "HELLPIERCERS",
     "tagline": "Hell is a prison. Break its bars.",

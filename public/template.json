@@ -8,11 +8,18 @@
         "faction": {}
     },
     "Item": {
-        "types": ["weapon", "armor", "class", "gear"],
-        "htmlFields": ["description"],
+        "types": ["weapon", "armor", "class", "gear", "equipment"],
+        "htmlFields": [
+          "description",
+          "ability.description",
+          "active.description",
+          "passive.description",
+          "effect"
+        ],
         "weapon": {},
         "armor": {},
         "class": {},
-        "gear": {}
+        "gear": {},
+        "equipment": {}
     }
 }

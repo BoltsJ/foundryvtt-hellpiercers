@@ -44,13 +44,13 @@
   </div>
   <div class="ability flexcol">
     <div class="flexrow">
-      <label for="system.special.name">{localize("HELLPIERCERS.SpecialName")}</label>
-      <input name="system.special.name" value={$item.system.special.name} type="text" />
+      <label for="system.ability.name">{localize("HELLPIERCERS.SpecialName")}</label>
+      <input name="system.ability.name" value={$item.system.ability.name} type="text" />
     </div>
     <TJSTinyMCE
       options={{
         document: $item,
-        fieldName: "system.special.description",
+        fieldName: "system.ability.description",
         editable: true,
         enrichContent: true,
         initialSelection: "start",

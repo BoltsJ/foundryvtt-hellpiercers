@@ -27,6 +27,7 @@ Hooks.once("init", () => {
   CONFIG.Actor.dataModels.boss = dataModels.BossModel;
   CONFIG.Actor.dataModels.faction = dataModels.FactionModel;
   CONFIG.Actor.documentClass = documents.HellpiercersActorProxy;
+  Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
     types: ["human"],
     makeDefault: true,
@@ -37,9 +38,11 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels.weapon = dataModels.WeaponModel;
   CONFIG.Item.dataModels.armor = dataModels.ArmorModel;
   CONFIG.Item.dataModels.class = dataModels.ClassModel;
+  CONFIG.Item.dataModels.gear = dataModels.GearModel;
   CONFIG.Item.documentClass = documents.HellpiercersItemProxy;
+  Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
-    types: ["class", "armor", "weapon"],
+    types: ["class", "armor", "weapon", "gear"],
     makeDefault: true,
     label: "HELLPIERCERS.ItemSheet",
   });

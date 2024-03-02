@@ -29,6 +29,7 @@ export class WeaponModel extends foundry.abstract.DataModel {
         description: new fields.HTMLField({ required: true }),
       }),
       active: new fields.BooleanField({ required: true, initial: false }),
+      equipped: new fields.BooleanField({ initial: false }),
     };
   }
 }
@@ -41,10 +42,11 @@ export class ArmorModel extends foundry.abstract.DataModel {
       speed: new fields.NumberField({ required: true }),
       movement: new fields.HTMLField({ required: true }),
       resistances: new fields.SetField(new fields.StringField()),
-      special: new fields.SchemaField({
+      ability: new fields.SchemaField({
         name: new fields.StringField({ required: true }),
         description: new fields.HTMLField({ required: true }),
       }),
+      equipped: new fields.BooleanField({ initial: false }),
     };
   }
 }
@@ -63,11 +65,31 @@ export class ClassModel extends foundry.abstract.DataModel {
         name: new fields.StringField({ required: true }),
         description: new fields.HTMLField({ required: true }),
       }),
+      equipped: new fields.BooleanField({ initial: false }),
     };
   }
 }
 
 export class GearModel extends foundry.abstract.DataModel {
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return {
+      kind: new fields.StringField({
+        required: true,
+        initial: "weapon",
+        choices: ["weapon", "armor"],
+      }),
+      target: new fields.StringField({
+        required: true,
+        initial: "",
+      }),
+      effect: new fields.HTMLField({ required: true }),
+      description: new fields.HTMLField({ required: true }),
+    };
+  }
+}
+
+export class EquipmentModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {

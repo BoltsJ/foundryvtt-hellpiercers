@@ -12,6 +12,7 @@
   import Portrait from "./components/Portrait.svelte";
   import ArmorTab from "./itemtabs/ArmorTab.svelte";
   import ClassTab from "./itemtabs/ClassTab.svelte";
+  import GearTab from "./itemtabs/GearTab.svelte";
   import WeaponTab from "./itemtabs/WeaponTab.svelte";
 
   export let elementRoot;
@@ -27,6 +28,7 @@
   const sheets = {
     ["armor"]: ArmorTab,
     ["class"]: ClassTab,
+    ["gear"]: GearTab,
     ["weapon"]: WeaponTab,
   };
 </script>
