@@ -5,7 +5,7 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:svelte/base",
+        "plugin:svelte/recommended",
     ],
     "overrides": [
         {
