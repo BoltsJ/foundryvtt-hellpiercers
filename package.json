@@ -1,14 +1,17 @@
 {
   "scripts": {
-    "build": "vite build",
+    "build": "npm run build:bundle -- --emptyOutDir && npm run build:packs",
+    "build:bundle": "vite build",
     "build:watch": "vite build --watch",
     "build:serve": "npm run start",
     "build:packs": "./scripts/pack.mjs",
+    "generate:yml": "./scripts/unpack.mjs",
     "clean": "rm -fr dist",
     "format": "prettier --write src/",
     "lint": "eslint --max-warnings 0 src/**/*.{mjs,svelte}",
     "lint:style": "prettier --check src/",
-    "start": "fvtt launch & npm run build && vite"
+    "start": "npm run foundry & npm run build && vite",
+    "foundry": "fvtt launch"
   },
   "imports": {
     "#runtime/*": "@typhonjs-fvtt/runtime/*",

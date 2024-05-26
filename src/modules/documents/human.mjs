@@ -2,22 +2,22 @@ import { BaseActorHellpiercers } from "./baseactor.mjs";
 
 export class HumanActor extends BaseActorHellpiercers {
   get weapon() {
-    return this.items.find(i => i.type === "weapon" && i.system.active);
+    return this.itemTypes.weapon.find(w => w.id === this.system.weapon);
   }
 
   get class() {
-    return this.items.find(i => i.type === "class");
+    return this.getEmbeddedDocument("Item", this.system.class);
   }
 
   get armor() {
-    return this.items.find(i => i.type === "armor");
+    return this.getEmbeddedDocument("Item", this.system.armor);
   }
 
   /** @inheritdoc */
   prepareBaseData() {
     super.prepareBaseData();
-    this.system.updateSource({ "health.max": this.class?.system.health ?? 10 });
-    this.system.updateSource({ speed: this.armor?.system.speed ?? 3 });
+    this.system.health.max = this.class?.system.health ?? 10;
+    this.system.speed = this.armor?.system.speed ?? 3;
   }
 
   /** @override

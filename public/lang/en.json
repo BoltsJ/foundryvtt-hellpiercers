@@ -15,20 +15,30 @@
     }
   },
   "HELLPIERCERS": {
+    "HUMAN": {
+      "FIELDS": {
+        "actions": { "label": "Activations", "hint": "" },
+        "biography": { "label": "Biography", "hint": "" },
+        "callsign": { "label": "Callsign", "hint": "" },
+        "faction": { "label": "TYPES.Actor.faction", "hint": "" },
+        "health": { "label": "HP", "hint": "" },
+        "pronouns": { "label": "Pronouns", "hint": "" },
+        "scale": { "label": "Scale", "hint": "" },
+        "speed": { "label": "Speed", "hint": "" },
+        "tags": { "label": "Tags", "hint": "" }
+      }
+    },
     "title": "HELLPIERCERS",
     "tagline": "Hell is a prison. Break its bars.",
     "Abilities": "Abilities",
     "ActiveName": "Active",
+    "Biography": "Biography",
     "Effects": "Effects",
-    "HP": "HP",
     "ItemDetails": "Details",
     "Movement": "Movement",
     "PassiveName": "Passive",
-    "Pronouns": "Pronouns",
     "Resistances": "Resistances",
     "SpecialName": "Special",
-    "Speed": "Speed",
-    "Tags": "Tags",
     "WeaponAbility": "Ability",
     "WeaponAbilityActivation": "Activation",
     "WeaponAction": "Action",

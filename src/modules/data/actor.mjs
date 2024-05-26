@@ -1,78 +1,108 @@
+const fields = foundry.data.fields;
 /**
  * @property {string} biography
  */
-export class HumanModel extends foundry.abstract.DataModel {
+export class HumanModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS"];
   static defineSchema() {
-    const fields = foundry.data.fields;
     return {
-      biography: new fields.HTMLField({ required: true }),
-      faction: new fields.StringField(),
-      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
-      health: new fields.SchemaField({
-        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
-        max: new fields.NumberField({ integer: true }),
+      biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
+      faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
+      tags: new fields.SetField(new fields.StringField(), {
+        initial: ["Tag"],
+        label: "HELLPIERCERS.Tags",
       }),
-      scale: new fields.NumberField(),
-      speed: new fields.NumberField({
-        required: true,
-        initial: 4,
+      health: new fields.SchemaField(
+        {
+          value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+          max: new fields.NumberField({ integer: true }),
+        },
+        { label: "HELLPIERCERS.HP" }
+      ),
+      scale: new fields.NumberField({ initial: 1, integer: true, label: "HELLPIERCERS.Scale" }),
+      speed: new fields.NumberField({ integer: true, label: "HELLPIERCERS.Speed" }),
+      actions: new fields.NumberField({
+        initial: 1,
         integer: true,
+        label: "HELLPIERCERS.Activations",
       }),
-      actions: new fields.StringField({ initial: "1" }),
-      pronouns: new fields.StringField({ required: true }),
-      callsign: new fields.StringField({ required: true }),
+      pronouns: new fields.StringField({ required: true, label: "HELLPIERCERS.Pronouns" }),
+      callsign: new fields.StringField({ required: true, label: "HELLPIERCERS.Callsign" }),
+      // Equipment
+      class: new fields.DocumentIdField({ initial: null, nullable: true }),
+      armor: new fields.DocumentIdField({ initial: null, nullable: true }),
+      weapon: new fields.DocumentIdField({ initial: null, nullable: true }),
     };
   }
 }
 
 export class DemonModel extends foundry.abstract.DataModel {
   static defineSchema() {
-    const fields = foundry.data.fields;
     return {
-      biography: new fields.HTMLField({ required: true }),
-      faction: new fields.StringField(),
-      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
-      health: new fields.SchemaField({
-        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
-        max: new fields.NumberField({ integer: true }),
+      biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
+      faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
+      tags: new fields.SetField(new fields.StringField(), {
+        initial: ["Tag"],
+        label: "HELLPIERCERS.Tags",
       }),
-      scale: new fields.NumberField(),
+      health: new fields.SchemaField(
+        {
+          value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+          max: new fields.NumberField({ integer: true }),
+        },
+        { label: "HELLPIERCERS.HP" }
+      ),
+      scale: new fields.NumberField({ label: "HELLPIERCERS.Scale" }),
       speed: new fields.NumberField({
         required: true,
         initial: 4,
         integer: true,
+        label: "HELLPIERCERS.Speed",
       }),
-      actions: new fields.StringField({ initial: "1" }),
+      actions: new fields.NumberField({
+        initial: 1,
+        integer: true,
+        label: "HELLPIERCERS.Activations",
+      }),
     };
   }
 }
 
 export class BossModel extends foundry.abstract.DataModel {
   static defineSchema() {
-    const fields = foundry.data.fields;
     return {
-      biography: new fields.HTMLField({ required: true }),
-      faction: new fields.StringField(),
-      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
-      health: new fields.SchemaField({
-        value: new fields.NumberField({ required: true, initial: 50, integer: true }),
-        max: new fields.NumberField({ required: true, initial: 50, integer: true }),
-        agnosia: new fields.NumberField({ required: true, initial: 10 }),
+      biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
+      faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
+      tags: new fields.SetField(new fields.StringField(), {
+        initial: ["Tag"],
+        label: "HELLPIERCERS.Tags",
       }),
-      scale: new fields.NumberField(),
+      health: new fields.SchemaField(
+        {
+          value: new fields.NumberField({ required: true, initial: 50, integer: true }),
+          max: new fields.NumberField({ required: true, initial: 50, integer: true }),
+          agnosia: new fields.NumberField({ required: true, initial: 10 }),
+        },
+        { label: "HELLPIERCERS.HP" }
+      ),
+      scale: new fields.NumberField({ label: "HELLPIERCERS.Scale" }),
       speed: new fields.NumberField({
         required: true,
         initial: 4,
         integer: true,
+        label: "HELLPIERCERS.Speed",
       }),
-      actions: new fields.StringField({ initial: "1" }),
+      actions: new fields.NumberField({
+        initial: 1,
+        integer: true,
+        label: "HELLPIERCERS.Activations",
+      }),
     };
   }
 }
 
 export class FactionModel extends foundry.abstract.DataModel {
   static defineSchema() {
-    const fields = foundry.data.fields;
     return {
       description: new fields.HTMLField(),
       drive: new fields.SchemaField({

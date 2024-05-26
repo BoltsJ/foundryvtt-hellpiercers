@@ -15,6 +15,19 @@
 
   let tagEditor = false;
 
+  function isEquipped(item) {
+    switch (item.type) {
+      case "weapon":
+        return $actor.weapon?.id === item.id;
+      case "class":
+        return $actor.class?.id === item.id;
+      case "armor":
+        return $actor.armor?.id === item.id;
+      default:
+        return false;
+    }
+  }
+
   /** @param {DragEvent} drop */
   async function handleDrop(drop) {
     const dropdata = drop.dataTransfer.getData("text/plain");
@@ -25,7 +38,8 @@
 
       const item = await fromUuid(uuid);
 
-      $actor.createEmbeddedDocuments("Item", [item]);
+      let [created] = await $actor.createEmbeddedDocuments("Item", [item]);
+      await $actor.update({ [`system.${item.type}`]: created });
     } catch (_) {
       console.warn("Invalid Drop data.");
     }
@@ -65,7 +79,7 @@
         type="number"
         data-dtype="Number"
         min="0"
-        disabled={!!$actor.itemTypes.class.length}
+        disabled
       />
     </div>
     <div class="flexrow">
@@ -86,7 +100,7 @@
         type="number"
         data-dtype="Number"
         min="1"
-        disabled={!!$actor.itemTypes.armor.length}
+        disabled
       />
     </div>
   </header>
@@ -110,40 +124,50 @@
       <NotesTab document={actor} />
     {:else if $current_tab === "DOCUMENT.Items"}
       <div id="items-tab" class="tab flexcol" role="tabpanel">
-        {#each $actor.items as item}
-          <div class="flexrow">
-            <img
-              src={item.img}
-              alt="{item.name} icon"
-              height="20"
-              width="20"
-              style="flex: 0 0 auto;"
-            />
-            <span>{item.name} &mdash; {item.type}</span>
-            {#if item.type !== "gear"}
-              <input
-                type="checkbox"
-                checked={item.system.equipped}
-                on:change|stopPropagation={change =>
-                  item.update({ "system.equipped": change.target.checked })}
+        {#each ["class", "armor", "weapon", "gear"] as itemType}
+          {#each $actor.itemTypes[itemType] as item}
+            <div class="flexrow">
+              <img
+                src={item.img}
+                alt="{item.name} icon"
+                height="20"
+                width="20"
+                style="flex: 0 0 auto;"
               />
-            {:else}
-              <span style="width: 20px; height: 20px; flex: 0 0 20px; margin: 3px 5px;"></span>
-            {/if}
-            <button type="button" on:click={() => item.sheet.render(true)}>
-              <i class="fas fa-edit"></i>
-            </button>
-            <button
-              type="button"
-              on:click={() => {
-                item.deleteDialog();
-              }}
-            >
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        {:else}
-          <p>No items</p>
+              <span>{item.name} &mdash; {item.type}</span>
+              {#if item.type !== "gear"}
+                <input
+                  type="checkbox"
+                  checked={isEquipped(item)}
+                  on:change|stopPropagation={change => {
+                    if (item.type === "class")
+                      $actor.update({ "system.class": change.currentTarget.checked ? item : null });
+                    if (item.type === "armor")
+                      $actor.update({ "system.armor": change.currentTarget.checked ? item : null });
+                    if (item.type === "weapon")
+                      $actor.update({
+                        "system.weapon": change.currentTarget.checked ? item : null,
+                      });
+                  }}
+                />
+              {:else}
+                <span style="width: 20px; height: 20px; flex: 0 0 20px; margin: 3px 5px;"></span>
+              {/if}
+              <button type="button" on:click={() => item.sheet.render(true)}>
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                type="button"
+                on:click={() => {
+                  item.deleteDialog();
+                }}
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          {:else}
+            <p>No items</p>
+          {/each}
         {/each}
       </div>
     {:else if $current_tab === "HELLPIERCERS.Effects"}
