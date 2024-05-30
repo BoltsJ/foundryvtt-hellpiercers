@@ -11,7 +11,9 @@
   "authors": [{ "name": "Bolts" }],
   "esmodules": ["hellpiercers.mjs"],
   "styles": ["style.css"],
-  "packs": [],
+  "packs": [
+    { "name": "debugmacros", "path": "packs/debugmacros", "type": "Macro", "label": "Debug Macros" }
+  ],
   "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
   "socket": false,
   "initiative": null,
