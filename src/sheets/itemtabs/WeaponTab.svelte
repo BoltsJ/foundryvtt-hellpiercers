@@ -18,7 +18,7 @@
   <div class="flexrow">
     <span>{localize("HELLPIERCERS.WeaponRange")}</span>
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-    <div>{@html $item.rangeSvg.outerHTML}</div>
+    <div>{@html $item.system.rangeSvg.outerHTML}</div>
     <!-- <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
     <button
       type="button"

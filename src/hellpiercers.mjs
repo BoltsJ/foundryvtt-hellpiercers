@@ -39,7 +39,7 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels.armor = dataModels.ArmorModel;
   CONFIG.Item.dataModels.class = dataModels.ClassModel;
   CONFIG.Item.dataModels.gear = dataModels.GearModel;
-  CONFIG.Item.documentClass = documents.HellpiercersItemProxy;
+  CONFIG.Item.documentClass = documents.BaseItemHellpiercers;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
     types: ["class", "armor", "weapon", "gear"],

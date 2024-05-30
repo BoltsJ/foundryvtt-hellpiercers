@@ -12,7 +12,7 @@
 
   let range = [["@"]];
   function resetGrid() {
-    range = external.application.weapon.rangeGrid;
+    range = external.application.weapon.system.rangeGrid;
   }
   resetGrid();
 
