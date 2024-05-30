@@ -1,7 +1,5 @@
 const fields = foundry.data.fields;
-/**
- * @property {string} biography
- */
+
 export class HumanModel extends foundry.abstract.TypeDataModel {
   static LOCALIZATION_PREFIXES = ["HELLPIERCERS"];
   static defineSchema() {

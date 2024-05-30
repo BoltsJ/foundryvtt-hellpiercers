@@ -1,8 +1,8 @@
 import "./hellpiercers.scss";
-import * as dataModels from "./modules/data/index.mjs";
-import * as documents from "./modules/documents/index.mjs";
-import * as sheets from "./modules/sheets/index.mjs";
-import { RangeEditorApp } from "./modules/sheets/dialogs/RangeEditorApp.mjs";
+import * as dataModels from "./data/index.mjs";
+import * as documents from "./documents/index.mjs";
+import * as sheets from "./sheets/index.mjs";
+import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
 
 globalThis.hellpiercers = {
   applications: { RangeEditorApp },
