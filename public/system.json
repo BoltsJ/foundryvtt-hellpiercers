@@ -15,6 +15,21 @@
     { "name": "debugmacros", "path": "packs/debugmacros", "type": "Macro", "label": "Debug Macros" }
   ],
   "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
+  "documentTypes": {
+    "Actor": {
+      "human": { "htmlFields": ["biography"] },
+      "demon": { "htmlFields": ["biography"] },
+      "boss": { "htmlFields": ["biography"] },
+      "faction": { "htmlFields": ["description"] }
+    },
+    "Item": {
+      "weapon": { "htmlFields": ["description", "ability.description"] },
+      "armor": { "htmlFields": ["description", "ability.description"] },
+      "class": { "htmlFields": ["description", "active.description", "passive.description"] },
+      "gear": { "htmlFields": ["description", "effect"] },
+      "equipment": { "htmlFields": ["description"] }
+    }
+  },
   "socket": false,
   "initiative": null,
   "gridDistance": 1,
