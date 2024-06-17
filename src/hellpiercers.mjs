@@ -26,7 +26,7 @@ Hooks.once("init", () => {
   CONFIG.Actor.dataModels.demon = dataModels.DemonModel;
   CONFIG.Actor.dataModels.boss = dataModels.BossModel;
   CONFIG.Actor.dataModels.faction = dataModels.FactionModel;
-  CONFIG.Actor.documentClass = documents.HellpiercersActorProxy;
+  CONFIG.Actor.documentClass = documents.BaseActorHellpiercers;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
     types: ["human"],

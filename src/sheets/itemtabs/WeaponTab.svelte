@@ -28,39 +28,46 @@
     >
   </div>
   <div class="ability flexcol">
-    <div class="flexrow">
-      <label>
-        {localize("HELLPIERCERS.WeaponAbility")}
+    <div class="ability flexcol">
+      <div class="flexrow">
+        <label for="system.active.name">{localize("HELLPIERCERS.ActiveName")}</label>
         <input
-          name="system.ability.name"
-          value={$item.system.ability.name}
+          name="system.active.name"
+          value={$item.system.active.name}
           type="text"
-          placeholder={localize("HELLPIERCERS.WeaponAbility")}
+          placeholder={localize("HELLPIERCERS.ActiveName")}
         />
-      </label>
+      </div>
+      <TJSTinyMCE
+        options={{
+          document: $item,
+          fieldName: "system.active.description",
+          editable: true,
+          enrichContent: true,
+          initialSelection: "start",
+        }}
+      />
     </div>
-    <div class="flexrow">
-      <label for="system.ability.kind">
-        {localize("HELLPIERCERS.WeaponAbilityActivation")}
-        <select name="system.ability.kind">
-          <option value="trigger" selected={$item.system.ability.kind === "trigger"}>
-            {localize("HELLPIERCERS.WeaponTrigger")}
-          </option>
-          <option value="action" selected={$item.system.ability.kind === "action"}>
-            {localize("HELLPIERCERS.WeaponAction")}
-          </option>
-        </select>
-      </label>
+    <div class="ability flexcol">
+      <div class="flexrow">
+        <label for="system.passive.name">{localize("HELLPIERCERS.PassiveName")}</label>
+        <input
+          name="system.passive.name"
+          value={$item.system.passive.name}
+          type="text"
+          placeholder={localize("HELLPIERCERS.PassiveName")}
+        />
+      </div>
+      <TJSTinyMCE
+        options={{
+          document: $item,
+          fieldName: "system.passive.description",
+          editable: true,
+          enrichContent: true,
+          initialSelection: "start",
+        }}
+      />
     </div>
-    <TJSTinyMCE
-      options={{
-        document: $item,
-        fieldName: "system.ability.description",
-        editable: true,
-        enrichContent: true,
-        initialSelection: "start",
-      }}
-    />
   </div>
 </div>
 

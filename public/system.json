@@ -32,8 +32,10 @@
   },
   "socket": false,
   "initiative": null,
-  "gridDistance": 1,
-  "gridUnits": "",
+  "grid": {
+    "distance": 1,
+    "units": ""
+  },
   "primaryTokenAttribute": "system.health",
   "secondaryTokenAttribute": "",
   "flags": { "hotReload": { "extensions": ["json"], "paths": ["lang"] } },

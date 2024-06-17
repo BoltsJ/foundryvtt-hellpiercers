@@ -12,13 +12,37 @@ export class WeaponModel extends foundry.abstract.DataModel {
         initial: "0 + 1d6",
         validate: v => Roll.validate(v),
       }),
-      range: new fields.ArrayField(
-        new fields.SchemaField({
-          row: new fields.NumberField({ required: true, integer: true }),
-          col: new fields.NumberField({ required: true, integer: true }),
+      range: new fields.SchemaField({
+        kind: new fields.StringField({
+          required: true,
+          initial: "bespoke",
+          choices: [
+            "bespoke",
+            "burst",
+            "blast",
+            "line",
+            "cone",
+            "ring",
+            "star",
+            "charge",
+            "wall",
+            "arc",
+          ],
         }),
-        { initial: [{ row: 1, col: 0 }] }
-      ),
+        spaces: new fields.ArrayField(
+          new fields.SchemaField({
+            row: new fields.NumberField({ required: true, integer: true }),
+            col: new fields.NumberField({ required: true, integer: true }),
+          }),
+          { initial: [{ row: 1, col: 0 }] }
+        ),
+        modifiers: new fields.SchemaField({
+          range: new fields.NumberField({ initial: null, nullable: true }),
+          width: new fields.NumberField({ initial: null, nullable: true }),
+          length: new fields.NumberField({ initial: null, nullable: true }),
+          push: new fields.NumberField({ initial: null, nullable: true }),
+        }),
+      }),
       ability: new fields.SchemaField({
         name: new fields.StringField({ required: true }),
         kind: new fields.StringField({
@@ -28,18 +52,26 @@ export class WeaponModel extends foundry.abstract.DataModel {
         }),
         description: new fields.HTMLField({ required: true }),
       }),
-      active: new fields.BooleanField({ required: true, initial: false }),
+      active: new fields.SchemaField({
+        name: new fields.StringField({ required: true }),
+        description: new fields.HTMLField({ required: true }),
+      }),
+      passive: new fields.SchemaField({
+        name: new fields.StringField({ required: true }),
+        description: new fields.HTMLField({ required: true }),
+      }),
     };
   }
 
   /**
-   *    * Return a 2d array that represents the targeting of the weapon. Oriented as
-   *       * if the wielder is facing South.
-   *          * @returns {("@"|"."|"O")[][]}
-   *             */
+   * Return a 2d array that represents the targeting of the weapon. Oriented as
+   * if the wielder is facing South.
+   * @returns {("@"|"."|"O")[][]}
+   */
+  // TODO: Create these for the generic ranges
   get rangeGrid() {
     /** @type {{row: number, col: number}[]} */
-    const range = this.range;
+    const range = this.range.spaces;
 
     const size = range.reduce(
       (acc, space) => {

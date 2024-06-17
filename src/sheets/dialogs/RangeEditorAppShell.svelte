@@ -117,7 +117,7 @@
       <button
         type="button"
         on:click={() => {
-          external.application.weapon.update({ "system.range": gridToArray(range) });
+          external.application.weapon.update({ "system.range.spaces": gridToArray(range) });
           external.application.close();
         }}
       >

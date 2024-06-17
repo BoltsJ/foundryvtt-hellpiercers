@@ -6,7 +6,7 @@
   import Portrait from "./components/Portrait.svelte";
   import TagEditor from "./components/TagEditor.svelte";
 
-  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<HumanActor>}*/
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<import("../documents/baseactor.mjs").HellpiercersActor>} */
   export let actor;
 
   const tabs = ["Notes", "HELLPIERCERS.Abilities", "DOCUMENT.Items", "HELLPIERCERS.Effects"];
@@ -18,11 +18,11 @@
   function isEquipped(item) {
     switch (item.type) {
       case "weapon":
-        return $actor.weapon?.id === item.id;
+        return $actor.system.weapon?.id === item.id;
       case "class":
-        return $actor.class?.id === item.id;
+        return $actor.system.class?.id === item.id;
       case "armor":
-        return $actor.armor?.id === item.id;
+        return $actor.system.armor?.id === item.id;
       default:
         return false;
     }

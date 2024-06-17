@@ -16,7 +16,8 @@ command: >-
     return { row: space.row + origin.row, col: space.col + origin.col };
   }
 
-  const target_spaces = actor?.weapon?.system.range.map(s => shift(s, origin));
+  const target_spaces = actor?.system.weapon?.system.range.spaces.map(s =>
+  shift(s, origin));
 
 
   const hl = grid.getHighlightLayer(token?.id) ??
@@ -42,11 +43,11 @@ flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.325'
+  coreVersion: '12.327'
   systemId: hellpiercers
   systemVersion: '0'
   createdTime: 1717102094542
-  modifiedTime: 1717102094542
+  modifiedTime: 1718652946155
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: s8PHyR7kNGWKL8eY
 sort: 0

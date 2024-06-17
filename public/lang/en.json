@@ -25,9 +25,16 @@
         "pronouns": { "label": "Pronouns", "hint": "" },
         "scale": { "label": "Scale", "hint": "" },
         "speed": { "label": "Speed", "hint": "" },
-        "tags": { "label": "Tags", "hint": "" }
+        "tags": { "label": "Tags", "hint": "" },
+        "class": { "label": "Class", "hint": "" },
+        "armor": { "label": "Armor", "hint": "" },
+        "weapon": { "label": "Weapon", "hint": "" },
+        "max_weapons": { "label": "Max Weapons", "hint": "" }
       }
     },
+    "DEMON": {},
+    "BOSS": {},
+    "FACTION": {},
     "title": "HELLPIERCERS",
     "tagline": "Hell is a prison. Break its bars.",
     "Abilities": "Abilities",
