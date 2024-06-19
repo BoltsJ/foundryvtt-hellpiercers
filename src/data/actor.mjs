@@ -21,13 +21,10 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
       biography: new fields.HTMLField({ required: true }),
       faction: new fields.StringField({}),
       tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
-      health: new fields.SchemaField(
-        {
-          value: new fields.NumberField({ required: true, initial: 10, integer: true }),
-          max: new fields.NumberField({ integer: true }),
-        },
-        {}
-      ),
+      health: new fields.SchemaField({
+        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+        max: new fields.NumberField({ integer: true }),
+      }),
       scale: new fields.NumberField({ initial: 1, integer: true }),
       speed: new fields.NumberField({ integer: true }),
       actions: new fields.NumberField({ initial: 1, integer: true }),

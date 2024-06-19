@@ -12,7 +12,8 @@
 
   let range = [["@"]];
   function resetGrid() {
-    range = external.application.weapon.system.rangeGrid;
+    const i = external.application.range_index;
+    range = external.application.weapon.system.range[i].rangeGrid;
   }
   resetGrid();
 
@@ -117,7 +118,10 @@
       <button
         type="button"
         on:click={() => {
-          external.application.weapon.update({ "system.range.spaces": gridToArray(range) });
+          const i = external.application.range_index;
+          const wr = external.application.weapon.system.range.map(r => r.toObject());
+          wr[i].spaces = gridToArray(range);
+          external.application.weapon.update({ "system.range": wr });
           external.application.close();
         }}
       >

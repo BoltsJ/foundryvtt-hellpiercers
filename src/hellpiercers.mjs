@@ -1,14 +1,13 @@
 import "./hellpiercers.scss";
-import * as dataModels from "./data/index.mjs";
+import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
 import * as sheets from "./sheets/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
 
 globalThis.hellpiercers = {
-  applications: { RangeEditorApp },
-  dataModels,
+  applications: { RangeEditorApp, sheets },
+  data,
   documents,
-  sheets,
 };
 
 const ascii_logo = ` 
@@ -22,10 +21,10 @@ Hooks.once("init", () => {
   CONFIG.ActiveEffect.legacyTransferral = false;
 
   // Actors
-  CONFIG.Actor.dataModels.human = dataModels.HumanModel;
-  CONFIG.Actor.dataModels.demon = dataModels.DemonModel;
-  CONFIG.Actor.dataModels.boss = dataModels.BossModel;
-  CONFIG.Actor.dataModels.faction = dataModels.FactionModel;
+  CONFIG.Actor.dataModels.human = data.HumanModel;
+  CONFIG.Actor.dataModels.demon = data.DemonModel;
+  CONFIG.Actor.dataModels.boss = data.BossModel;
+  CONFIG.Actor.dataModels.faction = data.FactionModel;
   CONFIG.Actor.documentClass = documents.BaseActorHellpiercers;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
@@ -35,10 +34,10 @@ Hooks.once("init", () => {
   });
 
   // Items
-  CONFIG.Item.dataModels.weapon = dataModels.WeaponModel;
-  CONFIG.Item.dataModels.armor = dataModels.ArmorModel;
-  CONFIG.Item.dataModels.class = dataModels.ClassModel;
-  CONFIG.Item.dataModels.gear = dataModels.GearModel;
+  CONFIG.Item.dataModels.weapon = data.WeaponModel;
+  CONFIG.Item.dataModels.armor = data.ArmorModel;
+  CONFIG.Item.dataModels.class = data.ClassModel;
+  CONFIG.Item.dataModels.gear = data.GearModel;
   CONFIG.Item.documentClass = documents.BaseItemHellpiercers;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {

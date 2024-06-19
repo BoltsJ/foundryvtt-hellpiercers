@@ -34,7 +34,8 @@
   "initiative": null,
   "grid": {
     "distance": 1,
-    "units": ""
+    "units": "",
+    "diagonals": 6
   },
   "primaryTokenAttribute": "system.health",
   "secondaryTokenAttribute": "",

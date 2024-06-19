@@ -6,7 +6,7 @@ export class RangeEditorApp extends SvelteApplication {
    * @param {import("../../documents/weapon.mjs").HellpiercersWeapon} weapon
    * @param {{}} [options]
    */
-  constructor(weapon, options = {}) {
+  constructor(weapon, index, options = {}) {
     super(
       foundry.utils.mergeObject(
         { id: `HellpiercersRangeEditor_${weapon.uuid.replaceAll(".", "_")}` },
@@ -15,6 +15,7 @@ export class RangeEditorApp extends SvelteApplication {
     );
     /** @type {import("../../documents/weapon.mjs").HellpiercersWeapon} */
     this.weapon = this.object = this.document = weapon;
+    this.range_index = index;
   }
 
   static get defaultOptions() {

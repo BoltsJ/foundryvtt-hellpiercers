@@ -15,18 +15,20 @@
       <input name="system.damage" value={$item.system.damage} type="text" placeholder="0 + 1d6" />
     </label>
   </div>
-  <div class="flexrow">
-    <span>{localize("HELLPIERCERS.WeaponRange")}</span>
-    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-    <div>{@html $item.system.rangeSvg.outerHTML}</div>
-    <!-- <pre>{$item.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
-    <button
-      type="button"
-      on:click={() => {
-        new RangeEditorApp($item).render(true);
-      }}><i class="fa-solid fa-edit" /></button
-    >
-  </div>
+  {#each $item.system.range as range, i}
+    <div class="flexrow">
+      <span>{range.label}</span>
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      <div>{@html range.rangeSvg.outerHTML}</div>
+      <!-- <pre>{range.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
+      <button
+        type="button"
+        on:click={() => {
+          new RangeEditorApp($item, i).render(true);
+        }}><i class="fa-solid fa-edit" /></button
+      >
+    </div>
+  {/each}
   <div class="ability flexcol">
     <div class="ability flexcol">
       <div class="flexrow">
