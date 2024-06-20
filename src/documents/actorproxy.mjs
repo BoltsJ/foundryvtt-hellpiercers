@@ -1,9 +1,9 @@
-import { BaseActorHellpiercers } from "./baseactor.mjs";
+import { HellpiercersActor } from "./baseactor.mjs";
 import { DemonActor } from "./demonactor.mjs";
 import { HumanActor } from "./human.mjs";
 
 /** @type { typeof HumanActor | typeof DemonActor} */
-export const HellpiercersActorProxy = new Proxy(BaseActorHellpiercers, {
+export const HellpiercersActorProxy = new Proxy(HellpiercersActor, {
   construct(BaseActorHellpiercers, args) {
     switch (args[0]?.type) {
       case "human":

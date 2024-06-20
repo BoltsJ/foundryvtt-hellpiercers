@@ -1,3 +1,3 @@
-import { BaseActorHellpiercers } from "./baseactor.mjs";
+import { HellpiercersActor } from "./baseactor.mjs";
 
-export class DemonActor extends BaseActorHellpiercers {}
+export class DemonActor extends HellpiercersActor {}

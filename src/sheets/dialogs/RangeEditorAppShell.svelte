@@ -23,11 +23,11 @@
    */
   function gridToArray(grid) {
     let origin = {};
-    origin.row = grid.findIndex(r => r.includes("@"));
-    origin.col = grid[origin.row].indexOf("@");
+    origin.i = grid.findIndex(r => r.includes("@"));
+    origin.j = grid[origin.i].indexOf("@");
     let res = grid
       .flatMap((r, i) =>
-        r.map((s, j) => (s === "O" ? { row: i - origin.row, col: j - origin.col } : undefined))
+        r.map((s, j) => (s === "O" ? { i: i - origin.i, j: j - origin.j } : undefined))
       )
       .filter(s => s !== undefined);
     return res;

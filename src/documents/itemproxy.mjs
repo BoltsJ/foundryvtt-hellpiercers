@@ -1,8 +1,8 @@
-import { BaseItemHellpiercers } from "./baseitem.mjs";
+import { HellpiercersItem } from "./baseitem.mjs";
 import { HellpiercersWeapon } from "./weapon.mjs";
 
-/** @type { typeof HellpiercersWeapon | typeof BaseItemHellpiercers } */
-export const HellpiercersItemProxy = new Proxy(BaseItemHellpiercers, {
+/** @type { typeof HellpiercersWeapon | typeof HellpiercersItem } */
+export const HellpiercersItemProxy = new Proxy(HellpiercersItem, {
   construct(BaseItemHellpiercers, args) {
     switch (args[0]?.type) {
       case "weapon":

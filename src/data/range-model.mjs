@@ -23,10 +23,10 @@ export class RangeModel extends foundry.abstract.DataModel {
       }),
       spaces: new fields.ArrayField(
         new fields.SchemaField({
-          row: new fields.NumberField({ required: true, integer: true }),
-          col: new fields.NumberField({ required: true, integer: true }),
+          i: new fields.NumberField({ required: true, integer: true }),
+          j: new fields.NumberField({ required: true, integer: true }),
         }),
-        { initial: [{ row: 1, col: 0 }], required: false }
+        { initial: [{ i: 1, j: 0 }], required: false }
       ),
       modifiers: new fields.SchemaField(
         {
@@ -49,10 +49,10 @@ export class RangeModel extends foundry.abstract.DataModel {
   get rangeGrid() {
     const size = this.spaces.reduce(
       (acc, space) => {
-        if (acc[2] > space.row) acc[2] = space.row;
-        if (acc[3] < space.row) acc[3] = space.row;
-        if (acc[4] > space.col) acc[4] = space.col;
-        if (acc[5] < space.col) acc[5] = space.col;
+        if (acc[2] > space.i) acc[2] = space.i;
+        if (acc[3] < space.i) acc[3] = space.i;
+        if (acc[4] > space.j) acc[4] = space.j;
+        if (acc[5] < space.j) acc[5] = space.j;
         acc[0] = acc[3] - acc[2] + 1;
         acc[1] = acc[5] - acc[4] + 1;
         return acc;
@@ -67,7 +67,7 @@ export class RangeModel extends foundry.abstract.DataModel {
     for (let r = 0; r < size[0]; r++) {
       for (let c = 0; c < size[1]; c++) {
         if (c === -size[4] && r === -size[2]) m[r][c] = "@";
-        if (this.spaces.some(space => space.row === r + size[2] && space.col === c + size[4]))
+        if (this.spaces.some(space => space.i === r + size[2] && space.j === c + size[4]))
           m[r][c] = "O";
       }
     }

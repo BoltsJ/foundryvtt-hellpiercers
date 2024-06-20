@@ -1,4 +1,4 @@
-export class BaseActorHellpiercers extends Actor {
+export class HellpiercersActor extends Actor {
   /**
    * @returns {this is HumanActor}
    */

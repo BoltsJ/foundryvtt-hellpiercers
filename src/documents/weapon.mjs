@@ -1,6 +1,6 @@
-import { BaseItemHellpiercers } from "./baseitem.mjs";
+import { HellpiercersItem } from "./baseitem.mjs";
 
-export class HellpiercersWeapon extends BaseItemHellpiercers {
+export class HellpiercersWeapon extends HellpiercersItem {
   /** @returns {this is HellpiercersWeapon} */
   isWeapon() {
     return true;

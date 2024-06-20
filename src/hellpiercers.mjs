@@ -3,6 +3,7 @@ import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
 import * as sheets from "./sheets/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
+import * as placeables from "./canvas/measured-template.mjs";
 
 globalThis.hellpiercers = {
   applications: { RangeEditorApp, sheets },
@@ -25,7 +26,7 @@ Hooks.once("init", () => {
   CONFIG.Actor.dataModels.demon = data.DemonModel;
   CONFIG.Actor.dataModels.boss = data.BossModel;
   CONFIG.Actor.dataModels.faction = data.FactionModel;
-  CONFIG.Actor.documentClass = documents.BaseActorHellpiercers;
+  CONFIG.Actor.documentClass = documents.HellpiercersActor;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
     types: ["human"],
@@ -38,11 +39,14 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels.armor = data.ArmorModel;
   CONFIG.Item.dataModels.class = data.ClassModel;
   CONFIG.Item.dataModels.gear = data.GearModel;
-  CONFIG.Item.documentClass = documents.BaseItemHellpiercers;
+  CONFIG.Item.documentClass = documents.HellpiercersItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
-    types: ["class", "armor", "weapon", "gear"],
+    // types: ["class", "armor", "weapon", "gear"],
     makeDefault: true,
     label: "HELLPIERCERS.ItemSheet",
   });
+
+  // Templates
+  CONFIG.MeasuredTemplate.objectClass = placeables.HellpiercersMeasuredTemplate;
 });
