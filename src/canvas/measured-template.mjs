@@ -13,8 +13,25 @@ export class HellpiercersMeasuredTemplate extends MeasuredTemplate {
     /** @type {RangeModel} */
     const range = new RangeModel(this.document.getFlag(game.system.id, "range"));
 
+    const direction = Math.round(this.document.direction / 90) - 1;
     const grid = canvas.grid;
     const origin = grid.getOffset(this.document);
-    return range.spaces.map(s => grid.getTopLeftPoint({ i: s.i + origin.i, j: s.j + origin.j }));
+    return range.spaces.map(s => {
+      s = rotateRange(s, direction);
+      return grid.getTopLeftPoint({ i: s.i + origin.i, j: s.j + origin.j });
+    });
   }
+}
+
+/**
+ * Rotate the offset 90° n times
+ * @param {Object} param0
+ * @param {number} param0.i
+ * @param {number} param0.j
+ * @param {number} n
+ */
+function rotateRange({ i, j }, n) {
+  n = (n + 4) % 4;
+  if (n == 0) return { i, j };
+  return rotateRange({ i: j, j: -i }, n - 1);
 }
