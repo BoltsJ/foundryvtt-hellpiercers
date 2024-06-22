@@ -4,6 +4,7 @@ import * as documents from "./documents/index.mjs";
 import * as sheets from "./sheets/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
 import * as placeables from "./canvas/measured-template.mjs";
+import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 
 globalThis.hellpiercers = {
   applications: { RangeEditorApp, sheets },
@@ -48,5 +49,6 @@ Hooks.once("init", () => {
   });
 
   // Templates
+  CONFIG.Canvas.layers.templates.layerClass = HellpiercersTemplateLayer;
   CONFIG.MeasuredTemplate.objectClass = placeables.HellpiercersMeasuredTemplate;
 });
