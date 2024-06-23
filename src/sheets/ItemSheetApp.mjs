@@ -67,25 +67,25 @@ export default class HellpiercersItemSheet extends SvelteApplication {
         class: "document-id-link",
         icon: "fa-solid fa-passport",
         styles: { opacity: 0.5 },
-        title: label + ": " + this.object.id,
+        title: "SHEETS.CopyUuid",
         alignLeft: true,
         onPress: () => {
+          game.clipboard.copyPlainText(this.object.uuid);
+          ui.notifications.info(
+            game.i18n.format("DOCUMENT.IdCopiedClipboard", {
+              label,
+              type: "uuid",
+              uuid: this.object.id,
+            })
+          );
+        },
+        onContextMenu: () => {
           game.clipboard.copyPlainText(this.object.id);
           ui.notifications.info(
             game.i18n.format("DOCUMENT.IdCopiedClipboard", {
               label,
               type: "id",
               id: this.object.id,
-            })
-          );
-        },
-        onContextMenu: () => {
-          game.clipboard.copyPlainText(this.object.uuid);
-          ui.notifications.info(
-            game.i18n.format("DOCUMENT.IdCopiedClipboard", {
-              label,
-              type: "uuid",
-              id: this.object.uuid,
             })
           );
         },
