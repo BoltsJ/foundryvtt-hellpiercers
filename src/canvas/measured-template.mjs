@@ -10,13 +10,11 @@ import { RangeModel } from "../data/range-model.mjs";
 export class HellpiercersMeasuredTemplate extends MeasuredTemplate {
   _getGridHighlightPositions() {
     if (!this.document.getFlag(game.system.id, "range")) return super._getGridHighlightPositions();
-    /** @type {RangeModel} */
     const range = new RangeModel(this.document.getFlag(game.system.id, "range"));
-
     const direction = Math.round(this.document.direction / 90) - 1;
     const grid = canvas.grid;
     const origin = grid.getOffset(this.document);
-    return range.spaces.map(s => {
+    return range.shape.map(s => {
       s = rotateRange(s, direction);
       return grid.getTopLeftPoint({ i: s.i + origin.i, j: s.j + origin.j });
     });
@@ -25,9 +23,9 @@ export class HellpiercersMeasuredTemplate extends MeasuredTemplate {
 
 /**
  * Rotate the offset 90° n times
- * @param {Object} param0
- * @param {number} param0.i
- * @param {number} param0.j
+ * @param {Object} o
+ * @param {number} o.i
+ * @param {number} o.j
  * @param {number} n
  */
 function rotateRange({ i, j }, n) {
