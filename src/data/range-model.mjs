@@ -54,6 +54,7 @@ export class RangeModel extends foundry.abstract.DataModel {
         return this.spaces;
       case "burst":
         return getRing(this.value, {
+          ...this.modifiers,
           range: (this.modifiers.scale ?? this.#getParentActor()?.system.scale ?? 1) - 1,
         });
       case "blast":
@@ -170,9 +171,7 @@ export class RangeModel extends foundry.abstract.DataModel {
   /** @returns {Actor | null} */
   #getParentActor() {
     let parent = this.parent;
-    while (parent && !(parent instanceof Actor)) {
-      parent = parent.parent;
-    }
+    while (parent && !(parent instanceof Actor)) parent = parent.parent;
     return parent ?? null;
   }
 }
@@ -210,8 +209,8 @@ function getRing(thickness, { range = 1 }) {
 }
 
 function getBlast(size) {
-  // TODO: Range handling
   const r = getRing(size, { range: -1 });
+  // TODO: Range handling
   return r;
 }
 
