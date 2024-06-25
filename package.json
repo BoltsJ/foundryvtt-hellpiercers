@@ -18,7 +18,7 @@
     "#standard/*": "@typhonjs-fvtt/svelte-standard/*"
   },
   "devDependencies": {
-    "@foundryvtt/foundryvtt-cli": "^1.0.2",
+    "@foundryvtt/foundryvtt-cli": "^1.0.3",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@sveltejs/vite-plugin-svelte": "^2.4.5",
     "eslint": "^8.57.0",
