@@ -42,14 +42,24 @@
     {#each $item.system.resistances as resist}
       <span class="tag">{resist}</span>
     {/each}
-    <button type="button" class="tag-edit" on:click={() => (tagEditor = true)} disabled={!app.isEditable}>
+    <button
+      type="button"
+      class="tag-edit"
+      on:click={() => (tagEditor = true)}
+      disabled={!app.isEditable}
+    >
       <i class="fas fa-edit"></i>
     </button>
   </div>
   <div class="ability flexcol">
     <div class="flexrow">
       <label for="system.ability.name">{localize("HELLPIERCERS.SpecialName")}</label>
-      <input name="system.ability.name" value={$item.system.ability.name} type="text" readonly={!app.isEditable} />
+      <input
+        name="system.ability.name"
+        value={$item.system.ability.name}
+        type="text"
+        readonly={!app.isEditable}
+      />
     </div>
     <TJSTinyMCE
       options={{
