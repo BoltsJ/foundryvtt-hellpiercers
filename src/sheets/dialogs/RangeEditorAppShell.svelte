@@ -13,7 +13,7 @@
   let range = [["@"]];
   function resetGrid() {
     const i = external.application.range_index;
-    range = external.application.weapon.system.range[i].rangeGrid;
+    range = external.application.weapon.system.range[i].ascii;
   }
   resetGrid();
 

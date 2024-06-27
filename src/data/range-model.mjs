@@ -84,7 +84,7 @@ export class RangeModel extends foundry.abstract.DataModel {
    * if the wielder is facing South.
    * @returns {("@"|"."|"O")[][]}
    */
-  get rangeGrid() {
+  get ascii() {
     const size = this.shape.reduce(
       (acc, space) => {
         if (acc[2] > space.i) acc[2] = space.i;
@@ -112,11 +112,11 @@ export class RangeModel extends foundry.abstract.DataModel {
     return m;
   }
 
-  get rangeSvg() {
+  get svg() {
     const square_size = 20;
     const grid = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-    let matrix = this.rangeGrid;
+    let matrix = this.ascii;
     // Rotate -90° so it points right instead of down
     matrix = matrix[0].map((_, i) => matrix.map(r => r[r.length - 1 - i]));
     const rows = matrix.length;
@@ -209,6 +209,14 @@ function getRing(thickness, { range = 1 }) {
 }
 
 function getBlast(size) {
+  if (size == 1)
+    return [
+      { i: 0, j: 0 },
+      { i: 1, j: 0 },
+      { i: -1, j: 0 },
+      { i: 0, j: 1 },
+      { i: 0, j: -1 },
+    ];
   const r = getRing(size, { range: -1 });
   // TODO: Range handling
   return r;

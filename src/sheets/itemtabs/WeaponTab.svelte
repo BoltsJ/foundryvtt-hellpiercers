@@ -19,7 +19,7 @@
     <div class="flexrow">
       <span>{range.label}</span>
       <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-      <div>{@html range.rangeSvg.outerHTML}</div>
+      <div>{@html range.svg.outerHTML}</div>
       <!-- <pre>{range.rangeGrid.map(a => a.join("")).join("\n")}</pre> -->
       <button
         type="button"
