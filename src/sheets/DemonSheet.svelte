@@ -16,7 +16,6 @@
 
   let tagEditor = false;
 
-
   /** @param {DragEvent} drop */
   async function handleDrop(drop) {
     const dropdata = drop.dataTransfer.getData("text/plain");

@@ -54,7 +54,9 @@
       <input name="name" value={$actor.name} type="text" />
     </div>
     <div class="flexrow">
-      <label for="system.pronouns">{localize("HELLPIERCERS.HUMAN.FIELDS.pronouns.label")}:&nbsp</label>
+      <label for="system.pronouns"
+        >{localize("HELLPIERCERS.HUMAN.FIELDS.pronouns.label")}:&nbsp</label
+      >
       <input
         name="system.pronouns"
         value={$actor.system.pronouns}
@@ -63,7 +65,9 @@
       />
     </div>
     <div class="flexrow">
-      <label for="system.health.value">{localize("HELLPIERCERS.HUMAN.FIELDS.health.label")}:&nbsp;</label>
+      <label for="system.health.value"
+        >{localize("HELLPIERCERS.HUMAN.FIELDS.health.label")}:&nbsp;</label
+      >
       <input
         name="system.health.value"
         value={$actor.system.health.value}
