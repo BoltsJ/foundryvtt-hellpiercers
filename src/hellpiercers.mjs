@@ -25,6 +25,8 @@ Hooks.once("init", () => {
 
   CONFIG.ActiveEffect.legacyTransferral = false;
 
+  // game.data.packs = game.data.packs.filter(i => i.name != "debugmacros");
+
   // Actors
   CONFIG.Actor.dataModels.human = data.HumanModel;
   CONFIG.Actor.dataModels.demon = data.DemonModel;
@@ -33,7 +35,7 @@ Hooks.once("init", () => {
   CONFIG.Actor.documentClass = documents.HellpiercersActor;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
-    types: ["human"],
+    types: ["human", "demon"],
     makeDefault: true,
     label: "HELLPIERCERS.ActorSheet",
   });

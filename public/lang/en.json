@@ -20,7 +20,7 @@
         "actions": { "label": "Activations", "hint": "" },
         "biography": { "label": "Biography", "hint": "" },
         "callsign": { "label": "Callsign", "hint": "" },
-        "faction": { "label": "TYPES.Actor.faction", "hint": "" },
+        "faction": { "label": "Faction", "hint": "" },
         "health": { "label": "HP", "hint": "" },
         "pronouns": { "label": "Pronouns", "hint": "" },
         "scale": { "label": "Scale", "hint": "" },
@@ -32,7 +32,30 @@
         "max_weapons": { "label": "Max Weapons", "hint": "" }
       }
     },
-    "DEMON": {},
+    "DEMON": {
+      "FIELDS": {
+        "actions": { "label": "Activations", "hint": "" },
+        "biography": { "label": "Biography", "hint": "" },
+        "faction": { "label": "Faction", "hint": "" },
+        "health": { "label": "HP", "hint": "" },
+        "scale": { "label": "Scale", "hint": "" },
+        "speed": { "label": "Speed", "hint": "" },
+        "tags": { "label": "Tags", "hint": "" },
+        "strike": {
+          "label": "Strike",
+          "hint": "",
+          "name": { "label": "Name", "hint": "" },
+          "range": { "label": "Range", "hint": "" },
+          "effect": { "label": "Effect", "hint": "" }
+        },
+        "special": {
+          "label": "Special",
+          "hint": "",
+          "name": { "label": "Name", "hint": "" },
+          "effect": { "label": "Effect", "hint": "" }
+        }
+      }
+    },
     "BOSS": {},
     "FACTION": {},
     "title": "HELLPIERCERS",
@@ -43,18 +66,7 @@
     },
     "Abilities": "Abilities",
     "ActiveName": "Active",
-    "Biography": "Biography",
     "Effects": "Effects",
-    "ItemDetails": "Details",
-    "Movement": "Movement",
-    "PassiveName": "Passive",
-    "Resistances": "Resistances",
-    "SpecialName": "Special",
-    "WeaponAbility": "Ability",
-    "WeaponAbilityActivation": "Activation",
-    "WeaponAction": "Action",
-    "WeaponDamage": "Damage",
-    "WeaponRange": "Range",
-    "WeaponTrigger": "Trigger"
+    "ItemDetails": "Details"
   }
 }

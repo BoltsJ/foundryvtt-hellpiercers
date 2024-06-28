@@ -1,3 +1,5 @@
+import { RangeModel } from "./range-model.mjs";
+
 const fields = foundry.data.fields;
 
 class OwnedItemField extends fields.ForeignDocumentField {
@@ -28,7 +30,11 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
       scale: new fields.NumberField({ initial: 1, integer: true }),
       speed: new fields.NumberField({ integer: true }),
       actions: new fields.NumberField({ initial: 1, integer: true }),
-      pronouns: new fields.StringField({ required: true }),
+      pronouns: new fields.StringField({
+        required: true,
+        /** @param {string} v */
+        validate: v => !v.toLowerCase().split("/").includes("he"),
+      }),
       callsign: new fields.StringField({ required: true }),
       // Equipment
       class: new OwnedItemField({ initial: null, nullable: true }),
@@ -44,36 +50,50 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
   }
 }
 
-export class DemonModel extends foundry.abstract.DataModel {
+export class DemonModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.DEMON"];
   static defineSchema() {
     return {
       biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
       faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
-      tags: new fields.SetField(new fields.StringField(), {
-        initial: ["Tag"],
-        label: "HELLPIERCERS.Tags",
+      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
+      health: new fields.SchemaField({
+        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+        max: new fields.NumberField({ required: true, initial: 10, integer: true }),
       }),
-      health: new fields.SchemaField(
-        {
-          value: new fields.NumberField({ required: true, initial: 10, integer: true }),
-          max: new fields.NumberField({ integer: true }),
-        },
-        { label: "HELLPIERCERS.HP" }
-      ),
-      scale: new fields.NumberField({ label: "HELLPIERCERS.Scale" }),
-      speed: new fields.NumberField({
-        required: true,
-        initial: 4,
-        integer: true,
-        label: "HELLPIERCERS.Speed",
+      scale: new fields.NumberField({ integer: true, initial: 1, nullable: false }),
+      speed: new fields.NumberField({ required: true, initial: 4, integer: true }),
+      actions: new fields.NumberField({ initial: 1, integer: true }),
+      strike: new fields.SchemaField({
+        name: new fields.StringField({ initial: "Strike" }),
+        range: new fields.EmbeddedDataField(RangeModel, {
+          initial: { kind: "targets", value: 1, modifiers: { range: 0 } },
+        }),
+        effect: new fields.HTMLField({ required: true }),
       }),
-      actions: new fields.NumberField({
-        initial: 1,
-        integer: true,
-        label: "HELLPIERCERS.Activations",
+      special: new fields.SchemaField({
+        name: new fields.StringField({ initial: "Special" }),
+        effect: new fields.HTMLField({ required: true }),
       }),
     };
   }
+
+  prepareBaseData() {
+    // if (this.tags.has("Horde")) {
+    //   this.health.max = this.#getHordeHp();
+    // }
+  }
+
+  // #getHordeHp() {
+  //   const horde = this.parent.token?.getFlag(game.system.id, "horde");
+  //   if (this.parent.isToken && horde) {
+  //     const size = this.parent.token.parent.tokens.filter(
+  //       t => t.getFlag(game.system.id, "horde") === horde
+  //     ).length;
+  //     return size * 10;
+  //   }
+  //   return 1;
+  // }
 }
 
 export class BossModel extends foundry.abstract.DataModel {
