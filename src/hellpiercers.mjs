@@ -1,15 +1,18 @@
 import "./hellpiercers.scss";
+
+import * as placeables from "./canvas/measured-template.mjs";
+import { placeTemplate } from "./canvas/range-template.mjs";
+import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
-import * as sheets from "./sheets/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
-import * as placeables from "./canvas/measured-template.mjs";
-import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
+import * as sheets from "./sheets/index.mjs";
 
 globalThis.hellpiercers = {
   applications: { RangeEditorApp, sheets },
   data,
   documents,
+  placeTemplate,
 };
 
 const ascii_logo = ` 
