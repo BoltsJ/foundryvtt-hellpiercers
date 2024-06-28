@@ -1,3 +1,8 @@
 # HELLPIERCERS for Foundry VTT
 
-WIP system module for playing [HELLPIERCERS](https://www.kickstarter.com/projects/sandypuggames/hellpiercers-tactical-harrowing-action/) on Foundry VTT. This is not currently in a usable state since HELLPIERCERS isn't available as of yet. Once V2 Public Preview is available, I should have more complete rules to work from and get things rolling.
+WIP system module for playing
+[HELLPIERCERS](https://www.kickstarter.com/projects/sandypuggames/hellpiercers-tactical-harrowing-action/)
+on Foundry VTT. Now that the Public playtest is available, work on getting this
+to a playable state is underway, but it is not ready as of yet.
+
+See the [roadmap](ROADMAP.md) for more info

@@ -2,16 +2,17 @@
 
 ## Basics
 
-- [ ] Character Sheets (blocked on lack of sheets)
+- [ ] Good character sheet - Currently have a basic placeholder sheets
+- [ ] Enemy sheets
 - [ ] Swarm tech - track tokens and actors associated with a swarm
-- [ ] Targeting - In progress
+- [x] Basic class items
+- [ ] Class mastery
+- [x] Attack templates
+- [ ] Targeting
 - [ ] Attack dialogs
 - [ ] Damage Application
 - [ ] STRATCOM layer - Possibly base/map interaction
-- [ ] Drag Ruler + Terrain layer
 - [ ] Turn tracking (adapt Lancer Initiative)
-
-## Stretch goals
-
-- Token Action Hud or a custom hud
-- Ability automation (This will likely need to be hand written macro effects, a la wfrp4e)
+- [ ] Babele support - if needed
+- [ ] Include items - pending a public license for HELLPIERCERS
+- [ ] Art - pending a public license for HELLPIERCERS
