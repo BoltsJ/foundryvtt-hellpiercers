@@ -37,6 +37,10 @@
     "FACTION": {},
     "title": "HELLPIERCERS",
     "tagline": "Hell is a prison. Break its bars.",
+    "packs": {
+      "debugmacros": "Debug Macros",
+      "playeritems": "Player Gear"
+    },
     "Abilities": "Abilities",
     "ActiveName": "Active",
     "Biography": "Biography",
