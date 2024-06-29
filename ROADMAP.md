@@ -9,8 +9,7 @@
 - [x] Attack templates
 - [ ] Targeting
 - [ ] Attack dialogs
-- [ ] Include items - pending a public license for HELLPIERCERS
-- [ ] Art - pending a public license for HELLPIERCERS
+
 
 ## Beta
 
@@ -21,8 +20,10 @@
 - [ ] Swarm tech - track tokens and actors associated with a swarm
 - [ ] Turn tracking (adapt Lancer Initiative)
 - [ ] Faction system
+- [ ] Include items - pending a public license for HELLPIERCERS
 
 ## Release
 
 - [ ] Styling
 - [ ] Custom ActiveEffects
+- [ ] Art - pending a public license for HELLPIERCERS
