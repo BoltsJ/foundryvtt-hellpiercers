@@ -1,18 +1,28 @@
 # Roadmap
 
-## Basics
+## Alpha
 
-- [ ] Good character sheet - Currently have a basic placeholder sheets
-- [ ] Enemy sheets
-- [ ] Swarm tech - track tokens and actors associated with a swarm
+
+- [x] Enemy sheets
 - [x] Basic class items
 - [ ] Class mastery
 - [x] Attack templates
 - [ ] Targeting
 - [ ] Attack dialogs
-- [ ] Damage Application
-- [ ] STRATCOM layer - Possibly base/map interaction
-- [ ] Turn tracking (adapt Lancer Initiative)
-- [ ] Babele support - if needed
 - [ ] Include items - pending a public license for HELLPIERCERS
 - [ ] Art - pending a public license for HELLPIERCERS
+
+## Beta
+
+- [ ] Good character sheet - Currently have a basic placeholder sheets
+- [ ] Babele support - if needed
+- [ ] STRATCOM layer - Possibly base/map interaction
+- [ ] Damage Application
+- [ ] Swarm tech - track tokens and actors associated with a swarm
+- [ ] Turn tracking (adapt Lancer Initiative)
+- [ ] Faction system
+
+## Release
+
+- [ ] Styling
+- [ ] Custom ActiveEffects
