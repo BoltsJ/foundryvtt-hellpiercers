@@ -23,8 +23,15 @@
   "documentTypes": {
     "Actor": {
       "human": { "htmlFields": ["biography"] },
-      "demon": { "htmlFields": ["biography"] },
-      "boss": { "htmlFields": ["biography"] },
+      "demon": { "htmlFields": ["biography", "strike.description", "special.description"] },
+      "boss": {
+        "htmlFields": [
+          "biography",
+          "attack1.description",
+          "attack2.description",
+          "attack3.description"
+        ]
+      },
       "faction": { "htmlFields": ["description"] }
     },
     "Item": {
