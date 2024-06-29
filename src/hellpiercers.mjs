@@ -35,7 +35,7 @@ Hooks.once("init", () => {
   CONFIG.Actor.documentClass = documents.HellpiercersActor;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
-    types: ["human", "demon"],
+    types: ["human", "demon", "boss"],
     makeDefault: true,
     label: "HELLPIERCERS.ActorSheet",
   });

@@ -44,7 +44,7 @@
     </div>
     <div class="flexrow">
       <label for="system.health.value"
-        >{localize("HELLPIERCERS.DEMON.FIELDS.health.label")}:&nbsp;</label
+        >{localize("HELLPIERCERS.BOSS.FIELDS.health.label")}:&nbsp;</label
       >
       <input
         name="system.health.value"
@@ -64,7 +64,7 @@
       />
     </div>
     <div class="flexrow">
-      <span>{localize("HELLPIERCERS.DEMON.FIELDS.tags.label")}:&nbsp;</span>
+      <span>{localize("HELLPIERCERS.BOSS.FIELDS.tags.label")}:&nbsp;</span>
       <TagEditor bind:tagEditor document={actor} />
       {#each $actor.system.tags as tag}
         <span class="tag">{tag}</span>
@@ -74,7 +74,7 @@
       </button>
     </div>
     <div class="flexrow">
-      <label for="system.speed">{localize("HELLPIERCERS.DEMON.FIELDS.speed.label")}:&nbsp;</label>
+      <label for="system.speed">{localize("HELLPIERCERS.BOSS.FIELDS.speed.label")}:&nbsp;</label>
       <input
         name="system.speed"
         value={$actor.system.speed}
@@ -84,7 +84,7 @@
       />
     </div>
     <div class="flexrow">
-      <label for="system.scale">{localize("HELLPIERCERS.DEMON.FIELDS.scale.label")}:&nbsp;</label>
+      <label for="system.scale">{localize("HELLPIERCERS.BOSS.FIELDS.scale.label")}:&nbsp;</label>
       <input
         name="system.scale"
         value={$actor.system.scale}
@@ -113,42 +113,28 @@
     {#if $current_tab === "Notes"}
       <NotesTab document={actor} />
     {:else if $current_tab === "HELLPIERCERS.Abilities"}
-      <div id="items-tab" class="tab flexcol" role="tabpanel">
-        <span style="flex: 0 0 auto">{localize("HELLPIERCERS.DEMON.FIELDS.strike.label")}</span>
-        <div class="flexrow">
-          <label for="system.strike.name"
-            >{localize("HELLPIERCERS.DEMON.FIELDS.strike.name.label")}:&nbsp;
-          </label>
-          <input name="system.strike.name" value={$actor.system.strike.name} type="text" />
-        </div>
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-        <div>{@html $actor.system.strike.range.svg.outerHTML}</div>
-        <TJSTinyMCE
-          options={{
-            document: $actor,
-            fieldName: "system.strike.description",
-            editable: true,
-            enrichContent: true,
-            initialSelection: "start",
-          }}
-        />
-        <span style="flex: 0 0 auto">{localize("HELLPIERCERS.DEMON.FIELDS.special.label")}</span>
-        <div class="flexrow">
-          <label for="system.strike.name"
-            >{localize("HELLPIERCERS.DEMON.FIELDS.strike.name.label")}:&nbsp;
-          </label>
-          <input name="system.special.name" value={$actor.system.special.name} type="text" />
-        </div>
-        <TJSTinyMCE
-          options={{
-            document: $actor,
-            fieldName: "system.special.description",
-            editable: true,
-            enrichContent: true,
-            initialSelection: "start",
-          }}
-        />
-      </div>
+      {#each ["1", "2", "3"] as n}
+        {#if $actor.system[`attack${n}`]}
+          <div id="items-tab" class="tab flexcol" role="tabpanel">
+            <span style="flex: 0 0 auto"
+              >{localize(`HELLPIERCERS.BOSS.FIELDS.attack${n}.label`)}</span
+            >
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            <div>{@html $actor.system[`attack${n}`].range.svg.outerHTML}</div>
+            <TJSTinyMCE
+              options={{
+                document: $actor,
+                fieldName: `system.attack${n}.description`,
+                editable: true,
+                enrichContent: true,
+                initialSelection: "start",
+              }}
+            />
+          </div>
+        {:else}
+          <button type="button"><i class="fas fa-plus"></i></button>
+        {/if}
+      {/each}
     {:else if $current_tab === "HELLPIERCERS.Effects"}
       <EffectsTab {actor} />
     {:else}

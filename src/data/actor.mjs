@@ -69,11 +69,11 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
         range: new fields.EmbeddedDataField(RangeModel, {
           initial: { kind: "targets", value: 1, modifiers: { range: 0 } },
         }),
-        effect: new fields.HTMLField({ required: true }),
+        description: new fields.HTMLField({ required: true }),
       }),
       special: new fields.SchemaField({
         name: new fields.StringField({ initial: "Special" }),
-        effect: new fields.HTMLField({ required: true }),
+        description: new fields.HTMLField({ required: true }),
       }),
     };
   }
@@ -96,34 +96,53 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
   // }
 }
 
-export class BossModel extends foundry.abstract.DataModel {
+export class BossModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
       faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
-      tags: new fields.SetField(new fields.StringField(), {
-        initial: ["Tag"],
-        label: "HELLPIERCERS.Tags",
+      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
+      health: new fields.SchemaField({
+        value: new fields.NumberField({ required: true, initial: 10, integer: true }),
+        max: new fields.NumberField({ required: true, initial: 10, integer: true }),
       }),
-      health: new fields.SchemaField(
+      scale: new fields.NumberField({ integer: true, initial: 1, nullable: false }),
+      speed: new fields.NumberField({ required: true, initial: 4, integer: true }),
+      actions: new fields.NumberField({ initial: 1, integer: true }),
+      agnosia: new fields.SchemaField({
+        value: new fields.NumberField({ required: true, initial: 10 }),
+        description: new fields.HTMLField({}),
+      }),
+      attack1: new fields.SchemaField(
         {
-          value: new fields.NumberField({ required: true, initial: 50, integer: true }),
-          max: new fields.NumberField({ required: true, initial: 50, integer: true }),
-          agnosia: new fields.NumberField({ required: true, initial: 10 }),
+          range: new fields.EmbeddedDataField(RangeModel, {
+            initial: { kind: "targets", value: 1 },
+          }),
+          description: new fields.HTMLField(),
         },
-        { label: "HELLPIERCERS.HP" }
+        { nullable: true, initial: { range: { kind: "targets", value: 1 }, description: "" } }
       ),
-      scale: new fields.NumberField({ label: "HELLPIERCERS.Scale" }),
-      speed: new fields.NumberField({
-        required: true,
-        initial: 4,
-        integer: true,
-        label: "HELLPIERCERS.Speed",
-      }),
-      actions: new fields.NumberField({
-        initial: 1,
-        integer: true,
-        label: "HELLPIERCERS.Activations",
+      attack2: new fields.SchemaField(
+        {
+          range: new fields.EmbeddedDataField(RangeModel, {
+            initial: { kind: "targets", value: 1 },
+          }),
+          description: new fields.HTMLField(),
+        },
+        { nullable: true, initial: null }
+      ),
+      attack3: new fields.SchemaField(
+        {
+          range: new fields.EmbeddedDataField(RangeModel, {
+            initial: { kind: "targets", value: 1 },
+          }),
+          description: new fields.HTMLField(),
+        },
+        { nullable: true, initial: null }
+      ),
+      special: new fields.SchemaField({
+        name: new fields.StringField({ initial: "Special" }),
+        description: new fields.HTMLField({ required: true }),
       }),
     };
   }

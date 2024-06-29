@@ -8,6 +8,7 @@
   import { slide } from "svelte/transition";
   import HumanSheet from "./HumanSheet.svelte";
   import DemonSheet from "./DemonSheet.svelte";
+  import BossSheet from "./BossSheet.svelte";
 
   export let elementRoot;
 
@@ -21,6 +22,7 @@
   const sheets = {
     ["human"]: HumanSheet,
     ["demon"]: DemonSheet,
+    ["boss"]: BossSheet,
   };
 </script>
 
