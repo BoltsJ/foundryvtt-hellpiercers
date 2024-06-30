@@ -3,12 +3,11 @@ import { svelte, vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import path from "path";
 
 export default defineConfig({
-  root: "src/",
   publicDir: path.resolve(__dirname, "public"),
   base: "/systems/hellpiercers/",
   server: {
     port: 30001,
-    open: true,
+    open: "/",
     proxy: {
       "^(?!/systems/hellpiercers/)": "http://localhost:30000/",
       "/socket.io": {
@@ -19,10 +18,11 @@ export default defineConfig({
   },
   build: {
     outDir: path.resolve(__dirname, "dist"),
+    emptyOutDir: false,
     sourcemap: true,
     lib: {
       name: "hellpiercers",
-      entry: "hellpiercers.mjs",
+      entry: "src/hellpiercers.mjs",
       formats: ["es"],
       fileName: "hellpiercers",
     },
