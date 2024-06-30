@@ -15,49 +15,62 @@
     }
   },
   "HELLPIERCERS": {
-    "HUMAN": {
+    "ACTOR": {
       "FIELDS": {
         "actions": { "label": "Activations", "hint": "" },
+        "agnosia": {
+          "label": "Agnosia",
+          "hint": "",
+          "value": { "label": "Value", "hint": "" },
+          "description": { "label": "Effect", "hint": "" }
+        },
+        "armor": { "label": "Armor", "hint": "" },
+        "attack1": {
+          "label": "1st Attack",
+          "hint": "",
+          "range": { "label": "Range", "hint": "" },
+          "description": { "label": "Effect", "hint": "" }
+        },
+        "attack2": {
+          "label": "2nd Attack",
+          "hint": "",
+          "range": { "label": "Range", "hint": "" },
+          "description": { "label": "Effect", "hint": "" }
+        },
+        "attack3": {
+          "label": "3rd Attack",
+          "hint": "",
+          "range": { "label": "Range", "hint": "" },
+          "description": { "label": "Effect", "hint": "" }
+        },
         "biography": { "label": "Biography", "hint": "" },
         "callsign": { "label": "Callsign", "hint": "" },
+        "class": { "label": "Class", "hint": "" },
         "faction": { "label": "Faction", "hint": "" },
         "health": { "label": "HP", "hint": "" },
+        "max_weapons": { "label": "Max Weapons", "hint": "" },
         "pronouns": { "label": "Pronouns", "hint": "" },
         "scale": { "label": "Scale", "hint": "" },
+        "special": {
+          "label": "Special",
+          "hint": "",
+          "name": { "label": "Name", "hint": "" },
+          "description": { "label": "Effect", "hint": "" }
+        },
         "speed": { "label": "Speed", "hint": "" },
-        "tags": { "label": "Tags", "hint": "" },
-        "class": { "label": "Class", "hint": "" },
-        "armor": { "label": "Armor", "hint": "" },
-        "weapon": { "label": "Weapon", "hint": "" },
-        "max_weapons": { "label": "Max Weapons", "hint": "" }
-      }
-    },
-    "DEMON": {
-      "FIELDS": {
-        "actions": { "label": "Activations", "hint": "" },
-        "biography": { "label": "Biography", "hint": "" },
-        "faction": { "label": "Faction", "hint": "" },
-        "health": { "label": "HP", "hint": "" },
-        "scale": { "label": "Scale", "hint": "" },
-        "speed": { "label": "Speed", "hint": "" },
-        "tags": { "label": "Tags", "hint": "" },
         "strike": {
           "label": "Strike",
           "hint": "",
           "name": { "label": "Name", "hint": "" },
           "range": { "label": "Range", "hint": "" },
-          "effect": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect", "hint": "" }
         },
-        "special": {
-          "label": "Special",
-          "hint": "",
-          "name": { "label": "Name", "hint": "" },
-          "effect": { "label": "Effect", "hint": "" }
-        }
+        "tags": { "label": "Tags", "hint": "" },
+        "weapon": { "label": "Weapon", "hint": "" }
       }
     },
-    "BOSS": {},
     "FACTION": {},
+    "STATUSES": {},
     "title": "HELLPIERCERS",
     "tagline": "Hell is a prison. Break its bars.",
     "packs": {

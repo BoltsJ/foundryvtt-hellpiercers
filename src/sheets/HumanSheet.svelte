@@ -56,7 +56,7 @@
     </div>
     <div class="flexrow">
       <label for="system.pronouns"
-        >{localize("HELLPIERCERS.HUMAN.FIELDS.pronouns.label")}:&nbsp</label
+        >{localize("HELLPIERCERS.ACTOR.FIELDS.pronouns.label")}:&nbsp</label
       >
       <input
         name="system.pronouns"
@@ -67,7 +67,7 @@
     </div>
     <div class="flexrow">
       <label for="system.health.value"
-        >{localize("HELLPIERCERS.HUMAN.FIELDS.health.label")}:&nbsp;</label
+        >{localize("HELLPIERCERS.ACTOR.FIELDS.health.label")}:&nbsp;</label
       >
       <input
         name="system.health.value"
@@ -88,7 +88,7 @@
       />
     </div>
     <div class="flexrow">
-      <span>{localize("HELLPIERCERS.HUMAN.FIELDS.tags.label")}:&nbsp;</span>
+      <span>{localize("HELLPIERCERS.ACTOR.FIELDS.tags.label")}:&nbsp;</span>
       <TagEditor bind:tagEditor document={actor} />
       {#each $actor.system.tags as tag}
         <span class="tag">{tag}</span>
@@ -98,7 +98,7 @@
       </button>
     </div>
     <div class="flexrow">
-      <label for="system.speed">{localize("HELLPIERCERS.HUMAN.FIELDS.speed.label")}:&nbsp;</label>
+      <label for="system.speed">{localize("HELLPIERCERS.ACTOR.FIELDS.speed.label")}:&nbsp;</label>
       <input
         name="system.speed"
         value={$actor.system.speed}

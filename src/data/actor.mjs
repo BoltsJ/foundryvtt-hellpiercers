@@ -17,7 +17,7 @@ class OwnedItemField extends fields.ForeignDocumentField {
 }
 
 export class HumanModel extends foundry.abstract.TypeDataModel {
-  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.HUMAN"];
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ACTOR"];
   static defineSchema() {
     return {
       biography: new fields.HTMLField({ required: true }),
@@ -51,7 +51,7 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
 }
 
 export class DemonModel extends foundry.abstract.TypeDataModel {
-  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.DEMON"];
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ACTOR"];
   static defineSchema() {
     return {
       biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
@@ -97,6 +97,7 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
 }
 
 export class BossModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ACTOR"];
   static defineSchema() {
     return {
       biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),

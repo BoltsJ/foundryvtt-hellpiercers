@@ -44,7 +44,7 @@
     </div>
     <div class="flexrow">
       <label for="system.health.value"
-        >{localize("HELLPIERCERS.BOSS.FIELDS.health.label")}:&nbsp;</label
+        >{localize("HELLPIERCERS.ACTOR.FIELDS.health.label")}:&nbsp;</label
       >
       <input
         name="system.health.value"
@@ -64,7 +64,7 @@
       />
     </div>
     <div class="flexrow">
-      <span>{localize("HELLPIERCERS.BOSS.FIELDS.tags.label")}:&nbsp;</span>
+      <span>{localize("HELLPIERCERS.ACTOR.FIELDS.tags.label")}:&nbsp;</span>
       <TagEditor bind:tagEditor document={actor} />
       {#each $actor.system.tags as tag}
         <span class="tag">{tag}</span>
@@ -74,7 +74,7 @@
       </button>
     </div>
     <div class="flexrow">
-      <label for="system.speed">{localize("HELLPIERCERS.BOSS.FIELDS.speed.label")}:&nbsp;</label>
+      <label for="system.speed">{localize("HELLPIERCERS.ACTOR.FIELDS.speed.label")}:&nbsp;</label>
       <input
         name="system.speed"
         value={$actor.system.speed}
@@ -84,7 +84,7 @@
       />
     </div>
     <div class="flexrow">
-      <label for="system.scale">{localize("HELLPIERCERS.BOSS.FIELDS.scale.label")}:&nbsp;</label>
+      <label for="system.scale">{localize("HELLPIERCERS.ACTOR.FIELDS.scale.label")}:&nbsp;</label>
       <input
         name="system.scale"
         value={$actor.system.scale}
@@ -113,28 +113,67 @@
     {#if $current_tab === "Notes"}
       <NotesTab document={actor} />
     {:else if $current_tab === "HELLPIERCERS.Abilities"}
+      <div class="flexcol" style="flex: 1 0 5rem">
+        <span style="flex: 0 0 auto">{localize("HELLPIERCERS.ACTOR.FIELDS.agnosia.label")}</span>
+        <input
+          style="flex: 0 0 auto"
+          name="system.agnosia.value"
+          value={$actor.system.agnosia.value}
+          type="number"
+          data-dtype="number"
+        />
+        <TJSTinyMCE
+          options={{
+            document: $actor,
+            fieldName: "system.agnosia.description",
+            editable: true,
+            enrichContent: true,
+            initialSelection: "start",
+          }}
+        />
+      </div>
       {#each ["1", "2", "3"] as n}
         {#if $actor.system[`attack${n}`]}
-          <div id="items-tab" class="tab flexcol" role="tabpanel">
-            <span style="flex: 0 0 auto"
-              >{localize(`HELLPIERCERS.BOSS.FIELDS.attack${n}.label`)}</span
-            >
-            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-            <div>{@html $actor.system[`attack${n}`].range.svg.outerHTML}</div>
-            <TJSTinyMCE
-              options={{
-                document: $actor,
-                fieldName: `system.attack${n}.description`,
-                editable: true,
-                enrichContent: true,
-                initialSelection: "start",
-              }}
-            />
+          <div class="flexcol" style="flex: 1 0 5rem">
+            <div id="items-tab" class="tab flexcol" role="tabpanel">
+              <span style="flex: 0 0 auto"
+                >{localize(`HELLPIERCERS.ACTOR.FIELDS.attack${n}.label`)}</span
+              >
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+              <div>{@html $actor.system[`attack${n}`].range.svg.outerHTML}</div>
+              <TJSTinyMCE
+                options={{
+                  document: $actor,
+                  fieldName: `system.attack${n}.description`,
+                  editable: true,
+                  enrichContent: true,
+                  initialSelection: "start",
+                }}
+              />
+            </div>
           </div>
         {:else}
-          <button type="button"><i class="fas fa-plus"></i></button>
+          <button type="button" style="flex: 0 0 auto"><i class="fas fa-plus"></i></button>
         {/if}
       {/each}
+      <div class="flexcol" style="flex: 1 0 5rem">
+        <span style="flex: 0 0 auto">{localize("HELLPIERCERS.ACTOR.FIELDS.special.label")}</span>
+        <div class="flexrow">
+          <label for="system.strike.name"
+            >{localize("HELLPIERCERS.ACTOR.FIELDS.strike.name.label")}:&nbsp;
+          </label>
+          <input name="system.special.name" value={$actor.system.special.name} type="text" />
+        </div>
+        <TJSTinyMCE
+          options={{
+            document: $actor,
+            fieldName: "system.special.description",
+            editable: true,
+            enrichContent: true,
+            initialSelection: "start",
+          }}
+        />
+      </div>
     {:else if $current_tab === "HELLPIERCERS.Effects"}
       <EffectsTab {actor} />
     {:else}
