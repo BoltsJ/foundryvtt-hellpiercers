@@ -2,7 +2,7 @@
   "id": "hellpiercers",
   "title": "HELLPIERCERS: Tactical Harrowing Action",
   "description": "HELL IS A PRISON. BREAK ITS BARS. Tactical Hell-slaying action with base building, overwhelming build options, and map based strategy.",
-  "version": "0",
+  "version": "0.alpha1",
   "compatibility": {
     "minimum": "12",
     "verified": "12",
@@ -29,7 +29,8 @@
           "biography",
           "attack1.description",
           "attack2.description",
-          "attack3.description"
+          "attack3.description",
+          "special.description"
         ]
       },
       "faction": { "htmlFields": ["description"] }

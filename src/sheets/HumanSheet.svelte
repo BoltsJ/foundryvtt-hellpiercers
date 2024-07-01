@@ -1,5 +1,6 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
+  import { getContext } from "svelte";
   import { TabStore } from "../util/stores.mjs";
   import { updateDoc } from "./actions/updatedoc.mjs";
   import EffectsTab from "./components/EffectsTab.svelte";
@@ -7,10 +8,14 @@
   import Portrait from "./components/Portrait.svelte";
   import TagEditor from "./components/TagEditor.svelte";
 
+  import { placeTemplate } from "../canvas/range-template.mjs";
+
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<import("../documents/baseactor.mjs").HellpiercersActor>} */
   export let actor;
 
-  const tabs = ["Notes", "HELLPIERCERS.Abilities", "DOCUMENT.Items", "HELLPIERCERS.Effects"];
+  const application = getContext("#external").application;
+
+  const tabs = ["HELLPIERCERS.Abilities", "DOCUMENT.Items", "Notes", "HELLPIERCERS.Effects"];
 
   let current_tab = TabStore.get($actor.uuid, tabs[0]);
 
@@ -37,10 +42,13 @@
       const { type: doctype, uuid } = JSON.parse(dropdata);
       if (doctype !== "Item") return;
 
+      if ($actor.items.map(i => i.uuid).includes(uuid)) return;
       const item = await fromUuid(uuid);
 
       let [created] = await $actor.createEmbeddedDocuments("Item", [item]);
-      await $actor.update({ [`system.${item.type}`]: created });
+      if (["armor", "class", "weapon"].includes(item.type)) {
+        await $actor.update({ [`system.${item.type}`]: created });
+      }
     } catch (_) {
       console.warn("Invalid Drop data.");
     }
@@ -125,7 +133,49 @@
   </div>
 
   <section class="sheetbody flexcol">
-    {#if $current_tab === "Notes"}
+    {#if $current_tab === "HELLPIERCERS.Abilities"}
+      <div id="abilities-tab" class="tab flexcol" role="tabpanel">
+        <div
+          class="weapon flexrow"
+          draggable="true"
+          role="region"
+          on:dragstart={ev => {
+            ev.dataTransfer.setData(
+              "text/plain",
+              JSON.stringify($actor.system.weapon?.toDragData())
+            );
+          }}
+        >
+          {#if $actor.system.weapon != null}
+            <span>{$actor.system.weapon.name}</span>
+            <!-- svelte-ignore missing-declaration -->
+            <button
+              type="button"
+              style="flex: 0 0 5rem; height: 2rem;"
+              on:click={async () => {
+                const r = new Roll($actor.system.weapon.system.damage);
+                await r.evaluate();
+                await r.toMessage();
+              }}><i class="fas fa-dice"></i>{$actor.system.weapon.system.damage}</button
+            >
+            {#each $actor.system.weapon?.system.range ?? [] as range}
+              <button
+                style="width:2rem; height: 2rem; flex:0 0 auto"
+                type="button"
+                on:click={() => {
+                  application.minimize();
+                  placeTemplate(range, $actor).finally(() => application.maximize());
+                }}><i class="fa-solid fa-ruler-combined"></i></button
+              >
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+              <div>{@html range.svg.outerHTML}</div>
+            {/each}
+          {:else}
+            No Weapon Equipped
+          {/if}
+        </div>
+      </div>
+    {:else if $current_tab === "Notes"}
       <NotesTab document={actor} />
     {:else if $current_tab === "DOCUMENT.Items"}
       <div id="items-tab" class="tab flexcol" role="tabpanel">
@@ -185,6 +235,9 @@
 
 <style lang="scss">
   main {
+    .weapon * {
+      border: 1px solid red;
+    }
     label {
       flex: 0 0 auto;
     }
