@@ -10,7 +10,7 @@
 
   import { placeTemplate } from "../canvas/range-template.mjs";
 
-  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<import("../documents/baseactor.mjs").HellpiercersActor>} */
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<import("../documents/hellpiercers-actor.mjs").HellpiercersActor>} */
   export let actor;
 
   const application = getContext("#external").application;

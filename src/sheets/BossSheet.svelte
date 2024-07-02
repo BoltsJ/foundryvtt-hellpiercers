@@ -8,7 +8,7 @@
   import Portrait from "./components/Portrait.svelte";
   import TagEditor from "./components/TagEditor.svelte";
 
-  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<import("../documents/baseactor.mjs").HellpiercersActor>} */
+  /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<import("../documents/hellpiercers-actor.mjs").HellpiercersActor>} */
   export let actor;
 
   const tabs = ["Notes", "HELLPIERCERS.Abilities", "HELLPIERCERS.Effects"];

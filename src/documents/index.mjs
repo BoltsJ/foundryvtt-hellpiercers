@@ -1,2 +1,2 @@
-export { HellpiercersActor } from "./baseactor.mjs";
-export { HellpiercersItem } from "./baseitem.mjs";
+export { HellpiercersActor } from "./hellpiercers-actor.mjs";
+export { HellpiercersItem } from "./hellpiercers-item.mjs";

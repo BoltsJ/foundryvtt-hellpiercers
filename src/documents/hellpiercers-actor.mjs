@@ -34,10 +34,10 @@ export class HellpiercersActor extends Actor {
         .map(e => e._id);
       const updates = existing.filter(e => (e.flags[game.system.id]?.value ?? 1) > 0);
 
-      await Promise.all([
+      return Promise.allSettled([
         this.deleteEmbeddedDocuments("ActiveEffect", deletions),
         this.updateEmbeddedDocuments("ActiveEffect", updates),
-      ]);
+      ]).then(r => r.flatMap(p => p.status ==="fulfilled" ? p.value : null));
     } else if (direction > 0) {
       // Create the effect with a count of direction
       const cls = getDocumentClass("ActiveEffect");
