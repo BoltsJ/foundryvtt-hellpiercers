@@ -33,7 +33,11 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
       pronouns: new fields.StringField({
         required: true,
         /** @param {string} v */
-        validate: v => !v.toLowerCase().split("/").includes("he"),
+        validate: v =>
+          !v
+            .toLowerCase()
+            .split("/")
+            .some(s => ["he", "him"].includes(s.trim())),
       }),
       callsign: new fields.StringField({ required: true }),
       // Equipment
@@ -78,11 +82,11 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
     };
   }
 
-  prepareBaseData() {
-    // if (this.tags.has("Horde")) {
-    //   this.health.max = this.#getHordeHp();
-    // }
-  }
+  // prepareBaseData() {
+  //   if (this.tags.has("Horde")) {
+  //     this.health.max = this.#getHordeHp();
+  //   }
+  // }
 
   // #getHordeHp() {
   //   const horde = this.parent.token?.getFlag(game.system.id, "horde");

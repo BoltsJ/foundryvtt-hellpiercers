@@ -1,6 +1,6 @@
 import "./hellpiercers.scss";
 
-import * as placeables from "./canvas/measured-template.mjs";
+import * as placeables from "./canvas/placeables/index.mjs";
 import { placeTemplate } from "./canvas/range-template.mjs";
 import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 import * as data from "./data/index.mjs";
@@ -56,4 +56,8 @@ Hooks.once("init", () => {
   // Templates
   CONFIG.Canvas.layers.templates.layerClass = HellpiercersTemplateLayer;
   CONFIG.MeasuredTemplate.objectClass = placeables.HellpiercersMeasuredTemplate;
+
+  // Tokens
+  CONFIG.Token.objectClass = placeables.HellpiercersToken;
+  CONFIG.Token.hudClass = placeables.HellpiercersTokenHUD;
 });

@@ -1,5 +1,5 @@
 import { RangeModel } from "../data/range-model.mjs";
-import { HellpiercersMeasuredTemplate } from "./measured-template.mjs";
+import { HellpiercersMeasuredTemplate } from "./placeables/measured-template.mjs";
 
 class RangeTemplate extends HellpiercersMeasuredTemplate {
   placeTemplate() {

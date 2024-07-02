@@ -1,7 +1,7 @@
 /** @typedef {import("../../client/pixi/placeables/template").MeasuredTemplate} MeasuredTemplate */
 /** @typedef {import("../documents/weapon.mjs").HellpiercersWeapon} */
 
-import { RangeModel } from "../data/range-model.mjs";
+import { RangeModel } from "../../data/range-model.mjs";
 
 /**
  * Extends the default measured template to allow for gridspace based templates
