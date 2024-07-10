@@ -7,6 +7,7 @@
       "faction": "Faction"
     },
     "Item": {
+      "ability": "Ability",
       "armor": "Armor",
       "class": "Class",
       "equipment": "Equipment",
@@ -67,6 +68,12 @@
         },
         "tags": { "label": "Tags", "hint": "" },
         "weapon": { "label": "Weapon", "hint": "" }
+      }
+    },
+    "ITEM": {
+      "FIELDS": {
+        "action": { "label": "Action Type", "hint": "" },
+        "description": { "label": "Description", "hint": "" }
       }
     },
     "FACTION": {},

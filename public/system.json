@@ -36,12 +36,18 @@
       "faction": { "htmlFields": ["description"] }
     },
     "Item": {
-      "weapon": { "htmlFields": ["description", "ability.description"] },
-      "armor": { "htmlFields": ["description", "ability.description"] },
+      "ability": { "htmlFields": ["description"] },
+      "armor": {
+        "htmlFields": ["description", "movement", "ability.description", "reversal.effect"]
+      },
       "class": { "htmlFields": ["description", "active.description", "passive.description"] },
+      "equipment": { "htmlFields": ["description"] },
       "gear": { "htmlFields": ["description", "effect"] },
-      "equipment": { "htmlFields": ["description"] }
+      "weapon": { "htmlFields": ["description", "ability.description"] }
     }
+  },
+  "relationships": {
+    "requires": [{ "id": "lancer-initiative", "type": "module" }]
   },
   "socket": false,
   "initiative": null,

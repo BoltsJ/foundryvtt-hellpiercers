@@ -41,6 +41,7 @@ Hooks.once("init", () => {
   });
 
   // Items
+  CONFIG.Item.dataModels.ability = data.AbilityModel;
   CONFIG.Item.dataModels.weapon = data.WeaponModel;
   CONFIG.Item.dataModels.armor = data.ArmorModel;
   CONFIG.Item.dataModels.class = data.ClassModel;
