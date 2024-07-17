@@ -35,7 +35,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
   }
 
   async _onEditImage(_e, target) {
-    if(!this.isEditable) return;
+    if (!this.isEditable) return;
     const prop = target.dataset.edit;
     const current = foundry.utils.getProperty(this.actor, prop);
     const fp = new FilePicker({
@@ -50,7 +50,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
   }
 
   async _onCreateEmbed(_e, target) {
-    if(!this.isEditable) return;
+    if (!this.isEditable) return;
     const embedType = target.dataset.embedType;
     const embedData = this._getDefaultEmbedData(embedType);
     const cls = getDocumentClass(embedType);
@@ -63,7 +63,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
    * @param {HTMLElement} target
    */
   async _onDeleteEmbed(ev, target) {
-    if(!this.isEditable) return;
+    if (!this.isEditable) return;
     const noConfirm = ev.shiftKey;
     const uuid = target.parentElement.dataset.UUID;
     const doc = await fromUuid(uuid);

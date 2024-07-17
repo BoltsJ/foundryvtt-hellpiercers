@@ -17,10 +17,10 @@ export class HumanSheet extends HellpiercersActorSheet {
     ...super.DEFAULT_OPTIONS,
     classes: ["hellpiercers", "actor", "human"],
     actions: {
-      onEditImage:  this.prototype._onEditImage,
+      onEditImage: this.prototype._onEditImage,
       onCreateEmbed: this.prototype._onCreateEmbed,
       onDeleteEmbed: this.prototype._onDeleteEmbed,
-    }
+    },
   };
 
   async _prepareContext() {

@@ -32,7 +32,9 @@
   <div class="ability flexcol">
     <div class="ability flexcol">
       <div class="flexrow">
-        <label for="system.active.name">{localize("HELLPIERCERS.ITEM.FIELDS.active.name.label")}</label>
+        <label for="system.active.name"
+          >{localize("HELLPIERCERS.ITEM.FIELDS.active.name.label")}</label
+        >
         <input
           name="system.active.name"
           value={$item.system.active.name}
@@ -52,7 +54,9 @@
     </div>
     <div class="ability flexcol">
       <div class="flexrow">
-        <label for="system.passive.name">{localize("HELLPIERCERS.ITEM.FIELDS.passive.name.label")}</label>
+        <label for="system.passive.name"
+          >{localize("HELLPIERCERS.ITEM.FIELDS.passive.name.label")}</label
+        >
         <input
           name="system.passive.name"
           value={$item.system.passive.name}
