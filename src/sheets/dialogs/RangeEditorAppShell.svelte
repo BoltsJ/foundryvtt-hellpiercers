@@ -144,8 +144,13 @@
       display: flex;
       flex-direction: row;
       flex: 1 0 auto;
+      align-items: center;
+      justify-content: center;
 
       div.grid {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         flex: 1 1 auto;
         button {
           width: 2rem;
@@ -159,7 +164,40 @@
       flex: 0 1 auto;
       display: flex;
       flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
+
+    div.left,
+    div.right {
+      flex: 0 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    div.top,
+    div.bottom,
+    div.left,
+    div.right {
+      button {
+        background: none;
+        padding: 0;
+        margin: 0;
+        border: none;
+        height: min-content;
+        width: min-content;
+        &:hover,
+        &:focus {
+          box-shadow: none;
+          i {
+            text-shadow: 0 0 5px var(--color-shadow-primary);
+          }
+        }
+      }
+    }
+
     footer {
       display: flex;
       flex-direction: row;

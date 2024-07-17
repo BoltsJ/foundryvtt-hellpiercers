@@ -1,6 +1,7 @@
-import { defineConfig } from "vite";
 import { svelte, vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+import fs from "fs";
 import path from "path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   publicDir: path.resolve(__dirname, "public"),
@@ -27,5 +28,24 @@ export default defineConfig({
       fileName: "hellpiercers",
     },
   },
-  plugins: [svelte({ preprocess: vitePreprocess() })],
+  plugins: [
+    svelte({ preprocess: vitePreprocess() }),
+    {
+      name: "foundry-hmr",
+      handleHotUpdate({ file }) {
+        if (file.endsWith(".hbs")) {
+          const file_path = file.slice(file.indexOf("templates/"));
+          const dest = path.resolve(__dirname, "dist/" + file_path);
+          console.log(`Hot updating template '${file_path}'`);
+          fs.copyFileSync(file, dest);
+        }
+        if (file.endsWith("en.json")) {
+          const file_path = file.slice(file.indexOf("lang/"));
+          const dest = path.resolve(__dirname, "dist/" + file_path);
+          console.log(`Hot updating localization '${file_path}'`);
+          fs.copyFileSync(file, dest);
+        }
+      },
+    },
+  ],
 });

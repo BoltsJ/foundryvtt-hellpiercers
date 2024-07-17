@@ -7,6 +7,7 @@ import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
 import * as sheets from "./sheets/index.mjs";
+import { HumanSheet } from "./sheets/human-sheet.mjs";
 
 globalThis.hellpiercers = {
   applications: { RangeEditorApp, sheets },
@@ -35,9 +36,14 @@ Hooks.once("init", () => {
   CONFIG.Actor.documentClass = documents.HellpiercersActor;
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
-    types: ["human", "demon", "boss"],
+    types: ["demon", "boss"],
     makeDefault: true,
     label: "HELLPIERCERS.ActorSheet",
+  });
+  Actors.registerSheet("hellpiercers", HumanSheet, {
+    types: ["human"],
+    makeDefault: true,
+    label: "HELLPIERCERS.Human",
   });
 
   // Items

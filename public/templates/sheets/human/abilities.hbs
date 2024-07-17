@@ -1,0 +1,17 @@
+<section class="tab abilities {{tab.cssClass}} scrollable" data-group="primary" data-tab="abilities">
+  <div class="weapon-card flexcol">
+    <div class="flexrow">
+      <span style="flex: 1 1 15rem;"><strong>{{weapon.name}}</strong></span>
+      <button class="weapon-damage" draggable="true"><i class="fas fa-dice"></i>{{weapon.system.damage}}</button>
+      <button class="weapon-range"><i class="fas fa-ruler-combined"></i>&nbsp;</button>
+    </div>
+    <div>
+      <strong>Active</strong>: <em>{{weapon.system.active.name}}</em> — {{{weapon.system.active.description}}}
+    </div>
+    <div>
+      <strong>Passive</strong>: <em>{{weapon.system.passive.name}}</em> — {{{weapon.system.passive.description}}}
+    </div>
+  </div>
+  <p>TODO Armor</p>
+  <p>TODO Class</p>
+</section>

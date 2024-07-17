@@ -1,0 +1,18 @@
+<header class="sheet-header">
+  <div class="flexcol">
+    <div class="flexrow">
+    <img src="{{actor.img}}" data-edit="img" {{#if editable}}data-action="onEditImage"{{/if}} title="{{actor.name}}" height="64" width="64"/>
+    <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}" {{#if (not editable)}}disabled{{/if}}/></h1>
+    </div>
+    <div class="flexrow">
+    {{formGroup fields.pronouns value=system.pronouns placeholder="any/all" disabled=(not editable)}}
+    {{formGroup fields.tags value=system.tags disabled=(not editable)}}
+    </div>
+    <div class="flexrow">
+      {{localize "HELLPIERCERS.ACTOR.FIELDS.health.label"}}
+      {{formInput fields.health.fields.value value=system.health.value max=system.health.max disabled=(not editable)}}/{{ system.health.max }}
+      {{localize "HELLPIERCERS.ACTOR.FIELDS.speed.label"}}:
+      <span style="flex: 0 0 2rem;">{{system.speed}}</span>
+    </div>
+  </div>
+</header>

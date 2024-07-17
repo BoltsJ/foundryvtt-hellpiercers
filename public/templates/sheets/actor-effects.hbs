@@ -1,0 +1,50 @@
+<section class="tab effects {{tab.cssClass}}" data-group="primary" data-tab="effects">
+  {{#if (gt effects.temporary.length 0)}}
+  <h6 class="temporary-effects">{{localize "HELLPIERCERS.ACTOR.SHEET.temporary-effects"}}</h6>
+  <ul class="temporary">
+    {{#each effects.temporary as |effect|}}
+    <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
+      <img src={{effect.img}} height=20 width=20>
+      <span class=name>
+        {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
+      </span>
+      <button type="button" class="edit" data-action="embedSheet"><i class="fas fa-edit"></i></button>
+      <button type="button" class="delete" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></button>
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+  {{#if (gt effects.items.length 0)}}
+  <h6 class="temporary-effects">{{localize "HELLPIERCERS.ACTOR.SHEET.item-effects"}}</h6>
+  <ul>
+    {{#each effects.items as |effect|}}
+    <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
+      <img src={{effect.img}} height=20 width=20>
+      <span class="name">
+        {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
+      </span>
+      <a data-action="openSheet" data--u-u-i-d={{effect.parent.uuid}}>{{effect.parent.name}}</a>
+      <button type="button" class="edit" data-action="embedSheet"><i class="fas fa-edit"></i></button>
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+  <h6 class="active-effects">{{localize "HELLPIERCERS.ACTOR.SHEET.active-effects"}}</h6>
+  <ul>
+    {{#each effects.effects as |effect|}}
+    <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
+      {{#if effect.img}}<img src={{effect.img}} height=20 width=20>{{/if}}
+      <span class="name">
+        {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
+      </span>
+      <button type="button" class="edit" data-action="embedSheet"><i class="fas fa-edit"></i></button>
+      <button type="button" class="delete" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></button>
+    </li>
+    {{/each}}
+    <li>
+      <button type="button" class="new-effect" data-action="onCreateEmbed" data-embed-type="ActiveEffect">
+        <i class="fas fa-plus"></i>&nbsp;New Effect
+      </button>
+    </li>
+  </ul>
+</section>

@@ -115,6 +115,13 @@ export class RangeModel extends foundry.abstract.DataModel {
   get svg() {
     const square_size = 20;
     const grid = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const stylesheet = document.createElementNS("http://www.w3.org/2000/svg", "style");
+    stylesheet.innerHTML = `
+      rect { stroke: black; stroke-width: 2; fill: gray; fill-opacity: 0.75; }
+      rect.target { fill: red; }
+      rect.origin { fill: blue; }
+    `;
+    grid.appendChild(stylesheet);
 
     let matrix = this.ascii;
     // Rotate -90° so it points right instead of down
@@ -157,7 +164,7 @@ export class RangeModel extends foundry.abstract.DataModel {
           image.setAttribute("y", 5 + row * square_size);
           image.setAttribute("href", img);
           image.setAttribute("title", img);
-          grid.appendChild(image);
+          // grid.appendChild(image);
         }
       }
     }
@@ -166,6 +173,11 @@ export class RangeModel extends foundry.abstract.DataModel {
     grid.setAttribute("height", 10 + square_size * rows);
 
     return grid;
+  }
+
+  get svg_uri() {
+    const data = new XMLSerializer().serializeToString(this.svg);
+    return `data:image/svg+xml;base64,${window.btoa(data)}`;
   }
 
   /** @returns {Actor | null} */

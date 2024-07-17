@@ -75,7 +75,7 @@ export default class HellpiercersItemSheet extends SvelteApplication {
             game.i18n.format("DOCUMENT.IdCopiedClipboard", {
               label,
               type: "uuid",
-              uuid: this.object.id,
+              id: this.object.uuid,
             })
           );
         },

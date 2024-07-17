@@ -1,7 +1,7 @@
 <script>
   import { localize } from "#runtime/svelte/helper";
   import { TJSTinyMCE } from "#standard/component";
-  import TagEditor from "../components/TagEditor.svelte";
+  // import TagEditor from "../components/TagEditor.svelte";
   import { getContext } from "svelte";
 
   /** @type {import("#runtime/svelte/store/fvtt/document").TJSDocument<Item>}*/
@@ -9,7 +9,7 @@
 
   let app = getContext("#external").application;
 
-  let tagEditor = false;
+  // let tagEditor = false;
 </script>
 
 <div class="tab flexcol" role="tabpanel">
@@ -36,21 +36,21 @@
       }}
     />
   </div>
-  <div class="flexrow">
-    <span>{localize("HELLPIERCERS.Resistances")}:&nbsp;</span>
-    <TagEditor bind:tagEditor document={item} path="system.resistances" />
-    {#each $item.system.resistances as resist}
-      <span class="tag">{resist}</span>
-    {/each}
-    <button
-      type="button"
-      class="tag-edit"
-      on:click={() => (tagEditor = true)}
-      disabled={!app.isEditable}
-    >
-      <i class="fas fa-edit"></i>
-    </button>
-  </div>
+  <!-- <div class="flexrow"> -->
+  <!--   <span>{localize("HELLPIERCERS.Resistances")}:&nbsp;</span> -->
+  <!--   <TagEditor bind:tagEditor document={item} path="system.resistances" /> -->
+  <!--   {#each $item.system.resistances as resist} -->
+  <!--     <span class="tag">{resist}</span> -->
+  <!--   {/each} -->
+  <!--   <button -->
+  <!--     type="button" -->
+  <!--     class="tag-edit" -->
+  <!--     on:click={() => (tagEditor = true)} -->
+  <!--     disabled={!app.isEditable} -->
+  <!--   > -->
+  <!--     <i class="fas fa-edit"></i> -->
+  <!--   </button> -->
+  <!-- </div> -->
   <div class="ability flexcol">
     <div class="flexrow">
       <label for="system.ability.name">{localize("HELLPIERCERS.SpecialName")}</label>

@@ -1,7 +1,5 @@
 :root {
   --hellpiercers-test-property: true;
-  // --hellpiercers-primary-background: null;
-  // --hellpiercers-primary-foreground: pink;
 }
 
 .hellpiercers {
@@ -9,19 +7,30 @@
     &.item,
     &.actor {
       section.window-content {
-        background: var(--hellpiercers-primary-background, url(../../ui/parchment.jpg) repeat);
-        color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
-        input {
-          color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
+        label {
+          flex: 0 0 auto;
         }
-      }
-    }
-    svg {
-      rect {
-        stroke: black;
-        stroke-width: 2;
-        fill: black;
-        fill-opacity: 0.5;
+        input[type="number"] {
+          flex: 0 0 3rem;
+        }
+        .tab.effects {
+          ul {
+            list-style-type: none;
+            padding-left: 0;
+            &.temporary {
+              columns: 2;
+            }
+            li {
+              img {
+                flex: 0;
+                margin: auto 0.25rem;
+              }
+              button {
+                flex: 0;
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -1,10 +1,11 @@
 {
   "TYPES": {
     "Actor": {
-      "human": "Hellpiercer",
-      "demon": "Demon",
       "boss": "Boss",
-      "faction": "Faction"
+      "demon": "Demon",
+      "faction": "Faction",
+      "halo": "HALO Unit",
+      "human": "Hellpiercer"
     },
     "Item": {
       "ability": "Ability",
@@ -18,63 +19,64 @@
   "HELLPIERCERS": {
     "ACTOR": {
       "FIELDS": {
-        "actions": { "label": "Activations", "hint": "" },
+        "actions": { "label": "Activations" },
         "agnosia": {
           "label": "Agnosia",
-          "hint": "",
-          "value": { "label": "Value", "hint": "" },
-          "description": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect" },
+          "value": { "label": "Value" }
         },
-        "armor": { "label": "Armor", "hint": "" },
+        "armor": { "label": "Armor" },
         "attack1": {
           "label": "1st Attack",
-          "hint": "",
-          "range": { "label": "Range", "hint": "" },
-          "description": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect" },
+          "range": { "label": "Range" }
         },
         "attack2": {
           "label": "2nd Attack",
-          "hint": "",
-          "range": { "label": "Range", "hint": "" },
-          "description": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect" },
+          "range": { "label": "Range" }
         },
         "attack3": {
           "label": "3rd Attack",
-          "hint": "",
-          "range": { "label": "Range", "hint": "" },
-          "description": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect" },
+          "range": { "label": "Range" }
         },
-        "biography": { "label": "Biography", "hint": "" },
-        "callsign": { "label": "Callsign", "hint": "" },
-        "class": { "label": "Class", "hint": "" },
-        "faction": { "label": "Faction", "hint": "" },
-        "health": { "label": "HP", "hint": "" },
-        "max_weapons": { "label": "Max Weapons", "hint": "" },
-        "pronouns": { "label": "Pronouns", "hint": "" },
-        "scale": { "label": "Scale", "hint": "" },
+        "biography": { "label": "Biography" },
+        "callsign": { "label": "Callsign" },
+        "class": { "label": "Class" },
+        "faction": { "label": "Faction" },
+        "health": { "label": "HP" },
+        "max_weapons": { "label": "Max Weapons" },
+        "pronouns": { "label": "Pronouns" },
+        "scale": { "label": "Scale" },
         "special": {
           "label": "Special",
-          "hint": "",
-          "name": { "label": "Name", "hint": "" },
-          "description": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect" },
+          "name": { "label": "Name" }
         },
-        "speed": { "label": "Speed", "hint": "" },
+        "speed": { "label": "Speed" },
         "strike": {
           "label": "Strike",
-          "hint": "",
-          "name": { "label": "Name", "hint": "" },
-          "range": { "label": "Range", "hint": "" },
-          "description": { "label": "Effect", "hint": "" }
+          "description": { "label": "Effect" },
+          "name": { "label": "Name" },
+          "range": { "label": "Range" }
         },
-        "tags": { "label": "Tags", "hint": "" },
-        "weapon": { "label": "Weapon", "hint": "" }
+        "tags": { "label": "Tags" },
+        "weapon": { "label": "Weapon" }
+      },
+      "SHEET": {},
+      "TABS": {
+        "abilities": "Abilities",
+        "biography": "Biography",
+        "effects": "Effects"
       }
     },
     "ITEM": {
       "FIELDS": {
-        "action": { "label": "Action Type", "hint": "" },
-        "description": { "label": "Description", "hint": "" }
-      }
+        "action": { "label": "Action Type" },
+        "description": { "label": "Description" }
+      },
+      "TABS": {}
     },
     "FACTION": {},
     "STATUSES": {},
@@ -83,10 +85,6 @@
     "packs": {
       "debugmacros": "Debug Macros",
       "playeritems": "Player Gear"
-    },
-    "Abilities": "Abilities",
-    "ActiveName": "Active",
-    "Effects": "Effects",
-    "ItemDetails": "Details"
+    }
   }
 }

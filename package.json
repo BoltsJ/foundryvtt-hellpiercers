@@ -3,7 +3,7 @@
     "build": "npm run build:bundle -- --emptyOutDir && npm run build:packs",
     "build:bundle": "vite build",
     "build:watch": "vite build --watch",
-    "build:serve": "npm run start",
+    "build:serve": "vite",
     "build:packs": "./scripts/pack.mjs",
     "generate:yml": "./scripts/unpack.mjs",
     "clean": "rm -fr dist",

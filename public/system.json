@@ -58,7 +58,7 @@
   },
   "primaryTokenAttribute": "system.health",
   "secondaryTokenAttribute": "",
-  "flags": { "hotReload": { "extensions": ["json"], "paths": ["lang"] } },
+  "flags": { "hotReload": { "extensions": ["json", "hbs"], "paths": ["lang", "templates"] } },
   "url": "https://github.com/BoltsJ/foundryvtt-hellpiercers",
   "background": "systems/hellpiercers/assets/splash.jpg",
   "manifest": "https://github.com/BoltsJ/foundryvtt-hellpiercers/releases/latest/system.json",
