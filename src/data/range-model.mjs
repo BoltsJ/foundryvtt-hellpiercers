@@ -1,5 +1,8 @@
 const fields = foundry.data.fields;
 
+import TARGET_ICON from "../../public/assets/icons/targeting.svg?raw";
+import USER_ICON from "../../public/assets/icons/spiked-halo.svg?raw";
+
 export class RangeModel extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
@@ -45,7 +48,7 @@ export class RangeModel extends foundry.abstract.DataModel {
 
   /**
    * Get an array of the points that the attack will target. Computes the shape
-   * for standard shapes. Empty for "tragets" and "blob" ranges
+   * for standard shapes. Empty for "targets" and "blob" ranges
    * @returns {{i: number; j: number}[]}
    */
   get shape() {
@@ -146,25 +149,23 @@ export class RangeModel extends foundry.abstract.DataModel {
             break;
           case "@":
             css = "origin";
-            img = "icons/svg/mystery-man.svg";
+            img = USER_ICON;
             break;
           case "O":
             css = "target";
-            img = "icons/svg/target.svg";
+            img = TARGET_ICON;
             break;
         }
 
         square.setAttribute("class", css);
         grid.appendChild(square);
         if (img) {
-          let image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+          let image = new DOMParser().parseFromString(img, "image/svg+xml").activeElement;
           image.setAttribute("height", square_size);
           image.setAttribute("width", square_size);
           image.setAttribute("x", 5 + col * square_size);
           image.setAttribute("y", 5 + row * square_size);
-          image.setAttribute("href", img);
-          image.setAttribute("title", img);
-          // grid.appendChild(image);
+          grid.appendChild(image);
         }
       }
     }
@@ -176,6 +177,7 @@ export class RangeModel extends foundry.abstract.DataModel {
   }
 
   get svg_uri() {
+    // You can't simply use outerHTML
     const data = new XMLSerializer().serializeToString(this.svg);
     return `data:image/svg+xml;base64,${window.btoa(data)}`;
   }
