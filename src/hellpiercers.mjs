@@ -6,8 +6,9 @@ import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
-import * as sheets from "./sheets/index.mjs";
 import { HumanSheet } from "./sheets/human-sheet.mjs";
+import * as sheets from "./sheets/index.mjs";
+import { getStatusEffects } from "./statuses.mjs";
 
 globalThis.hellpiercers = {
   applications: { RangeEditorApp, sheets },
@@ -25,6 +26,7 @@ Hooks.once("init", () => {
   console.log("hellpiercers | Initializing HELLPIERCERS System", ascii_logo);
 
   CONFIG.ActiveEffect.legacyTransferral = false;
+  CONFIG.statusEffects = getStatusEffects();
 
   // game.data.packs = game.data.packs.filter(i => i.name != "debugmacros");
 

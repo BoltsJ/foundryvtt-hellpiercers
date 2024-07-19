@@ -79,7 +79,24 @@
       "TABS": {}
     },
     "FACTION": {},
-    "STATUSES": {},
+    "STATUSES": {
+      "aegis": "Aegis",
+      "armor": "Armor",
+      "blazing": "Blazing",
+      "bleed": "Bleed",
+      "bound": "Bound",
+      "compel": "Compel",
+      "countdown": "Countdown",
+      "enrage": "Enrage",
+      "haste": "Haste",
+      "healing": "Healing",
+      "pin": "Pin",
+      "poison": "Poison",
+      "shaded": "Shaded",
+      "shock": "Shock",
+      "slow": "Slow",
+      "transference": "Transference"
+    },
     "title": "HELLPIERCERS",
     "tagline": "Hell is a prison. Break its bars.",
     "packs": {

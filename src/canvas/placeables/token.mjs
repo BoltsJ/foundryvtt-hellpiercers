@@ -36,7 +36,7 @@ export class HellpiercersToken extends Token {
     if (val) {
       const num = new PreciseText(val, this._getEffectTextStyle());
       num.x = icon.x - icon.width * 0.1;
-      num.y = icon.y + icon.height * 0.5;
+      num.y = icon.y + icon.height * 0.1;
       num.scale.x = 17;
       num.scale.y = 17;
       icon.addChild(num);
