@@ -1,44 +1,53 @@
 <section class="tab effects {{tab.cssClass}}" data-group="primary" data-tab="effects">
   {{#if (gt effects.temporary.length 0)}}
-  <h6 class="temporary-effects">{{localize "HELLPIERCERS.ACTOR.SHEET.temporary-effects"}}</h6>
-  <ul class="temporary">
+  <ol class="temporary">
+    <li class="flexrow header">{{localize "HELLPIERCERS.ACTOR.SHEET.temporary-effects"}}</li>
     {{#each effects.temporary as |effect|}}
     <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
       <img src={{effect.img}} height=20 width=20>
       <span class=name>
         {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
       </span>
-      <button type="button" class="edit" data-action="embedSheet"><i class="fas fa-edit"></i></button>
-      <button type="button" class="delete" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></button>
+      <a class="control edit" data-action="onEmbedSheet" data-tooltip="{{localize "DOCUMENT.Update"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-edit"></i></a>
+      <a class="control delete" data-action="onDeleteEmbed" data-tooltip="{{localize "DOCUMENT.Delete"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-trash"></i></a>
     </li>
     {{/each}}
-  </ul>
+  </ol>
   {{/if}}
   {{#if (gt effects.items.length 0)}}
-  <h6 class="temporary-effects">{{localize "HELLPIERCERS.ACTOR.SHEET.item-effects"}}</h6>
-  <ul>
+  <ol>
+    <li class="flexrow header">{{localize "HELLPIERCERS.ACTOR.SHEET.item-effects"}}</li>
     {{#each effects.items as |effect|}}
     <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
       <img src={{effect.img}} height=20 width=20>
       <span class="name">
         {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
       </span>
-      <a data-action="openSheet" data--u-u-i-d={{effect.parent.uuid}}>{{effect.parent.name}}</a>
-      <button type="button" class="edit" data-action="embedSheet"><i class="fas fa-edit"></i></button>
+      <a data-action="onEmbedSheet" data--u-u-i-d={{effect.parent.uuid}}>{{effect.parent.name}}</a>
+      <input type="checkbox" data-action="onUpdateEmbed" data-property="disabled" data-tooltip="EFFECT.Disabled"
+        {{checked effect.disabled}} {{disabled editable}}>
+      <a class="control edit" data-action="onEmbedSheet" data-tooltip="{{localize "DOCUMENT.Update"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-edit"></i></a>
     </li>
     {{/each}}
-  </ul>
+  </ol>
   {{/if}}
-  <h6 class="active-effects">{{localize "HELLPIERCERS.ACTOR.SHEET.active-effects"}}</h6>
-  <ul>
+  <ol>
+    <li class="flexrow header">{{localize "HELLPIERCERS.ACTOR.SHEET.active-effects"}}</li>
     {{#each effects.effects as |effect|}}
     <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
       {{#if effect.img}}<img src={{effect.img}} height=20 width=20>{{/if}}
       <span class="name">
         {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
       </span>
-      <button type="button" class="edit" data-action="embedSheet"><i class="fas fa-edit"></i></button>
-      <button type="button" class="delete" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></button>
+      <input type="checkbox" data-action="onUpdateEmbed" data-property="disabled" data-tooltip="EFFECT.Disabled"
+        {{checked effect.disabled}} {{disabled editable}}>
+      <a class="control edit" data-action="onEmbedSheet" data-tooltip="{{localize "DOCUMENT.Update"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-edit"></i></a>
+      <a class="control delete" data-action="onDeleteEmbed" data-tooltip="{{localize "DOCUMENT.Delete"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-trash"></i></a>
     </li>
     {{/each}}
     <li>
@@ -46,5 +55,5 @@
         <i class="fas fa-plus"></i>&nbsp;New Effect
       </button>
     </li>
-  </ul>
+  </ol>
 </section>

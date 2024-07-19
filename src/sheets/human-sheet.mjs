@@ -20,6 +20,8 @@ export class HumanSheet extends HellpiercersActorSheet {
       onEditImage: this.prototype._onEditImage,
       onCreateEmbed: this.prototype._onCreateEmbed,
       onDeleteEmbed: this.prototype._onDeleteEmbed,
+      onUpdateEmbed: this.prototype._onUpdateEmbed,
+      onEmbedSheet: this.prototype._onEmbedSheet,
     },
   };
 
@@ -40,6 +42,10 @@ export class HumanSheet extends HellpiercersActorSheet {
 
   async _preparePartContext(partId, ctx) {
     if (Object.keys(ctx.tabs).includes(partId)) ctx.tab = ctx.tabs[partId];
+    if (partId === "abilities") {
+      ctx.weaponChoices = { "": "—" };
+      this.actor.itemTypes.weapon.forEach(w => (ctx.weaponChoices[w.id] = w.name));
+    }
     if (partId === "biography") {
       ctx.biography = await TextEditor.enrichHTML(this.actor.system.biography, {
         secrets: this.actor.isOwner,

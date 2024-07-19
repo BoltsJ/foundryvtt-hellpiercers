@@ -65,13 +65,39 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
   async _onDeleteEmbed(ev, target) {
     if (!this.isEditable) return;
     const noConfirm = ev.shiftKey;
-    const uuid = target.parentElement.dataset.UUID;
+    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
     const doc = await fromUuid(uuid);
     if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
     if (doc.parent !== this.actor)
       throw new Error(`Document not a child of actor ${this.actor.uuid}`);
     if (noConfirm) doc.delete();
     else doc.deleteDialog();
+  }
+
+  /**
+   * @param {Event} ev
+   * @param {HTMLElement} target
+   */
+  async _onUpdateEmbed(ev, target) {
+    if (!this.isEditable) return;
+    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const path = target.dataset.property;
+    const val = target.type == "checkbox" ? target.checked : target.value;
+    const doc = await fromUuid(uuid);
+    if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
+    doc.update({ [path]: val });
+  }
+
+  /**
+   * @param {Event} ev
+   * @param {HTMLElement} target
+   */
+  async _onEmbedSheet(_ev, target) {
+    if (!this.isEditable) return;
+    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const doc = await fromUuid(uuid);
+    if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
+    doc.sheet.render(true);
   }
 
   _getDefaultEmbedData(embedType) {

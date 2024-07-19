@@ -14,9 +14,16 @@
           flex: 0 0 3rem;
         }
         .tab.effects {
-          ul {
+          ol {
             list-style-type: none;
-            padding-left: 0;
+            margin: 0;
+            padding: 0;
+            // overflow-y: auto;
+            // scrollbar-width: thin;
+            li.header {
+              column-span: all;
+              border-bottom: 1px dashed;
+            }
             &.temporary {
               columns: 2;
             }
@@ -25,12 +32,29 @@
                 flex: 0;
                 margin: auto 0.25rem;
               }
-              button {
+              a.control {
+                flex: 0;
+                padding: 0.1rem;
+              }
+              input[type="checkbox"] {
                 flex: 0;
               }
             }
           }
         }
+      }
+    }
+  }
+}
+
+.hellpiercers.tjs-window-app.sheet {
+  &.item,
+  &.actor {
+    section.window-content {
+      background: var(--hellpiercers-primary-background, url(../../ui/parchment.jpg) repeat);
+      color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
+      input {
+        color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
       }
     }
   }
