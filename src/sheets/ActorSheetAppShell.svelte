@@ -6,7 +6,6 @@
   import { TJSDocument } from "@typhonjs-fvtt/runtime/svelte/store/fvtt/document";
   import { getContext } from "svelte";
   import { slide } from "svelte/transition";
-  import DemonSheet from "./DemonSheet.svelte";
   import BossSheet from "./BossSheet.svelte";
 
   export let elementRoot;
@@ -19,7 +18,6 @@
     $actor.name + ($actor.isToken ? ` [${localize("Token")}]` : "");
 
   const sheets = {
-    ["demon"]: DemonSheet,
     ["boss"]: BossSheet,
   };
 </script>
