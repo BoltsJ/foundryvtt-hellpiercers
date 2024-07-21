@@ -3,9 +3,15 @@
 }
 
 .hellpiercers {
+  &.sheet.actor {
+    @import "styles/actor-sheet";
+    &.demon {
+      @import "styles/demon-sheet";
+    }
+  }
+
   &.sheet {
-    &.item,
-    &.actor {
+    &.item {
       section.window-content {
         label {
           flex: 0 0 auto;

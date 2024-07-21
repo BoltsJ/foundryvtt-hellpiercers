@@ -1,0 +1,49 @@
+label {
+  flex: 0 0 auto;
+}
+input[type="number"] {
+  flex: 0 0 3rem;
+}
+
+header.sheet-header {
+  img.portrait {
+    object-fit: cover;
+    object-position: 50% top;
+  }
+}
+
+.tab.effects {
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    li.header {
+      column-span: all;
+      border-bottom: 1px dashed;
+    }
+    &.temporary {
+      columns: 2;
+    }
+    li {
+      img {
+        flex: 0;
+        margin: auto 0.25rem;
+      }
+      a.control {
+        flex: 0;
+        padding: 0.1rem;
+      }
+      input[type="checkbox"] {
+        flex: 0;
+      }
+    }
+    li.new-effect {
+      button {
+        width: auto;
+        break-inside: avoid;
+      }
+    }
+  }
+}

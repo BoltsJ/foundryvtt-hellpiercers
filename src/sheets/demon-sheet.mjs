@@ -4,18 +4,18 @@ import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
  * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor
  */
 
-export class HumanSheet extends HellpiercersActorSheet {
+export class DemonSheet extends HellpiercersActorSheet {
   static PARTS = {
-    header: { template: "systems/hellpiercers/templates/sheets/human/header.hbs" },
+    header: { template: "systems/hellpiercers/templates/sheets/demon/header.hbs" },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    abilities: { template: "systems/hellpiercers/templates/sheets/human/abilities.hbs" },
+    abilities: { template: "systems/hellpiercers/templates/sheets/demon/abilities.hbs" },
     biography: { template: "systems/hellpiercers/templates/sheets/actor-biography.hbs" },
     effects: { template: "systems/hellpiercers/templates/sheets/actor-effects.hbs" },
   };
 
   static DEFAULT_OPTIONS = {
     ...super.DEFAULT_OPTIONS,
-    classes: ["hellpiercers", "actor", "human"],
+    classes: ["hellpiercers", "actor", "demon"],
     actions: {
       onEditImage: this.prototype._onEditImage,
       onCreateEmbed: this.prototype._onCreateEmbed,
@@ -43,8 +43,22 @@ export class HumanSheet extends HellpiercersActorSheet {
   async _preparePartContext(partId, ctx) {
     if (Object.keys(ctx.tabs).includes(partId)) ctx.tab = ctx.tabs[partId];
     if (partId === "abilities") {
-      ctx.weaponChoices = { "": "—" };
-      this.actor.itemTypes.weapon.forEach(w => (ctx.weaponChoices[w.id] = w.name));
+      ctx.strike = {
+        field: ctx.fields.strike.fields.description,
+        enriched: await TextEditor.enrichHTML(this.actor.system.strike.description, {
+          secrets: this.actor.isOwner,
+          rollData: this.actor.getRollData.bind(this.actor),
+        }),
+        value: ctx.system.strike.description,
+      };
+      ctx.special = {
+        field: ctx.fields.special.fields.description,
+        enriched: await TextEditor.enrichHTML(this.actor.system.special.description, {
+          secrets: this.actor.isOwner,
+          rollData: this.actor.getRollData.bind(this.actor),
+        }),
+        value: ctx.system.special.description,
+      };
     }
     if (partId === "biography") {
       ctx.biography = {

@@ -28,16 +28,19 @@
         "armor": { "label": "Armor" },
         "attack1": {
           "label": "1st Attack",
+          "damage": { "label": "Damage" },
           "description": { "label": "Effect" },
           "range": { "label": "Range" }
         },
         "attack2": {
           "label": "2nd Attack",
+          "damage": { "label": "Damage" },
           "description": { "label": "Effect" },
           "range": { "label": "Range" }
         },
         "attack3": {
           "label": "3rd Attack",
+          "damage": { "label": "Damage" },
           "description": { "label": "Effect" },
           "range": { "label": "Range" }
         },
@@ -57,6 +60,7 @@
         "speed": { "label": "Speed" },
         "strike": {
           "label": "Strike",
+          "damage": { "label": "Damage" },
           "description": { "label": "Effect" },
           "name": { "label": "Name" },
           "range": { "label": "Range" }
@@ -64,7 +68,13 @@
         "tags": { "label": "Tags" },
         "weapon": { "label": "Weapon" }
       },
-      "SHEET": {},
+      "SHEET": {
+        "effects": {
+          "active": "Active Effects",
+          "item": "Item Effects",
+          "temporary": "Temporary Effects"
+        }
+      },
       "TABS": {
         "abilities": "Abilities",
         "biography": "Biography",
@@ -74,7 +84,11 @@
     "ITEM": {
       "FIELDS": {
         "action": { "label": "Action Type" },
-        "description": { "label": "Description" }
+        "active": { "name": { "label": "Active" } },
+        "damage": { "label": "Damage" },
+        "description": { "label": "Description" },
+        "passive": { "name": { "label": "Passive" } },
+        "range": { "label": "Range" }
       },
       "TABS": {}
     },

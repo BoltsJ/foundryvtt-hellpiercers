@@ -1,10 +1,9 @@
 <section class="tab {{tab.cssClass}}" data-group="primary" data-tab="biography">
   {{#if editable}}
-  <prose-mirror name="system.biography" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.biography}}"
-    collaborate="true" toggled="true">
-    {{{biography}}}
-  </prose-mirror>
+  {{formInput biography.field value=biography.value enriched=biography.enriched toggled=true}}
   {{else}}
-  {{{biography}}}
+  <div class="editor">
+    {{{biography.enriched}}}
+  </div>
   {{/if}}
 </section>

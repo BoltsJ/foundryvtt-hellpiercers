@@ -12,10 +12,18 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
           active: "HELLPIERCERS.ITEM.action.active",
           passive: "HELLPIERCERS.ITEM.action.passive",
           attack: "HELLPIERCERS.ITEM.action.attack",
+          special: "HELLPIERCERS.ITEM.action.special",
         },
       }),
-      description: new fields.HTMLField({ required: true }),
-      source: new fields.SchemaField({
+      damage: new fields.StringField({
+        required: true,
+        nullable: true,
+        initial: null,
+        validate: v => v === null || foundry.dice.Roll.validate(v),
+      }),
+      range: new fields.EmbeddedDataField(RangeModel, { nullable: true, initial: null }),
+      effect: new fields.HTMLField({ required: true }),
+      item: new fields.SchemaField({
         uuid: new fields.DocumentUUIDField({ nullable: true, initial: null }),
         type: new fields.StringField({
           blank: true,
