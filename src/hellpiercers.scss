@@ -8,6 +8,9 @@
     &.demon {
       @import "styles/demon-sheet";
     }
+    &.boss {
+      @import "styles/boss-sheet";
+    }
   }
 
   &.sheet {

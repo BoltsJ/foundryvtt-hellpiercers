@@ -6,7 +6,6 @@ import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
 import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
-import { HumanSheet } from "./sheets/human-sheet.mjs";
 import * as sheets from "./sheets/index.mjs";
 import { getStatusEffects } from "./statuses.mjs";
 
@@ -37,17 +36,17 @@ Hooks.once("init", () => {
   CONFIG.Actor.dataModels.faction = data.FactionModel;
   CONFIG.Actor.documentClass = documents.HellpiercersActor;
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("hellpiercers", sheets.HellpiercersActorSheet, {
+  Actors.registerSheet("hellpiercers", dheets.BossSheet, {
     types: ["boss"],
     makeDefault: true,
-    label: "HELLPIERCERS.ActorSheet",
+    label: "HELLPIERCERS.SHEETS.Actor.boss",
   });
-  Actors.registerSheet("hellpiercers", DemonSheet, {
+  Actors.registerSheet("hellpiercers", sheets.DemonSheet, {
     types: ["demon"],
     makeDefault: true,
     label: "HELLPIERCERS.SHEETS.Actor.demon",
   });
-  Actors.registerSheet("hellpiercers", HumanSheet, {
+  Actors.registerSheet("hellpiercers", sheets.HumanSheet, {
     types: ["human"],
     makeDefault: true,
     label: "HELLPIERCERS.SHEETS.Actor.human",
@@ -55,10 +54,10 @@ Hooks.once("init", () => {
 
   // Items
   CONFIG.Item.dataModels.ability = data.AbilityModel;
-  CONFIG.Item.dataModels.weapon = data.WeaponModel;
   CONFIG.Item.dataModels.armor = data.ArmorModel;
   CONFIG.Item.dataModels.class = data.ClassModel;
   CONFIG.Item.dataModels.gear = data.GearModel;
+  CONFIG.Item.dataModels.weapon = data.WeaponModel;
   CONFIG.Item.documentClass = documents.HellpiercersItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {

@@ -4,6 +4,9 @@ label {
 input[type="number"] {
   flex: 0 0 3rem;
 }
+a.control {
+  flex: 0 0 auto;
+}
 
 header.sheet-header {
   img.portrait {

@@ -44,6 +44,7 @@
           "description": { "label": "Effect" },
           "range": { "label": "Range" }
         },
+        "attacks": { "label": "Attacks" },
         "biography": { "label": "Biography" },
         "callsign": { "label": "Callsign" },
         "class": { "label": "Class" },
@@ -93,6 +94,15 @@
       "TABS": {}
     },
     "FACTION": {},
+    "SHEETS": {
+      "Actor": {
+        "boss": "Boss Sheet",
+        "demon": "Minion Sheet",
+        "halo": "HALO Unit Sheet",
+        "human": "HELLPIERCER Sheet"
+      },
+      "Item": {}
+    },
     "STATUSES": {
       "aegis": "Aegis",
       "armor": "Armor",

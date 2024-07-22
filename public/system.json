@@ -24,19 +24,11 @@
     "Actor": {
       "human": { "htmlFields": ["biography"] },
       "demon": { "htmlFields": ["biography", "strike.description", "special.description"] },
-      "boss": {
-        "htmlFields": [
-          "biography",
-          "attack1.description",
-          "attack2.description",
-          "attack3.description",
-          "special.description"
-        ]
-      },
+      "boss": { "htmlFields": ["biography", "agnosia.effect", "special.description"] },
       "faction": { "htmlFields": ["description"] }
     },
     "Item": {
-      "ability": { "htmlFields": ["description"] },
+      "ability": { "htmlFields": ["effect"] },
       "armor": {
         "htmlFields": ["description", "movement", "ability.description", "reversal.effect"]
       },

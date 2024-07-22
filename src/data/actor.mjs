@@ -12,7 +12,9 @@ class OwnedItemField extends fields.ForeignDocumentField {
   // eslint-disable-next-line no-unused-vars
   initialize(value, model, _options = {}) {
     if (this.idOnly || !model?.parent) return value;
-    return () => model.parent?.getEmbeddedDocument("Item", value) ?? null;
+    let parent = model.parent;
+    while (parent && !(parent instanceof foundry.abstract.Document)) parent = parent.parent;
+    return () => parent?.getEmbeddedDocument("Item", value) ?? null;
   }
 }
 
@@ -30,15 +32,7 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
       scale: new fields.NumberField({ initial: 1, integer: true }),
       speed: new fields.NumberField({ integer: true }),
       actions: new fields.NumberField({ initial: 1, integer: true }),
-      pronouns: new fields.StringField({
-        required: true,
-        /** @param {string} v */
-        validate: v =>
-          !v
-            .toLowerCase()
-            .split("/")
-            .some(s => ["he", "him"].includes(s.trim())),
-      }),
+      pronouns: new fields.StringField({ required: true }),
       callsign: new fields.StringField({ required: true }),
       // Equipment
       class: new OwnedItemField({ initial: null, nullable: true }),
@@ -73,6 +67,11 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
         range: new fields.EmbeddedDataField(RangeModel, {
           initial: { kind: "targets", value: 1, modifiers: { range: 0 } },
         }),
+        damage: new fields.StringField({
+          required: true,
+          initial: "3",
+          validate: v => foundry.dice.Roll.validate(v),
+        }),
         description: new fields.HTMLField({ required: true }),
       }),
       special: new fields.SchemaField({
@@ -106,7 +105,7 @@ export class BossModel extends foundry.abstract.TypeDataModel {
     return {
       biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
       faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
-      tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
+      tags: new fields.SetField(new fields.StringField(), { initial: ["Boss"] }),
       health: new fields.SchemaField({
         value: new fields.NumberField({ required: true, initial: 10, integer: true }),
         max: new fields.NumberField({ required: true, initial: 10, integer: true }),
@@ -116,40 +115,25 @@ export class BossModel extends foundry.abstract.TypeDataModel {
       actions: new fields.NumberField({ initial: 1, integer: true }),
       agnosia: new fields.SchemaField({
         value: new fields.NumberField({ required: true, initial: 10 }),
-        description: new fields.HTMLField({}),
+        effect: new fields.HTMLField({}),
       }),
-      attack1: new fields.SchemaField(
-        {
-          range: new fields.EmbeddedDataField(RangeModel, {
-            initial: { kind: "targets", value: 1 },
-          }),
-          description: new fields.HTMLField(),
-        },
-        { nullable: true, initial: { range: { kind: "targets", value: 1 }, description: "" } }
-      ),
-      attack2: new fields.SchemaField(
-        {
-          range: new fields.EmbeddedDataField(RangeModel, {
-            initial: { kind: "targets", value: 1 },
-          }),
-          description: new fields.HTMLField(),
-        },
-        { nullable: true, initial: null }
-      ),
-      attack3: new fields.SchemaField(
-        {
-          range: new fields.EmbeddedDataField(RangeModel, {
-            initial: { kind: "targets", value: 1 },
-          }),
-          description: new fields.HTMLField(),
-        },
-        { nullable: true, initial: null }
+      attacks: new fields.ArrayField(
+        new OwnedItemField({
+          initial: null,
+          nullable: true,
+        }),
+        { initial: [] }
       ),
       special: new fields.SchemaField({
         name: new fields.StringField({ initial: "Special" }),
-        description: new fields.HTMLField({ required: true }),
+        effect: new fields.HTMLField({ required: true }),
       }),
     };
+  }
+
+  prepareBaseData() {
+    this.attacks = this.attacks.map(a => a()).filter(a => !!a);
+    // Idk why this doesn't properly initialize?
   }
 }
 

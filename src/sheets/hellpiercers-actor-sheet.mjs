@@ -52,7 +52,8 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
   async _onCreateEmbed(_e, target) {
     if (!this.isEditable) return;
     const embedType = target.dataset.embedType;
-    const embedData = this._getDefaultEmbedData(embedType);
+    const typeData = target.dataset.subType ?? "base";
+    const embedData = this._getDefaultEmbedData(embedType, typeData);
     const cls = getDocumentClass(embedType);
     if (!cls) throw new Error(`Invalid document type: '${embedType}'`);
     cls.createDialog(embedData, { parent: this.actor });
@@ -100,8 +101,11 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
     doc.sheet.render(true);
   }
 
-  _getDefaultEmbedData(embedType) {
-    const img = embedType === "Item" ? "icons/svg/bag.svg" : "icons/svg/aura.svg";
+  _getDefaultEmbedData(embedType, typeData) {
+    const { img } =
+      embedType === "Item"
+        ? getDocumentClass("Item").getDefaultArtwork({ type: typeData })
+        : { img: "icons/svg/aura.svg" };
     return { img };
   }
 }
