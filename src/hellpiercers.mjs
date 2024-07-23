@@ -36,7 +36,7 @@ Hooks.once("init", () => {
   CONFIG.Actor.dataModels.faction = data.FactionModel;
   CONFIG.Actor.documentClass = documents.HellpiercersActor;
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("hellpiercers", dheets.BossSheet, {
+  Actors.registerSheet("hellpiercers", sheets.BossSheet, {
     types: ["boss"],
     makeDefault: true,
     label: "HELLPIERCERS.SHEETS.Actor.boss",
