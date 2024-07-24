@@ -13,7 +13,6 @@
   import ArmorTab from "./itemtabs/ArmorTab.svelte";
   import ClassTab from "./itemtabs/ClassTab.svelte";
   import GearTab from "./itemtabs/GearTab.svelte";
-  import WeaponTab from "./itemtabs/WeaponTab.svelte";
 
   export let elementRoot;
 
@@ -29,7 +28,6 @@
     ["armor"]: ArmorTab,
     ["class"]: ClassTab,
     ["gear"]: GearTab,
-    ["weapon"]: WeaponTab,
   };
 </script>
 
