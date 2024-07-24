@@ -1,0 +1,21 @@
+<header class="sheet-header">
+  <div class="flexcol">
+    <div class="flexrow">
+      <img src="{{actor.img}}" class="portrait" data-edit="img" {{#if editable}}data-action="onEditImage" {{/if}} title="{{actor.name}}" />
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}" {{disabled (not editable)}} /></h1>
+    </div>
+    <div class="flexrow">
+      <div class="flexcol">
+        <div class="flexrow">
+          <label for="system.health.value"> {{localize "HELLPIERCERS.ACTOR.FIELDS.health.label"}}</label>
+          {{formInput fields.health.fields.value value=system.health.value max=system.health.max disabled=(not editable)}}
+          /
+          {{formInput fields.health.fields.max value=system.health.max min=1 disabled=(not editable)}}
+          {{formGroup fields.speed value=system.speed min=0 disabled=(not editable) classes="stacked"}}
+          {{formGroup fields.scale value=system.scale min=1 disabled=(not editable) classes="stacked"}}
+        </div>
+      </div>
+      {{formGroup fields.tags value=system.tags classes="stacked" disabled=(not editable)}}
+    </div>
+  </div>
+</header>

@@ -14,36 +14,16 @@ export class HumanSheet extends HellpiercersActorSheet {
   };
 
   static DEFAULT_OPTIONS = {
-    ...super.DEFAULT_OPTIONS,
-    classes: ["hellpiercers", "actor", "human"],
-    actions: {
-      onEditImage: this.prototype._onEditImage,
-      onCreateEmbed: this.prototype._onCreateEmbed,
-      onDeleteEmbed: this.prototype._onDeleteEmbed,
-      onUpdateEmbed: this.prototype._onUpdateEmbed,
-      onEmbedSheet: this.prototype._onEmbedSheet,
-    },
+    classes: ["human"],
   };
-
-  async _prepareContext() {
-    const ctx = {
-      editable: this.isEditable,
-      owner: this.actor.isOwner,
-      actor: this.actor,
-      system: this.actor.system,
-      fields: this.actor.system.schema.fields,
-      weapon: this.actor.system.weapon,
-      armor: this.actor.system.armor,
-      class: this.actor.system.class,
-      tabs: this._getTabs(),
-    };
-    return ctx;
-  }
 
   async _preparePartContext(partId, ctx) {
     if (Object.keys(ctx.tabs).includes(partId)) ctx.tab = ctx.tabs[partId];
     if (partId === "abilities") {
-      ctx.weaponChoices = { "": "—" };
+      ctx.weapon = this.actor.system.weapon;
+      ctx.armor = this.actor.system.armor;
+      ctx.class = this.actor.system.class;
+      ctx.weaponChoices = {};
       this.actor.itemTypes.weapon.forEach(w => (ctx.weaponChoices[w.id] = w.name));
     }
     if (partId === "biography") {
@@ -57,20 +37,6 @@ export class HumanSheet extends HellpiercersActorSheet {
       };
     }
     if (partId === "effects") ctx.effects = await this._getEffects();
-    return ctx;
-  }
-
-  async _getEffects() {
-    const ctx = {
-      temporary: [],
-      items: [],
-      effects: [],
-    };
-    for (let effect of this.actor.allApplicableEffects()) {
-      if (effect.parent !== this.actor) ctx.items.push(effect);
-      else if (effect.isTemporary) ctx.temporary.push(effect);
-      else ctx.effects.push(effect);
-    }
     return ctx;
   }
 }

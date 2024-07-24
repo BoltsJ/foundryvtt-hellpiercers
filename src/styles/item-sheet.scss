@@ -1,0 +1,85 @@
+label {
+  flex: 0 0 auto;
+}
+input[type="number"] {
+  flex: 0 0 3rem;
+}
+a.control {
+  flex: 0 0 auto;
+  width: min-content;
+  height: min-content;
+}
+
+header.sheet-header {
+  img.portrait {
+    object-fit: cover;
+    object-position: 50% top;
+    flex: 0 0 100px;
+    height: 100px;
+    margin-right: 6px;
+  }
+  prose-mirror {
+    font-size: small;
+    min-height: 75px;
+    max-height: 75px;
+    &.active {
+      min-height: 150px;
+      max-height: 150px;
+    }
+  }
+}
+
+.tab.details {
+  img.range-preview {
+    flex: 0 0 auto;
+    border: none;
+    height: min-content;
+    width: min-content;
+  }
+  .range-controls {
+    text-align: end;
+    align-items: flex-end;
+    align-content: flex-end;
+    button {
+      width: auto;
+      flex: 0 0 auto;
+      break-inside: avoid;
+    }
+  }
+  prose-mirror {
+    min-height: 75px;
+    &.active {
+      min-height: 150px;
+    }
+  }
+}
+
+.tab.effects {
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li.header {
+      border-bottom: 1px dashed;
+    }
+    li {
+      img {
+        flex: 0;
+        margin: auto 0.25rem;
+      }
+      a.control {
+        flex: 0;
+        padding: 0.1rem;
+      }
+      input[type="checkbox"] {
+        flex: 0;
+      }
+    }
+    li.new-effect {
+      button {
+        width: auto;
+        break-inside: avoid;
+      }
+    }
+  }
+}

@@ -1,12 +1,15 @@
 <section class="tab abilities {{tab.cssClass}} scrollable" data-group="primary" data-tab="abilities">
-  <div class="weapon-card flexcol">
+  <div class="weapon flexcol">
     <div class="flexrow">
       <select name="system.weapon">
-      {{selectOptions weaponChoices selected=system.weapon._id}}
+      {{selectOptions weaponChoices selected=system.weapon._id blank=(localize "TYPES.Item.weapon")}}
       </select>
       {{#if weapon}}
       <button class="weapon-damage" draggable="true"><i class="fas fa-dice"></i>{{weapon.system.damage}}</button>
       <button class="weapon-range"><i class="fas fa-ruler-combined"></i>&nbsp;</button>
+      {{#each weapon.system.range as |range|}}
+      <img src="{{range.svg_uri}}">
+      {{/each}}
       {{/if}}
     </div>
     {{#if weapon}}
@@ -18,6 +21,10 @@
     </div>
     {{/if}}
   </div>
-  <p>TODO Armor</p>
-  <p>TODO Class</p>
+  <div class="armor">
+  {{armor.name}}
+  </div>
+  <div class="class">
+  {{class.name}}
+  </div>
 </section>

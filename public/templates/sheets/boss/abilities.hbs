@@ -1,0 +1,32 @@
+<section class="tab abilities {{tab.cssClass}} scrollable" data-group="primary" data-tab="abilities">
+  {{#each attacks as |this|}}
+  <div class="attack">
+    <fieldset data--u-u-i-d={{attack.uuid}}>
+      <legend>{{attack.name}}</legend>
+      <div class="flexrow">
+        <a class="control" data-action="onEmbedSheet" data-tooltip="{{localize " DOCUMENT.Update"
+          type=(localize "TYPES.Item.ability" )}}">
+          <i class="fas fa-edit"></i>
+        </a>
+      </div>
+      {{#if attack.range}}
+      <img src={{attack.range.svg_uri}}>
+      {{/if}}
+      {{attack.damage}}
+    </fieldset>
+  </div>
+  {{/each}}
+  <div class="special">
+    <fieldset>
+      <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
+      {{formInput special.field value=special.value enriched=special.enriched toggled=true}}
+    </fieldset>
+  </div>
+  <div class="agnosia">
+    <fieldset>
+      <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.agnosia.label"}}</legend>
+      {{formGroup fields.agnosia.fields.value value=system.agnosia.value}}
+      {{formInput agnosia.field value=agnosia.value enriched=agnosia.enriched toggled=true}}
+    </fieldset>
+  </div>
+</section>

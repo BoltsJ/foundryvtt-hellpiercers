@@ -29,7 +29,7 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
           blank: true,
           initial: "",
           choices: {
-            "": "—",
+            "": "",
             armor: "TYPES.Item.armor",
             class: "TYPES.Item.class",
             weapon: "TYPES.Item.weapon",
@@ -44,6 +44,7 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
  * Data model for PC weapons
  */
 export class WeaponModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ITEM"];
   static defineSchema() {
     return {
       description: new fields.HTMLField({ required: true }),

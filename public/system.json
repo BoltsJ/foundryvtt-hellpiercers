@@ -33,7 +33,6 @@
         "htmlFields": ["description", "movement", "ability.description", "reversal.effect"]
       },
       "class": { "htmlFields": ["description", "active.description", "passive.description"] },
-      "equipment": { "htmlFields": ["description"] },
       "gear": { "htmlFields": ["description", "effect"] },
       "weapon": { "htmlFields": ["description", "ability.description"] }
     }

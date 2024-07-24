@@ -2,10 +2,11 @@
   "TYPES": {
     "Actor": {
       "boss": "Boss",
-      "demon": "Demon",
+      "demon": "Minion",
       "faction": "Faction",
       "halo": "HALO Unit",
-      "human": "Hellpiercer"
+      "human": "Hellpiercer",
+      "spawner": "Spawner"
     },
     "Item": {
       "ability": "Ability",
@@ -85,15 +86,17 @@
     "ITEM": {
       "FIELDS": {
         "action": { "label": "Action Type" },
-        "active": { "name": { "label": "Active" } },
+        "active": { "label": "Active", "name": { "label": "Active" } },
         "damage": { "label": "Damage" },
         "description": { "label": "Description" },
-        "passive": { "name": { "label": "Passive" } },
+        "passive": { "label": "Passive", "name": { "label": "Passive" } },
         "range": { "label": "Range" }
       },
-      "TABS": {}
+      "TABS": {
+        "details": "Details",
+        "effects": "Effects"
+      }
     },
-    "FACTION": {},
     "SHEETS": {
       "Actor": {
         "boss": "Boss Sheet",
@@ -101,7 +104,9 @@
         "halo": "HALO Unit Sheet",
         "human": "HELLPIERCER Sheet"
       },
-      "Item": {}
+      "Item": {
+        "weapon": "Weapon Sheet"
+      }
     },
     "STATUSES": {
       "aegis": "Aegis",

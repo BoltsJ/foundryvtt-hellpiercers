@@ -1,9 +1,9 @@
 name: Place Template From Actor Range
 type: script
-command: >-
-  const range = (actor?.type === "human") ? actor.system.weapon.system.range[0]
-  : { kind: "blast", value: 1 };
-
+command: |-
+  let range;
+  if (actor?.type === "human") range ??= actor.system.weapon.system.range[0];
+  range ??= { kind: "blast", value: 1 };
   await hellpiercers.placeTemplate(range, actor);
 img: icons/svg/explosion.svg
 author: 0uq1NcpEgiMQWXgA
@@ -20,7 +20,7 @@ _stats:
   systemId: hellpiercers
   systemVersion: 0.alpha1
   createdTime: 1721573416231
-  modifiedTime: 1721573416231
+  modifiedTime: 1721785647699
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: DcHpSqrdlLUPvUrI
 sort: 0

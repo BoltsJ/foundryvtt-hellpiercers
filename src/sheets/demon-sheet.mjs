@@ -73,18 +73,4 @@ export class DemonSheet extends HellpiercersActorSheet {
     if (partId === "effects") ctx.effects = await this._getEffects();
     return ctx;
   }
-
-  async _getEffects() {
-    const ctx = {
-      temporary: [],
-      items: [],
-      effects: [],
-    };
-    for (let effect of this.actor.allApplicableEffects()) {
-      if (effect.parent !== this.actor) ctx.items.push(effect);
-      else if (effect.isTemporary) ctx.temporary.push(effect);
-      else ctx.effects.push(effect);
-    }
-    return ctx;
-  }
 }

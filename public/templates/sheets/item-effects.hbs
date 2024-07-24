@@ -1,0 +1,24 @@
+<section class="tab effects {{tab.cssClass}}" data-group="primary" data-tab="effects">
+  <ol>
+    <li class="flexrow header">{{localize "HELLPIERCERS.ACTOR.SHEET.effects.active"}}</li>
+    {{#each effects as |effect|}}
+    <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
+      {{#if effect.img}}<img src={{effect.img}} height=20 width=20>{{/if}}
+      <span class="name">
+        {{effect.name}}{{#if effect.flags.hellpiercers.value}}:{{effect.flags.hellpiercers.value}}{{/if}}
+      </span>
+      <input type="checkbox" data-action="onUpdateEmbed" data-property="disabled" data-tooltip="EFFECT.Disabled"
+        {{checked effect.disabled}} {{disabled (not @root.editable)}}>
+      <a class="control edit" data-action="onEmbedSheet" data-tooltip="{{localize "DOCUMENT.Update"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-edit"></i></a>
+      <a class="control delete" data-action="onDeleteEmbed" data-tooltip="{{localize "DOCUMENT.Delete"
+        type=(localize "DOCUMENT.ActiveEffect" )}}"><i class="fas fa-trash"></i></a>
+    </li>
+    {{/each}}
+    <li class="new-effect">
+      <button type="button" data-action="onCreateEmbed" data-embed-type="ActiveEffect">
+        <i class="fas fa-plus"></i>&nbsp;New Effect
+      </button>
+    </li>
+  </ol>
+</section>

@@ -1,0 +1,11 @@
+<header class="sheet-header">
+  <img src="{{item.img}}" class="portrait" data-edit="img" {{#if editable}}data-action="onEditImage"{{/if}}
+    title="{{item.name}}" />
+  <div class="flexcol">
+    <span class="itemname"><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"
+        {{disabled (not editable)}} /></span>
+    {{#if description}}
+    {{formInput description.field name="system.description" value=description.value enriched=description.enriched toggled=true}}
+    {{/if}}
+  </div>
+</header>

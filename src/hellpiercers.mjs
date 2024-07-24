@@ -61,9 +61,12 @@ Hooks.once("init", () => {
   CONFIG.Item.documentClass = documents.HellpiercersItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
-    // types: ["class", "armor", "weapon", "gear"],
     makeDefault: true,
     label: "HELLPIERCERS.ItemSheet",
+  });
+  Items.registerSheet("hellpiercers", sheets.WeaponSheet, {
+    makeDefault: true,
+    label: "HELLPIERCERS.SHEETS.Item.weapon",
   });
 
   // Templates
