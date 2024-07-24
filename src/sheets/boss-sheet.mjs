@@ -9,8 +9,14 @@ export class BossSheet extends HellpiercersActorSheet {
     header: { template: "systems/hellpiercers/templates/sheets/boss/header.hbs" },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     abilities: { template: "systems/hellpiercers/templates/sheets/boss/abilities.hbs" },
-    biography: { template: "systems/hellpiercers/templates/sheets/actor-biography.hbs" },
-    effects: { template: "systems/hellpiercers/templates/sheets/actor-effects.hbs" },
+    biography: {
+      template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
+      scrollable: [".tab.biography"],
+    },
+    effects: {
+      template: "systems/hellpiercers/templates/sheets/actor-effects.hbs",
+      scrollable: [".tab.effects"],
+    },
   };
 
   static DEFAULT_OPTIONS = {

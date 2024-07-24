@@ -18,6 +18,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
       onUpdateEmbed: this.prototype._onUpdateEmbed,
     },
     form: { submitOnChange: true },
+    position: { height: 700, width: 600 },
   };
 
   async _prepareContext() {

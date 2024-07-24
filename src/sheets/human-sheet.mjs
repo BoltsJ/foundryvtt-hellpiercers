@@ -8,9 +8,18 @@ export class HumanSheet extends HellpiercersActorSheet {
   static PARTS = {
     header: { template: "systems/hellpiercers/templates/sheets/human/header.hbs" },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    abilities: { template: "systems/hellpiercers/templates/sheets/human/abilities.hbs" },
-    biography: { template: "systems/hellpiercers/templates/sheets/actor-biography.hbs" },
-    effects: { template: "systems/hellpiercers/templates/sheets/actor-effects.hbs" },
+    abilities: {
+      template: "systems/hellpiercers/templates/sheets/human/abilities.hbs",
+      scrollable: [".tab.abilities"],
+    },
+    biography: {
+      template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
+      scrollable: [".tab.biography"],
+    },
+    effects: {
+      template: "systems/hellpiercers/templates/sheets/actor-effects.hbs",
+      scrollable: [".tab.effects"],
+    },
   };
 
   static DEFAULT_OPTIONS = {

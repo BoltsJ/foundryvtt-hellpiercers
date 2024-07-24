@@ -9,36 +9,19 @@ export class DemonSheet extends HellpiercersActorSheet {
     header: { template: "systems/hellpiercers/templates/sheets/demon/header.hbs" },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     abilities: { template: "systems/hellpiercers/templates/sheets/demon/abilities.hbs" },
-    biography: { template: "systems/hellpiercers/templates/sheets/actor-biography.hbs" },
-    effects: { template: "systems/hellpiercers/templates/sheets/actor-effects.hbs" },
-  };
-
-  static DEFAULT_OPTIONS = {
-    ...super.DEFAULT_OPTIONS,
-    classes: ["hellpiercers", "actor", "demon"],
-    actions: {
-      onEditImage: this.prototype._onEditImage,
-      onCreateEmbed: this.prototype._onCreateEmbed,
-      onDeleteEmbed: this.prototype._onDeleteEmbed,
-      onUpdateEmbed: this.prototype._onUpdateEmbed,
-      onEmbedSheet: this.prototype._onEmbedSheet,
+    biography: {
+      template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
+      scrollable: [".tab.biography"],
+    },
+    effects: {
+      template: "systems/hellpiercers/templates/sheets/actor-effects.hbs",
+      scrollable: [".tab.effects"],
     },
   };
 
-  async _prepareContext() {
-    const ctx = {
-      editable: this.isEditable,
-      owner: this.actor.isOwner,
-      actor: this.actor,
-      system: this.actor.system,
-      fields: this.actor.system.schema.fields,
-      weapon: this.actor.system.weapon,
-      armor: this.actor.system.armor,
-      class: this.actor.system.class,
-      tabs: this._getTabs(),
-    };
-    return ctx;
-  }
+  static DEFAULT_OPTIONS = {
+    classes: ["demon"],
+  };
 
   async _preparePartContext(partId, ctx) {
     if (Object.keys(ctx.tabs).includes(partId)) ctx.tab = ctx.tabs[partId];

@@ -1,9 +1,6 @@
 label {
   flex: 0 0 auto;
 }
-input[type="number"] {
-  flex: 0 0 3rem;
-}
 a.control {
   flex: 0 0 auto;
 }
@@ -12,6 +9,14 @@ header.sheet-header {
   img.portrait {
     object-fit: cover;
     object-position: 50% top;
+  }
+}
+
+.tab.biography {
+  flex: 1;
+  prose-mirror {
+    overflow: scroll;
+    flex: 1;
   }
 }
 
