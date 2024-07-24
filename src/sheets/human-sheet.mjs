@@ -10,15 +10,15 @@ export class HumanSheet extends HellpiercersActorSheet {
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     abilities: {
       template: "systems/hellpiercers/templates/sheets/human/abilities.hbs",
-      scrollable: [".tab.abilities"],
+      scrollable: [""],
     },
     biography: {
       template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
-      scrollable: [".tab.biography"],
+      scrollable: [""],
     },
     effects: {
       template: "systems/hellpiercers/templates/sheets/actor-effects.hbs",
-      scrollable: [".tab.effects"],
+      scrollable: [""],
     },
   };
 

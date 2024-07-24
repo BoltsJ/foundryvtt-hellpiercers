@@ -11,11 +11,11 @@ export class BossSheet extends HellpiercersActorSheet {
     abilities: { template: "systems/hellpiercers/templates/sheets/boss/abilities.hbs" },
     biography: {
       template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
-      scrollable: [".tab.biography"],
+      scrollable: [""],
     },
     effects: {
       template: "systems/hellpiercers/templates/sheets/actor-effects.hbs",
-      scrollable: [".tab.effects"],
+      scrollable: [""],
     },
   };
 
