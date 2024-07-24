@@ -8,23 +8,28 @@ export class RangeModel extends foundry.abstract.DataModel {
     return {
       label: new fields.StringField({ initial: "Range" }),
       kind: new fields.StringField({
+        label: "HELLPIERCERS.RANGE.FIELDS.kind.label",
         initial: "bespoke",
-        choices: [
-          "bespoke",
-          "burst",
-          "blast",
-          "line",
-          "cone",
-          "ring",
-          "star",
-          "charge",
-          "wall",
-          "arc",
-          "targets",
-          "blob",
-        ],
+        choices: {
+          bespoke: "HELLPIERCERS.RANGE.FIELDS.kind.choices.bespoke",
+          burst: "HELLPIERCERS.RANGE.FIELDS.kind.choices.burst",
+          blast: "HELLPIERCERS.RANGE.FIELDS.kind.choices.blast",
+          line: "HELLPIERCERS.RANGE.FIELDS.kind.choices.line",
+          cone: "HELLPIERCERS.RANGE.FIELDS.kind.choices.cone",
+          ring: "HELLPIERCERS.RANGE.FIELDS.kind.choices.ring",
+          star: "HELLPIERCERS.RANGE.FIELDS.kind.choices.star",
+          charge: "HELLPIERCERS.RANGE.FIELDS.kind.choices.charge",
+          wall: "HELLPIERCERS.RANGE.FIELDS.kind.choices.wall",
+          arc: "HELLPIERCERS.RANGE.FIELDS.kind.choices.arc",
+          targets: "HELLPIERCERS.RANGE.FIELDS.kind.choices.targets",
+          blob: "HELLPIERCERS.RANGE.FIELDS.kind.choices.blob",
+        },
       }),
-      value: new fields.NumberField({ initial: 1, nullable: false }),
+      value: new fields.NumberField({
+        label: "HELLPIERCERS.RANGE.FIELDS.value.label",
+        initial: 1,
+        nullable: false,
+      }),
       spaces: new fields.ArrayField(
         new fields.SchemaField({
           i: new fields.NumberField({ required: true, integer: true }),
@@ -34,7 +39,11 @@ export class RangeModel extends foundry.abstract.DataModel {
       ),
       modifiers: new fields.SchemaField(
         {
-          range: new fields.NumberField({ initial: null, nullable: true }),
+          range: new fields.NumberField({
+            label: "HELLPIERCERS.RANGE.FIELDS.modifiers.range.label",
+            initial: null,
+            nullable: true,
+          }),
           width: new fields.NumberField({ initial: null, nullable: true }),
           length: new fields.NumberField({ initial: null, nullable: true }),
           push: new fields.NumberField({ initial: null, nullable: true }),
@@ -196,7 +205,7 @@ export class RangeModel extends foundry.abstract.DataModel {
  * @param {number} [modifiers.width]
  * @param {number} [modifiers.range]
  */
-function getLine(length, { width = 1, range = 0 }) {
+function getLine(length, { width = 1, range = 0 } = {}) {
   const r = [];
   const span = Array(width)
     .fill(null)

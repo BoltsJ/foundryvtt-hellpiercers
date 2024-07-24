@@ -97,6 +97,29 @@
         "effects": "Effects"
       }
     },
+    "RANGE": {
+      "FIELDS": {
+        "kind": {
+          "label": "Range Type",
+          "choices": {
+            "bespoke": "Bespoke",
+            "burst": "Burst",
+            "blast": "Blast",
+            "line": "Line",
+            "cone": "Cone",
+            "ring": "Ring",
+            "star": "Star",
+            "charge": "Charge",
+            "wall": "Wall",
+            "arc": "Arc",
+            "targets": "Targets",
+            "blob": "Blob"
+          }
+        },
+        "value": { "label": "Value" },
+        "modifiers": { "label": "Modifiers", "range": { "label": "Range" } }
+      }
+    },
     "SHEETS": {
       "Actor": {
         "boss": "Boss Sheet",

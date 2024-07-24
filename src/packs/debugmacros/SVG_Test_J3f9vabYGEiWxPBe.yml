@@ -1,0 +1,77 @@
+name: SVG Test
+type: script
+command: |-
+  const range = new hellpiercers.data.RangeModel({
+    kind: "line",
+    value: 2,
+    modifiers: { scale: actor?.scale },
+  });
+  const kind = range.schema.fields.kind.toFormGroup(
+    { classes: ["stacked"], localize: true },
+    { value: range.kind }
+  );
+  const val = range.schema.fields.value.toFormGroup(
+    { classes: ["stacked"], localize: true },
+    { value: range.value }
+  );
+  const r_val = range.schema.fields.modifiers.fields.range.toFormGroup(
+    { classes: ["stacked"], localize: true },
+    { value: range.modifiers.range }
+  );
+
+  const content = `
+  <fieldset><legend>Range</legend>
+    ${kind.outerHTML}
+    ${val.outerHTML}
+  </fieldset>
+  <fieldset><legend>Modifiers</legend>
+    ${r_val.outerHTML}
+  </fieldset>
+  `;
+
+  const Dialog = foundry.applications.api.DialogV2;
+
+  await Dialog.wait({
+    content,
+    buttons: [
+      {
+        label: "View",
+        callback: (_e, button, form) => {
+          console.log(button.form.elements);
+          range.updateSource({
+            kind: button.form.elements.kind.value,
+            value: button.form.elements.value.value,
+            "modifiers.range": button.form.elements["modifiers.range"].value,
+          });
+        },
+      },
+    ],
+    rejectClose: false,
+  });
+
+  await Dialog.prompt({
+    content: `<img src="${range.svg_uri}">`,
+  });
+
+  (() => hellpiercers.placeTemplate(range, actor))();
+img: icons/svg/daze.svg
+author: 0uq1NcpEgiMQWXgA
+scope: global
+folder: null
+ownership:
+  default: 0
+  0uq1NcpEgiMQWXgA: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  coreVersion: '12.329'
+  systemId: hellpiercers
+  systemVersion: 0.alpha1
+  createdTime: 1721853137918
+  modifiedTime: 1721853137950
+  lastModifiedBy: 0uq1NcpEgiMQWXgA
+_id: J3f9vabYGEiWxPBe
+sort: 200000
+_key: '!macros!J3f9vabYGEiWxPBe'
+
