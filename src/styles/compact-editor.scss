@@ -1,0 +1,6 @@
+prose-mirror {
+  min-height: 75px;
+  &.active {
+    min-height: 100px;
+  }
+}
