@@ -191,6 +191,34 @@ export class RangeModel extends foundry.abstract.DataModel {
     return `data:image/svg+xml;base64,${window.btoa(data)}`;
   }
 
+  get short_text() {
+    let kind = game.i18n.localize(`HELLPIERCERS.RANGE.FIELDS.kind.choices.${this.kind}`);
+    if (this.kind === "bespoke") return kind;
+    let modifiers = [];
+    if (this.modifiers.range != null)
+      modifiers.push(
+        `${game.i18n.localize("HELLPIERCERS.RANGE.FIELDS.modifiers.range.label")}:${this.modifiers.range}`
+      );
+    if (this.modifiers.length != null)
+      modifiers.push(
+        `${game.i18n.localize("HELLPIERCERS.RANGE.FIELDS.modifiers.length.label")}:${this.modifiers.length}`
+      );
+    if (this.modifiers.width != null)
+      modifiers.push(
+        `${game.i18n.localize("HELLPIERCERS.RANGE.FIELDS.modifiers.width.label")}:${this.modifiers.width}`
+      );
+    if (this.modifiers.push != null)
+      modifiers.push(
+        `${game.i18n.localize("HELLPIERCERS.RANGE.FIELDS.modifiers.push.label")}:${this.modifiers.push}`
+      );
+    if (this.modifiers.recoil != null)
+      modifiers.push(
+        `${game.i18n.localize("HELLPIERCERS.RANGE.FIELDS.modifiers.recoil.label")}:${this.modifiers.recoil}`
+      );
+
+    return [`${kind}:${this.value}`, ...modifiers].join(",");
+  }
+
   /** @returns {Actor | null} */
   #getParentActor() {
     let parent = this.parent;

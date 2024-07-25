@@ -65,6 +65,7 @@ Hooks.once("init", () => {
     label: "HELLPIERCERS.ItemSheet",
   });
   Items.registerSheet("hellpiercers", sheets.WeaponSheet, {
+    types: ["weapon"],
     makeDefault: true,
     label: "HELLPIERCERS.SHEETS.Item.weapon",
   });

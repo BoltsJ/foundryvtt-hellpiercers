@@ -16,16 +16,3 @@
     @import "styles/item-sheet";
   }
 }
-
-.hellpiercers.tjs-window-app.sheet {
-  &.item,
-  &.actor {
-    section.window-content {
-      background: var(--hellpiercers-primary-background, url(../../ui/parchment.jpg) repeat);
-      color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
-      input {
-        color: var(--hellpiercers-primary-foreground, var(--color-text-dark-primary));
-      }
-    }
-  }
-}

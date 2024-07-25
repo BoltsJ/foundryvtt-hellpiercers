@@ -1,7 +1,7 @@
 <svelte:options accessors={true} />
 
 <script>
-  import { TJSApplicationShell } from "#runtime/svelte/component/core";
+  import { ApplicationShell } from "#runtime/svelte/component/core";
   import { localize } from "#runtime/svelte/helper";
   import { TJSDocument } from "#runtime/svelte/store/fvtt/document";
   import { getContext } from "svelte";
@@ -17,6 +17,7 @@
   export let elementRoot;
 
   const external = getContext("#external");
+  /** @type TJSDocument<import("../documents/index.mjs").HellpiercersItem> */
   let item = new TJSDocument(external.application.item);
 
   const tabs = ["Description", "HELLPIERCERS.ItemDetails", "HELLPIERCERS.Effects"];
@@ -31,7 +32,7 @@
   };
 </script>
 
-<TJSApplicationShell bind:elementRoot transition={slide} transitionOptions={{ duration: 100 }}>
+<ApplicationShell bind:elementRoot transition={slide} transitionOptions={{ duration: 100 }}>
   <main class="flexcol" autocomplete="off" use:updateDoc>
     <header>
       <Portrait document={item} />
@@ -114,7 +115,7 @@
       {/if}
     </section>
   </main>
-</TJSApplicationShell>
+</ApplicationShell>
 
 <style lang="scss">
   main {
