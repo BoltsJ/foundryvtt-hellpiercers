@@ -48,4 +48,10 @@ export class HumanSheet extends HellpiercersActorSheet {
     if (partId === "effects") ctx.effects = await this._getEffects();
     return ctx;
   }
+
+  async _onItemDrop(uuid) {
+    /** @type {import("../documents/index.mjs").HellpiercersItem} */
+    const item = await fromUuid(uuid);
+    await this.actor.createEmbeddedDocuments("Item", [item.toObject()])
+  }
 }
