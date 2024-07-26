@@ -275,17 +275,18 @@ function getRing(thickness, { range = 1 }) {
   return r;
 }
 
-function getBlast(size) {
-  if (size == 1)
-    return [
-      { i: 0, j: 0 },
-      { i: 1, j: 0 },
-      { i: -1, j: 0 },
-      { i: 0, j: 1 },
-      { i: 0, j: -1 },
-    ];
-  const r = getRing(size, { range: -1 });
-  // TODO: Range handling
+function getBlast(size, { range }) {
+  const r =
+    size == 1
+      ? [
+          { i: 0, j: 0 },
+          { i: 1, j: 0 },
+          { i: -1, j: 0 },
+          { i: 0, j: 1 },
+          { i: 0, j: -1 },
+        ]
+      : getRing(size, { range: -1 });
+  if (range != null) r.forEach(s => (s.i += Math.max(2, size) + range));
   return r;
 }
 
