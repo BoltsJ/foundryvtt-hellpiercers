@@ -208,7 +208,7 @@ export class RangeModel extends foundry.abstract.DataModel {
   }
 
   get short_text() {
-    let kind = game.i18n.localize(`HELLPIERCERS.RANGE.FIELDS.kind.choices.${this.kind}`);
+    let kind = game.i18n.localize(`HELLPIERCERS.RANGE.type.${this.kind}`);
     if (this.kind === "bespoke") return kind;
     let modifiers = [];
     if (this.modifiers.range != null)
