@@ -52,6 +52,6 @@ export class HumanSheet extends HellpiercersActorSheet {
   async _onItemDrop(uuid) {
     /** @type {import("../documents/index.mjs").HellpiercersItem} */
     const item = await fromUuid(uuid);
-    await this.actor.createEmbeddedDocuments("Item", [item.toObject()])
+    await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
   }
 }

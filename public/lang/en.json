@@ -95,29 +95,34 @@
       "TABS": {
         "details": "Details",
         "effects": "Effects"
+      },
+      "action": {
+        "active": "Active",
+        "attack": "Attack",
+        "movement": "Movement",
+        "passive": "Passive",
+        "special": "Special"
       }
     },
     "RANGE": {
       "FIELDS": {
-        "kind": {
-          "label": "Range Type",
-          "choices": {
-            "bespoke": "Bespoke",
-            "burst": "Burst",
-            "blast": "Blast",
-            "line": "Line",
-            "cone": "Cone",
-            "ring": "Ring",
-            "star": "Star",
-            "charge": "Charge",
-            "wall": "Wall",
-            "arc": "Arc",
-            "targets": "Targets",
-            "blob": "Blob"
-          }
-        },
+        "kind": { "label": "Range Type" },
         "value": { "label": "Value" },
         "modifiers": { "label": "Modifiers", "range": { "label": "Range" } }
+      },
+      "type": {
+        "bespoke": "Bespoke",
+        "burst": "Burst",
+        "blast": "Blast",
+        "line": "Line",
+        "cone": "Cone",
+        "ring": "Ring",
+        "star": "Star",
+        "charge": "Charge",
+        "wall": "Wall",
+        "arc": "Arc",
+        "targets": "Targets",
+        "blob": "Blob"
       }
     },
     "SHEETS": {
