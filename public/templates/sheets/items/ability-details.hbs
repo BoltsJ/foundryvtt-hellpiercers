@@ -1,0 +1,14 @@
+<section class="tab details scrollable flexcol {{tab.cssClass}}" data-group="primary" data-tab="details">
+{{formGroup fields.action value=system.action blank=false localize=true disabled=(or (not editable) actor)}}
+{{#if (eq system.action "attack")}}
+{{formGroup fields.damage value=system.damage placeholder="0"}}
+{{#if (eq system.range.kind "bespoke")}}
+<img src={{system.range.svg_uri}}>
+{{else}}
+{{system.range.short_text}}
+{{/if}}
+<a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
+{{/if}}
+{{formInput effect.field enriched=effect.enriched value=effect.value toggled=true}}
+{{formGroup fields.item.fields.uuid value=system.item.uuid}}
+</section>

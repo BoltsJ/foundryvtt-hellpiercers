@@ -3,6 +3,10 @@
   <div class="attack">
     <fieldset data--u-u-i-d={{attack.uuid}}>
       <legend>{{attack.name}}</legend>
+      <div>{{ifThen (eq attack.system.range.kind "bespoke") (concat "<img src=" attack.system.range.svg_uri ">")
+        attack.system.range.short_text}}</div>
+      {{#if attack.system.damage}}<div class="damage">Damage: {{attack.system.damage}}</div>{{/if}}
+      <div class="effect">{{{effect}}}</div>
       <div class="flexrow">
         <a class="control" data-action="onEmbedSheet" data-tooltip="{{localize " DOCUMENT.Update"
           type=(localize "TYPES.Item.ability" )}}">
@@ -16,17 +20,25 @@
     </fieldset>
   </div>
   {{/each}}
+  {{#if special}}
   <div class="special">
-    <fieldset>
+    <fieldset data--u-u-i-d={{special.uuid}}>
       <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
-      {{formInput special.field value=special.value enriched=special.enriched toggled=true}}
+      <a class="control" data-action="onEmbedSheet" data-tooltip="{{localize " DOCUMENT.Update"
+        type=(localize "TYPES.Item.ability" )}}">
+        <i class="fas fa-edit"></i>
+      </a>
     </fieldset>
   </div>
+  {{/if}}
   <div class="agnosia">
     <fieldset>
       <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.agnosia.label"}}</legend>
       {{formGroup fields.agnosia.fields.value value=system.agnosia.value}}
       {{formInput agnosia.field value=agnosia.value enriched=agnosia.enriched toggled=true}}
     </fieldset>
+  </div>
+  <div>
+    <button class="control" data-action="addAbility"><i class="fas fa-plus"></i>&nbsp;Add Ability</button>
   </div>
 </section>

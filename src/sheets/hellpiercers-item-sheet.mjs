@@ -21,6 +21,19 @@ export class HellpiercersItemSheet extends api.HandlebarsApplicationMixin(sheets
     position: { height: 600, width: 480 },
   };
 
+  async _prepareContext() {
+    const ctx = {
+      editable: this.isEditable,
+      owner: this.item.isOwner,
+      item: this.item,
+      actor: this.item.actor,
+      system: this.item.system,
+      fields: this.item.system.schema.fields,
+      tabs: this._getTabs(),
+    };
+    return ctx;
+  }
+
   _getTabs() {
     /** @type {Record<string, TabsConfiguration>} */
     const tabs = {};

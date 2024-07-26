@@ -27,7 +27,8 @@ Hooks.once("init", () => {
   CONFIG.ActiveEffect.legacyTransferral = false;
   CONFIG.statusEffects = getStatusEffects();
 
-  // game.data.packs = game.data.packs.filter(i => i.name != "debugmacros");
+  // if (!game.modules.get("quench")?.active)
+  //   game.data.packs = game.data.packs.filter(i => i.name != "debugmacros");
 
   // Actors
   CONFIG.Actor.dataModels.human = data.HumanModel;
@@ -63,6 +64,11 @@ Hooks.once("init", () => {
   Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
     makeDefault: true,
     label: "HELLPIERCERS.ItemSheet",
+  });
+  Items.registerSheet("hellpiercers", sheets.AbilitySheet, {
+    types: ["ability"],
+    makeDefault: true,
+    label: "HELLPIERCERS.SHEETS.Item.ability",
   });
   Items.registerSheet("hellpiercers", sheets.WeaponSheet, {
     types: ["weapon"],

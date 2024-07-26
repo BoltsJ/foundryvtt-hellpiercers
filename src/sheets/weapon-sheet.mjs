@@ -19,18 +19,6 @@ export class WeaponSheet extends HellpiercersItemSheet {
     classes: ["weapon"],
   };
 
-  async _prepareContext() {
-    const ctx = {
-      editable: this.isEditable,
-      owner: this.item.isOwner,
-      item: this.item,
-      system: this.item.system,
-      fields: this.item.system.schema.fields,
-      tabs: this._getTabs(),
-    };
-    return ctx;
-  }
-
   async _preparePartContext(partId, ctx) {
     if (Object.keys(ctx.tabs).includes(partId)) ctx.tab = ctx.tabs[partId];
     if (partId === "header") {

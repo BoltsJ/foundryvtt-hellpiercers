@@ -124,10 +124,7 @@ export class BossModel extends foundry.abstract.TypeDataModel {
         }),
         { initial: [] }
       ),
-      special: new fields.SchemaField({
-        name: new fields.StringField({ initial: "Special" }),
-        effect: new fields.HTMLField({ required: true }),
-      }),
+      special: new OwnedItemField({ initial: null, nullable: true }),
     };
   }
 

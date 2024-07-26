@@ -27,21 +27,14 @@ export class BossSheet extends HellpiercersActorSheet {
     if (Object.keys(ctx.tabs).includes(partId)) ctx.tab = ctx.tabs[partId];
     if (partId === "abilities") {
       ctx.attacks = [];
-      for (let attack of this.actor.itemTypes.ability.filter(i => i.system.action === "attack")) {
-        const effect = await TextEditor.enrichHTML(this.actor.system.biography, {
+      for (let attack of this.actor.system.attacks) {
+        const effect = await TextEditor.enrichHTML(attack.system.effect, {
           secrets: this.actor.isOwner,
           rollData: this.actor.getRollData.bind(this.actor),
         });
         ctx.attacks.push({ attack, effect });
       }
-      ctx.special = {
-        field: ctx.fields.special.fields.effect,
-        enriched: await TextEditor.enrichHTML(ctx.system.special.effect, {
-          secrets: this.actor.isOwner,
-          rollData: this.actor.getRollData.bind(this.actor),
-        }),
-        value: ctx.system.special.effect,
-      };
+      ctx.special = ctx.system.special;
       ctx.agnosia = {
         field: ctx.fields.agnosia.fields.effect,
         enriched: await TextEditor.enrichHTML(ctx.system.agnosia.effect, {

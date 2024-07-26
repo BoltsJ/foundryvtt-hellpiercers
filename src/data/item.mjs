@@ -8,10 +8,12 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
     return {
       action: new fields.StringField({
         initial: "active",
+        blank: false,
         choices: {
           active: "HELLPIERCERS.ITEM.action.active",
-          passive: "HELLPIERCERS.ITEM.action.passive",
           attack: "HELLPIERCERS.ITEM.action.attack",
+          movement: "HELLPIERCERS.ITEM.action.movement",
+          passive: "HELLPIERCERS.ITEM.action.passive",
           special: "HELLPIERCERS.ITEM.action.special",
         },
       }),
@@ -29,7 +31,6 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
           blank: true,
           initial: "",
           choices: {
-            "": "",
             armor: "TYPES.Item.armor",
             class: "TYPES.Item.class",
             weapon: "TYPES.Item.weapon",
