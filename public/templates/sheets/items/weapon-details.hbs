@@ -1,18 +1,23 @@
 <section class="tab details scrollable {{tab.cssClass}}" data-group="primary" data-tab="details">
   {{formGroup fields.damage value=system.damage}}
-  <div class='flexrow'>
+  <div class="flexrow">
     {{#each system.range as |range|}}
-    <div class="range flexcol">
-      <span>{{range.label}}</span>
-      {{#if (eq range.kind "bespoke")}}
-      <img src={{range.svg_uri}} class="range-preview">
-      {{else}}
-      <span>{{range.short_text}}</span>
-      {{/if}}
-      <a class="control edit-range" data-action="editRange" data-range-index={{@index}} data-tooltip="Edit">
-        <i class="fas fa-edit"></i>
-      </a>
-    </div>
+      <div class="range flexcol">
+        <span>{{range.label}}</span>
+        {{#if (eq range.kind "bespoke")}}
+          <img src={{range.svg_uri}} class="range-preview" />
+        {{else}}
+          <span>{{range.short_text}}</span>
+        {{/if}}
+        <a
+          class="control edit-range"
+          data-action="editRange"
+          data-range-index={{@index}}
+          data-tooltip="Edit"
+        >
+          <i class="fas fa-edit"></i>
+        </a>
+      </div>
     {{/each}}
   </div>
   <fieldset>

@@ -1,35 +1,49 @@
-<section class="tab abilities {{tab.cssClass}} scrollable" data-group="primary" data-tab="abilities">
-  {{#each attacks as |this|}}
-  <div class="attack">
-    <fieldset data--u-u-i-d={{attack.uuid}}>
-      <legend>{{attack.name}}</legend>
-      <div>{{ifThen (eq attack.system.range.kind "bespoke") (concat "<img src=" attack.system.range.svg_uri ">")
-        attack.system.range.short_text}}</div>
-      {{#if attack.system.damage}}<div class="damage">Damage: {{attack.system.damage}}</div>{{/if}}
-      <div class="effect">{{{effect}}}</div>
-      <div class="flexrow">
-        <a class="control" data-action="onEmbedSheet" data-tooltip="{{localize " DOCUMENT.Update"
-          type=(localize "TYPES.Item.ability" )}}">
-          <i class="fas fa-edit"></i>
-        </a>
-      </div>
-      {{#if attack.range}}
-      <img src={{attack.range.svg_uri}}>
-      {{/if}}
-      {{attack.damage}}
-    </fieldset>
-  </div>
+<section
+  class="tab abilities {{tab.cssClass}} scrollable"
+  data-group="primary"
+  data-tab="abilities"
+>
+  {{#each attacks}}
+    <div class="attack">
+      <fieldset data--u-u-i-d={{attack.uuid}}>
+        <legend>{{attack.name}}</legend>
+        <div>{{ifThen
+            (eq attack.system.range.kind "bespoke")
+            (concat "<img src=" attack.system.range.svg_uri ">")
+            attack.system.range.short_text
+          }}</div>
+        {{#if attack.system.damage}}<div class="damage">Damage:
+            {{attack.system.damage}}</div>{{/if}}
+        <div class="effect">{{{effect}}}</div>
+        <div class="flexrow">
+          <a
+            class="control"
+            data-action="onEmbedSheet"
+            data-tooltip="{{localize ' DOCUMENT.Update' type=(localize "TYPES.Item.ability")}}"
+          >
+            <i class="fas fa-edit"></i>
+          </a>
+        </div>
+        {{#if attack.range}}
+          <img src={{attack.range.svg_uri}} />
+        {{/if}}
+        {{attack.damage}}
+      </fieldset>
+    </div>
   {{/each}}
   {{#if special}}
-  <div class="special">
-    <fieldset data--u-u-i-d={{special.uuid}}>
-      <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
-      <a class="control" data-action="onEmbedSheet" data-tooltip="{{localize " DOCUMENT.Update"
-        type=(localize "TYPES.Item.ability" )}}">
-        <i class="fas fa-edit"></i>
-      </a>
-    </fieldset>
-  </div>
+    <div class="special">
+      <fieldset data--u-u-i-d={{special.uuid}}>
+        <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
+        <a
+          class="control"
+          data-action="onEmbedSheet"
+          data-tooltip="{{localize ' DOCUMENT.Update' type=(localize "TYPES.Item.ability")}}"
+        >
+          <i class="fas fa-edit"></i>
+        </a>
+      </fieldset>
+    </div>
   {{/if}}
   <div class="agnosia">
     <fieldset>

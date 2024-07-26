@@ -1,4 +1,4 @@
-name: SVG Test
+name: SVG and Template Test
 type: script
 command: |-
   const range = new hellpiercers.data.RangeModel({
@@ -18,6 +18,14 @@ command: |-
     { classes: ["stacked"], localize: true },
     { value: range.modifiers.range }
   );
+  const length = range.schema.fields.modifiers.fields.length.toFormGroup(
+    { classes: ["stacked"], localize: true },
+    { value: range.modifiers.length }
+  );
+  const width = range.schema.fields.modifiers.fields.width.toFormGroup(
+    { classes: ["stacked"], localize: true },
+    { value: range.modifiers.width }
+  );
 
   const content = `
   <fieldset><legend>Range</legend>
@@ -26,6 +34,8 @@ command: |-
   </fieldset>
   <fieldset><legend>Modifiers</legend>
     ${r_val.outerHTML}
+    ${length.outerHTML}
+    ${width.outerHTML}
   </fieldset>
   `;
 
@@ -41,7 +51,9 @@ command: |-
           range.updateSource({
             kind: button.form.elements.kind.value,
             value: button.form.elements.value.value,
-            "modifiers.range": button.form.elements["modifiers.range"].value,
+            "modifiers.range": button.form.elements["modifiers.range"].value || null,
+            "modifiers.length": button.form.elements["modifiers.length"].value || null,
+            "modifiers.width": button.form.elements["modifiers.width"].value || null,
           });
         },
       },
@@ -69,7 +81,7 @@ _stats:
   systemId: hellpiercers
   systemVersion: 0.alpha1
   createdTime: 1721853137918
-  modifiedTime: 1721957302495
+  modifiedTime: 1721959369398
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: J3f9vabYGEiWxPBe
 sort: 200000

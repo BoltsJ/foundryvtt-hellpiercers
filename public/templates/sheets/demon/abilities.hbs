@@ -1,9 +1,13 @@
-<section class="tab abilities {{tab.cssClass}} scrollable" data-group="primary" data-tab="abilities">
+<section
+  class="tab abilities {{tab.cssClass}} scrollable"
+  data-group="primary"
+  data-tab="abilities"
+>
   <fieldset>
     <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.label"}}</legend>
     {{formGroup fields.strike.fields.name value=system.strike.name}}
     <label for="range">{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.range.label"}}</label>
-    <img name="range" src={{system.strike.range.svg_uri}}>
+    <img name="range" src={{system.strike.range.svg_uri}} />
     {{formGroup fields.strike.fields.damage value=system.strike.damage}}
     {{formInput strike.field enriched=strike.enriched value=strike.value toggled=true}}
   </fieldset>

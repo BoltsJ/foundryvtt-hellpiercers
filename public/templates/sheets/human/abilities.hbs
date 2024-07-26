@@ -1,30 +1,51 @@
-<section class="tab abilities {{tab.cssClass}} scrollable" data-group="primary" data-tab="abilities">
+<section
+  class="tab abilities {{tab.cssClass}} scrollable"
+  data-group="primary"
+  data-tab="abilities"
+>
   <div class="weapon flexcol" data--u-u-i-d={{weapon.uuid}}>
     <div class="flexrow">
       <select name="system.weapon">
-        {{selectOptions weaponChoices selected=system.weapon._id blank=(localize "TYPES.Item.weapon")}}
+        {{selectOptions
+          weaponChoices
+          selected=system.weapon._id
+          blank=(localize "TYPES.Item.weapon")
+        }}
       </select>
       {{#if weapon}}
-      <a class="weapon-damage control" data-drag="attack" data-action="onBeginAttack">
-        <i class="fas fa-dice"></i>
-      </a>
-      {{#each weapon.system.range as |range|}}
-      <a class="weapon-range control" style="cursor: help" data-tooltip="{{ifThen (eq range.kind "bespoke")
-        (concat "<img src=" range.svg_uri ">") range.short_text}}">
-        <i class="fas fa-ruler-combined"></i>{{range.label}}&nbsp;
-      </a>
-      {{/each}}
-      <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
-      <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
+        <a class="weapon-damage control" data-drag="attack" data-action="onBeginAttack">
+          <i class="fas fa-dice"></i>
+        </a>
+        {{#each weapon.system.range as |range|}}
+          <a
+            class="weapon-range control"
+            style="cursor: help"
+            data-tooltip="{{ifThen
+              (eq range.kind 'bespoke')
+              (concat '<img src=' range.svg_uri '>')
+              range.short_text
+            }}"
+          >
+            <i class="fas fa-ruler-combined"></i>{{range.label}}&nbsp;
+          </a>
+        {{/each}}
+        <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
+        <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
       {{/if}}
     </div>
     {{#if weapon}}
-    <div>
-      <strong>Active</strong>: <em>{{weapon.system.active.name}}</em> — {{{weapon.system.active.description}}}
-    </div>
-    <div>
-      <strong>Passive</strong>: <em>{{weapon.system.passive.name}}</em> — {{{weapon.system.passive.description}}}
-    </div>
+      <div>
+        <strong>Active</strong>:
+        <em>{{weapon.system.active.name}}</em>
+        —
+        {{{weapon.system.active.description}}}
+      </div>
+      <div>
+        <strong>Passive</strong>:
+        <em>{{weapon.system.passive.name}}</em>
+        —
+        {{{weapon.system.passive.description}}}
+      </div>
     {{/if}}
   </div>
   <div class="armor">

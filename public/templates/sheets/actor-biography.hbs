@@ -1,9 +1,13 @@
-<section class="tab biography {{tab.cssClass}} scrollable flexcol" data-group="primary" data-tab="biography">
+<section
+  class="tab biography {{tab.cssClass}} scrollable flexcol"
+  data-group="primary"
+  data-tab="biography"
+>
   {{#if editable}}
-  {{formInput biography.field value=biography.value enriched=biography.enriched toggled=true}}
+    {{formInput biography.field value=biography.value enriched=biography.enriched toggled=true}}
   {{else}}
-  <div class="editor">
-    {{{biography.enriched}}}
-  </div>
+    <div class="editor">
+      {{{biography.enriched}}}
+    </div>
   {{/if}}
 </section>

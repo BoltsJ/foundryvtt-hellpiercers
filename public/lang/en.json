@@ -108,7 +108,12 @@
       "FIELDS": {
         "kind": { "label": "Range Type" },
         "value": { "label": "Value" },
-        "modifiers": { "label": "Modifiers", "range": { "label": "Range" } }
+        "modifiers": {
+          "label": "Modifiers",
+          "range": { "label": "Range" },
+          "length": { "label": "Length" },
+          "width": { "label": "Width" }
+        }
       },
       "type": {
         "bespoke": "Bespoke",
