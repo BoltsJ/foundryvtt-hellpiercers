@@ -3,19 +3,25 @@ import RangeEditorAppShell from "./RangeEditorAppShell.svelte";
 
 export class RangeEditorApp extends SvelteApplication {
   /**
-   * @param {import("../../documents/weapon.mjs").HellpiercersWeapon} weapon
+   * @param {import("../../data/range-model.mjs").RangeModel} range
    * @param {{}} [options]
    */
-  constructor(weapon, index, options = {}) {
-    super(
-      foundry.utils.mergeObject(
-        { id: `HellpiercersRangeEditor_${weapon.uuid.replaceAll(".", "_")}` },
-        options
-      )
-    );
-    /** @type {import("../../documents/weapon.mjs").HellpiercersWeapon} */
-    this.weapon = this.object = this.document = weapon;
-    this.range_index = index;
+  constructor(range, options = {}) {
+    super(foundry.utils.mergeObject({ id: `HellpiercersRangeEditor` }, options));
+    /** @type {typeof range} */
+    this.range = range.clone();
+  }
+
+  /** @param {import("../../data/range-model.mjs").RangeModel} range */
+  static editRange(range) {
+    const app = new this(range);
+    /** @type {Promise<typeof range} */
+    let r = new Promise((resolve, reject) => {
+      app.resolve = resolve;
+      app.reject = reject;
+      app.render(true);
+    });
+    return r;
   }
 
   static get defaultOptions() {

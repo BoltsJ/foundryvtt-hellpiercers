@@ -1,8 +1,7 @@
 <svelte:options accessors={true} />
 
 <script>
-  import { TJSApplicationShell } from "#runtime/svelte/component/core";
-  // import { TJSDocument } from "#runtime/svelte/store/fvtt/document";
+  import { ApplicationShell } from "#runtime/svelte/component/core";
   import { getContext } from "svelte";
   import { localize } from "#runtime/svelte/helper";
 
@@ -12,8 +11,7 @@
 
   let range = [["@"]];
   function resetGrid() {
-    const i = external.application.range_index;
-    range = external.application.weapon.system.range[i].ascii;
+    range = external.application.range.ascii;
   }
   resetGrid();
 
@@ -23,18 +21,18 @@
    */
   function gridToArray(grid) {
     let origin = {};
-    origin.i = grid.findIndex(r => r.includes("@"));
-    origin.j = grid[origin.i].indexOf("@");
+    origin.i = grid.findIndex(r => r.some(s => ["@", "0"].includes(s)));
+    origin.j = grid[origin.i].findIndex(s => ["@", "0"].includes(s));
     let res = grid
       .flatMap((r, i) =>
-        r.map((s, j) => (s === "O" ? { i: i - origin.i, j: j - origin.j } : undefined))
+        r.map((s, j) => (["O", "0"].includes(s) ? { i: i - origin.i, j: j - origin.j } : undefined))
       )
       .filter(s => s !== undefined);
     return res;
   }
 </script>
 
-<TJSApplicationShell bind:elementRoot>
+<ApplicationShell bind:elementRoot>
   <main>
     <div class="top">
       <button
@@ -46,7 +44,7 @@
       <button
         type="button"
         on:click={() => {
-          if (!range[0].includes("@")) range = range.slice(1);
+          if (!range[0].some(s => ["@", "0"].includes(s))) range = range.slice(1);
         }}
       >
         <i class="fas fa-minus"></i>
@@ -60,7 +58,8 @@
         <button
           type="button"
           on:click={() => {
-            if (!range.map(r => r[0]).includes("@")) range = range.map(r => r.slice(1));
+            if (!range.map(r => r[0]).some(s => ["@", "0"].includes(s)))
+              range = range.map(r => r.slice(1));
           }}
         >
           <i class="fas fa-minus"></i>
@@ -74,9 +73,10 @@
               on:click={() => {
                 if (space === "O") range[i][j] = ".";
                 if (space === ".") range[i][j] = "O";
+                if (space === "0") range[i][j] = "@";
+                if (space === "@") range[i][j] = "0";
                 range = range;
               }}
-              disabled={space === "@"}
             >
               {space}
             </button>
@@ -91,7 +91,8 @@
         <button
           type="button"
           on:click={() => {
-            if (!range.map(r => r.at(-1)).includes("@")) range = range.map(r => r.slice(0, -1));
+            if (!range.map(r => r.at(-1)).some(s => ["@", "0"].includes(s)))
+              range = range.map(r => r.slice(0, -1));
           }}
         >
           <i class="fas fa-minus"></i>
@@ -108,7 +109,7 @@
       <button
         type="button"
         on:click={() => {
-          if (!range.at(-1).includes("@")) range = range.slice(0, -1);
+          if (!range.at(-1).some(s => ["@", "0"].includes(s))) range = range.slice(0, -1);
         }}
       >
         <i class="fas fa-minus"></i>
@@ -118,10 +119,9 @@
       <button
         type="button"
         on:click={() => {
-          const i = external.application.range_index;
-          const wr = external.application.weapon.system.range.map(r => r.toObject());
-          wr[i].spaces = gridToArray(range);
-          external.application.weapon.update({ "system.range": wr });
+          const resolve = external.application.resolve;
+          external.application.range.updateSource({ spaces: gridToArray(range) });
+          resolve(external.application.range);
           external.application.close();
         }}
       >
@@ -132,7 +132,7 @@
       </button>
     </footer>
   </main>
-</TJSApplicationShell>
+</ApplicationShell>
 
 <style lang="scss">
   main {

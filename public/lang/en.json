@@ -27,24 +27,6 @@
           "value": { "label": "Value" }
         },
         "armor": { "label": "Armor" },
-        "attack1": {
-          "label": "1st Attack",
-          "damage": { "label": "Damage" },
-          "description": { "label": "Effect" },
-          "range": { "label": "Range" }
-        },
-        "attack2": {
-          "label": "2nd Attack",
-          "damage": { "label": "Damage" },
-          "description": { "label": "Effect" },
-          "range": { "label": "Range" }
-        },
-        "attack3": {
-          "label": "3rd Attack",
-          "damage": { "label": "Damage" },
-          "description": { "label": "Effect" },
-          "range": { "label": "Range" }
-        },
         "attacks": { "label": "Attacks" },
         "biography": { "label": "Biography" },
         "callsign": { "label": "Callsign" },

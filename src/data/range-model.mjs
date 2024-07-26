@@ -133,8 +133,9 @@ export class RangeModel extends foundry.abstract.DataModel {
     for (let r = 0; r < size[0]; r++) {
       for (let c = 0; c < size[1]; c++) {
         if (c === -size[4] && r === -size[2]) m[r][c] = "@";
-        if (this.shape.some(space => space.i === r + size[2] && space.j === c + size[4]))
-          m[r][c] = "O";
+        if (this.shape.some(space => space.i === r + size[2] && space.j === c + size[4])) {
+          m[r][c] = m[r][c] === "@" ? "0" : "O";
+        }
       }
     }
     return m;
@@ -177,6 +178,7 @@ export class RangeModel extends foundry.abstract.DataModel {
             img = USER_ICON;
             break;
           case "O":
+          case "0":
             css = "target";
             img = TARGET_ICON;
             break;
