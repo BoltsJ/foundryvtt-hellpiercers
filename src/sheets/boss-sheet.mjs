@@ -21,6 +21,9 @@ export class BossSheet extends HellpiercersActorSheet {
 
   static DEFAULT_OPTIONS = {
     classes: ["boss"],
+    actions: {
+      addAbility: this.prototype._onAddAbility,
+    },
   };
 
   async _preparePartContext(partId, ctx) {
@@ -56,5 +59,35 @@ export class BossSheet extends HellpiercersActorSheet {
     }
     if (partId === "effects") ctx.effects = await this._getEffects();
     return ctx;
+  }
+
+  async _onAddAbility() {
+    const buttons = [{ label: "Cancel", action: "cancel" }];
+
+    if (this.actor.system.attacks.length < 3)
+      buttons.unshift({ label: "HELLPIERCERS.ITEM.action.attack", action: "attack" });
+    if (!this.actor.system.special)
+      buttons.unshift({ label: "HELLPIERCERS.ITEM.action.special", action: "special" });
+
+    const ability_type = await foundry.applications.api.DialogV2.wait({
+      window: { title: "HELLPIERCERS.DIALOG.new_ability.title" },
+      content: game.i18n.localize("HELLPIERCERS.DIALOG.new_ability.content"),
+      buttons,
+    });
+    let data;
+    if (ability_type === "cancel") return;
+    if (ability_type === "special")
+      data = { name: "New Special", type: "ability", "system.action": "special" };
+    if (ability_type === "attack")
+      data = { name: "New Attack", type: "ability", "system.action": "attack" };
+    if (!data) return;
+
+    const [created] = await this.actor.createEmbeddedDocuments("Item", [data]);
+    if (ability_type === "special") await this.actor.update({ "system.special": created });
+    else if (ability_type === "attack")
+      await this.actor.update({
+        "system.attacks": [...this.actor.system.attacks.map(a => a.id), created],
+      });
+    created.sheet.render(true);
   }
 }
