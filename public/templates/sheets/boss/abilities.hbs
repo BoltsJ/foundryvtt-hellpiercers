@@ -19,10 +19,15 @@
           <a
             class="control"
             data-action="onEmbedSheet"
-            data-tooltip="{{localize ' DOCUMENT.Update' type=(localize "TYPES.Item.ability")}}"
+            data-tooltip={{localize "DOCUMENT.Update" type=(localize "TYPES.Item.ability")}}
           >
             <i class="fas fa-edit"></i>
           </a>
+          <a
+            class="control"
+            data-action="onDeleteEmbed"
+            data-tooltip={{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.ability")}}
+          ><i class="fas fa-trash"></i></a>
         </div>
         {{#if attack.range}}
           <img src={{attack.range.svg_uri}} />
@@ -35,13 +40,19 @@
     <div class="special">
       <fieldset data--u-u-i-d={{special.uuid}}>
         <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
+        <div class="effect">{{{special.system.effect}}}</div>
         <a
           class="control"
           data-action="onEmbedSheet"
-          data-tooltip="{{localize ' DOCUMENT.Update' type=(localize "TYPES.Item.ability")}}"
+          data-tooltip={{localize "DOCUMENT.Update" type=(localize "TYPES.Item.ability")}}
         >
           <i class="fas fa-edit"></i>
         </a>
+        <a
+          class="control"
+          data-action="onDeleteEmbed"
+          data-tooltip={{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.ability")}}
+        ><i class="fas fa-trash"></i></a>
       </fieldset>
     </div>
   {{/if}}

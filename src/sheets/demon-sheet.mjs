@@ -1,3 +1,4 @@
+import { RangeEditorApp } from "./dialogs/RangeEditorApp.mjs";
 import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
 
 /**
@@ -21,6 +22,9 @@ export class DemonSheet extends HellpiercersActorSheet {
 
   static DEFAULT_OPTIONS = {
     classes: ["demon"],
+    actions: {
+      editRange: this.prototype._onEditRange,
+    },
   };
 
   async _preparePartContext(partId, ctx) {
@@ -55,5 +59,12 @@ export class DemonSheet extends HellpiercersActorSheet {
     }
     if (partId === "effects") ctx.effects = await this._getEffects();
     return ctx;
+  }
+
+  async _onEditRange() {
+    const range = this.document.system.strike.range;
+    const new_range = await RangeEditorApp.editRange(range);
+    const update = { "system.strike.range": new_range };
+    await this.document.update(update);
   }
 }

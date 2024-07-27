@@ -123,6 +123,9 @@
         "weapon": "Weapon Sheet"
       }
     },
+    "DIALOG": {
+      "new_ability": { "title": "New Ability", "content": "Add a new Ability?" }
+    },
     "STATUSES": {
       "aegis": "Aegis",
       "armor": "Armor",

@@ -1,3 +1,4 @@
+import { RangeEditorApp } from "./dialogs/RangeEditorApp.mjs";
 import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
 
 /**
@@ -10,13 +11,19 @@ export class AbilitySheet extends HellpiercersItemSheet {
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     details: {
       template: "systems/hellpiercers/templates/sheets/items/ability-details.hbs",
-      scrollable: ["tab"],
+      scrollable: [""],
     },
-    effects: { template: "systems/hellpiercers/templates/sheets/item-effects.hbs" },
+    effects: {
+      template: "systems/hellpiercers/templates/sheets/item-effects.hbs",
+      scrollable: [""],
+    },
   };
 
   static DEFAULT_OPTIONS = {
     classes: ["ability"],
+    actions: {
+      editRange: this.prototype._onEditRange,
+    },
   };
 
   async _preparePartContext(partId, ctx) {
@@ -33,5 +40,12 @@ export class AbilitySheet extends HellpiercersItemSheet {
     }
     if (partId === "effects") ctx.effects = this.item.effects;
     return ctx;
+  }
+
+  async _onEditRange() {
+    const range = this.item.system.range;
+    const new_range = await RangeEditorApp.editRange(range);
+    const update = { "system.range": new_range };
+    await this.item.update(update);
   }
 }

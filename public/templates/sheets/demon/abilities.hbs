@@ -7,7 +7,12 @@
     <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.label"}}</legend>
     {{formGroup fields.strike.fields.name value=system.strike.name}}
     <label for="range">{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.range.label"}}</label>
-    <img name="range" src={{system.strike.range.svg_uri}} />
+    <div>{{ifThen
+        (eq system.strike.range.kind "bespoke")
+        (concat "<img src=" system.strike.range.svg_uri ">")
+        system.strike.range.short_text
+      }}</div>
+    <a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
     {{formGroup fields.strike.fields.damage value=system.strike.damage}}
     {{formInput strike.field enriched=strike.enriched value=strike.value toggled=true}}
   </fieldset>

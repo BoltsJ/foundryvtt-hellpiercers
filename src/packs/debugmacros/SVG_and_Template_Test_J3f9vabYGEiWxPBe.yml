@@ -4,7 +4,7 @@ command: |-
   const range = new hellpiercers.data.RangeModel({
     kind: "line",
     value: 2,
-    modifiers: { scale: actor?.scale },
+    modifiers: { scale: actor?.system.scale },
   });
   const kind = range.schema.fields.kind.toFormGroup(
     { classes: ["stacked"], localize: true },
@@ -81,7 +81,7 @@ _stats:
   systemId: hellpiercers
   systemVersion: 0.alpha1
   createdTime: 1721853137918
-  modifiedTime: 1721959369398
+  modifiedTime: 1721973515643
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: J3f9vabYGEiWxPBe
 sort: 200000
