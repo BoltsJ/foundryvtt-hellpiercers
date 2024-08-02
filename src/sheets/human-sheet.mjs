@@ -32,6 +32,27 @@ export class HumanSheet extends HellpiercersActorSheet {
       ctx.weapon = this.actor.system.weapon;
       ctx.armor = this.actor.system.armor;
       ctx.class = this.actor.system.class;
+      ctx.class_active = {
+        item: this.actor.system.class_active,
+        enriched: await TextEditor.enrichHTML(ctx.system.class_active?.system.effect, {
+          secrets: this.document.isOwner,
+          rollData: this.actor.getRollData.bind(this.actor),
+        }),
+      };
+      ctx.class_passive = {
+        item: this.actor.system.class_passive,
+        enriched: await TextEditor.enrichHTML(ctx.system.class_passive?.system.effect, {
+          secrets: this.document.isOwner,
+          rollData: this.actor.getRollData.bind(this.actor),
+        }),
+      };
+      ctx.class_limit = {
+        item: this.actor.system.class_limit,
+        enriched: await TextEditor.enrichHTML(ctx.system.class_limit?.system.effect, {
+          secrets: this.document.isOwner,
+          rollData: this.actor.getRollData.bind(this.actor),
+        }),
+      };
       ctx.weaponChoices = {};
       this.actor.itemTypes.weapon.forEach(w => (ctx.weaponChoices[w.id] = w.name));
     }
@@ -52,6 +73,19 @@ export class HumanSheet extends HellpiercersActorSheet {
   async _onItemDrop(uuid) {
     /** @type {import("../documents/index.mjs").HellpiercersItem} */
     const item = await fromUuid(uuid);
-    await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+    const [created] = await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+    if (created.type === "class") {
+      await this.actor.system.class?.delete();
+      await this.actor.update({ "system.class": created });
+    }
+    if (created.type === "armor") {
+      await this.actor.system.armor?.delete();
+      await this.actor.update({ "system.armor": created });
+    }
+    if (created.type === "ability") {
+      const prop = `${created.system.item.type}_${created.system.action}`;
+      await this.actor.system[prop]?.delete();
+      await this.actor.update({ [`system.${prop}`]: created });
+    }
   }
 }

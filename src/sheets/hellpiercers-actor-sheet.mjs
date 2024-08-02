@@ -111,7 +111,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
   async _onDeleteEmbed(ev, target) {
     if (!this.isEditable) return;
     const noConfirm = ev.shiftKey;
-    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const uuid = target.closest("[data-uuid]").dataset.uuid;
     const doc = await fromUuid(uuid);
     if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
     if (doc.parent !== this.document)
@@ -126,7 +126,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
    */
   async _onUpdateEmbed(_ev, target) {
     if (!this.isEditable) return;
-    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const uuid = target.closest("[data-uuid]").dataset.uuid;
     const path = target.dataset.property;
     const val = target.type == "checkbox" ? target.checked : target.value;
     const doc = await fromUuid(uuid);
@@ -140,7 +140,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
    */
   async _onEmbedSheet(_ev, target) {
     if (!this.isEditable) return;
-    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const uuid = target.closest("[data-uuid]").dataset.uuid;
     const doc = await fromUuid(uuid);
     if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
     doc.sheet.render(true);
@@ -201,7 +201,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
     let dragData = null;
     switch (el.dataset.drag) {
       case "attack":
-        dragData = { type: "attackmacro", uuid: el.closest("[data--u-u-i-d]").dataset.UUID };
+        dragData = { type: "attackmacro", uuid: el.closest("[data-uuid]").dataset.uuid };
         break;
       default:
         break;

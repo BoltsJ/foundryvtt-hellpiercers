@@ -70,6 +70,11 @@ Hooks.once("init", () => {
     makeDefault: true,
     label: "HELLPIERCERS.SHEETS.Item.ability",
   });
+  Items.registerSheet("hellpiercers", sheets.ClassSheet, {
+    types: ["class"],
+    makeDefault: true,
+    label: "HELLPIERCERS.SHEETS.Item.class",
+  });
   Items.registerSheet("hellpiercers", sheets.WeaponSheet, {
     types: ["weapon"],
     makeDefault: true,

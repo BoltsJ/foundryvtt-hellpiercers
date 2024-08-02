@@ -3,7 +3,7 @@
   data-group="primary"
   data-tab="abilities"
 >
-  <div class="weapon flexcol" data--u-u-i-d={{weapon.uuid}}>
+  <div class="weapon flexcol" data-uuid={{weapon.uuid}}>
     <div class="flexrow">
       <select name="system.weapon">
         {{selectOptions
@@ -48,10 +48,46 @@
       </div>
     {{/if}}
   </div>
-  <div class="armor">
-    {{armor.name}}
-  </div>
-  <div class="class">
-    {{class.name}}
-  </div>
+  <fieldset class="armor" data-uuid={{armor.uuid}}>
+    {{#if system.armor}}
+      <legend>
+        <span>{{armor.name}}</span>
+        <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
+        <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
+      </legend>
+    {{else}}
+      <legend>{{localize "HELLPIERCERS.ACTOR.SHEET.noarmor"}}</legend>
+    {{/if}}
+  </fieldset>
+  <fieldset class="class" data-uuid={{class.uuid}}>
+    {{#if system.class}}
+      <legend>
+        <span>{{class.name}}</span>
+        <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
+        <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
+      </legend>
+      <div>
+        <strong>{{localize "HELLPIERCERS.ITEM.action.active"}}:</strong>
+        {{class_active.item.name}}
+        {{{class_active.enriched}}}
+      </div>
+      <div>
+        <strong> {{localize "HELLPIERCERS.ITEM.action.passive"}}:</strong>
+        {{class_passive.item.name}}
+        {{{class_passive.enriched}}}
+      </div>
+      {{#if system.meta.limit_break}}
+        <div>
+          <strong>{{localize "HELLPIERCERS.ITEM.action.limit"}}:</strong>
+          {{class_limit.item.name}}
+          <br />
+          <strong>{{localize "HELLPIERCERS.ITEM.FIELDS.break_value.label"}}:</strong>
+          {{class_limit.item.system.break_value}}
+          {{{class_limit.enriched}}}
+        </div>
+      {{/if}}
+    {{else}}
+      <legend>{{localize "HELLPIERCERS.ACTOR.SHEET.noclass"}}</legend>
+    {{/if}}
+  </fieldset>
 </section>

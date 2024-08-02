@@ -1,0 +1,20 @@
+<section
+  class="tab details scrollable flexcol {{tab.cssClass}}"
+  data-group="primary"
+  data-tab="details"
+>
+  {{formGroup fields.health value=system.health disabled=(not editable)}}
+  {{formGroup
+    fields.active
+    value=system.active
+    classes="stacked"
+    disabled=(or actor (not editable))
+  }}
+  {{formGroup
+    fields.passive
+    value=system.passive
+    classes="stacked"
+    disabled=(or actor (not editable))
+  }}
+  {{formGroup fields.limit value=system.limit classes="stacked" disabled=(or actor (not editable))}}
+</section>

@@ -84,7 +84,7 @@ export class HellpiercersItemSheet extends api.HandlebarsApplicationMixin(sheets
   async _onDeleteEmbed(ev, target) {
     if (!this.isEditable) return;
     const noConfirm = ev.shiftKey;
-    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const uuid = target.closest("[data-uuid]").dataset.uuid;
     const doc = await fromUuid(uuid);
     if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
     if (doc.parent !== this.item)
@@ -99,7 +99,7 @@ export class HellpiercersItemSheet extends api.HandlebarsApplicationMixin(sheets
    */
   async _onUpdateEmbed(_ev, target) {
     if (!this.isEditable) return;
-    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const uuid = target.closest("[data-uuid]").dataset.uuid;
     const path = target.dataset.property;
     const val = target.type == "checkbox" ? target.checked : target.value;
     const doc = await fromUuid(uuid);
@@ -113,7 +113,7 @@ export class HellpiercersItemSheet extends api.HandlebarsApplicationMixin(sheets
    */
   async _onEmbedSheet(_ev, target) {
     if (!this.isEditable) return;
-    const uuid = target.closest("[data--u-u-i-d]").dataset.UUID;
+    const uuid = target.closest("[data-uuid]").dataset.uuid;
     const doc = await fromUuid(uuid);
     if (!doc) throw new Error(`Document not found. uuid: ${uuid}`);
     doc.sheet.render(true);

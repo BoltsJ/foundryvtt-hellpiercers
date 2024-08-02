@@ -11,7 +11,7 @@
     disabled=(or (not editable) actor)
   }}
   {{#if (eq system.action "attack")}}
-    {{formGroup fields.damage value=system.damage placeholder="0"}}
+    {{formGroup fields.damage value=system.damage placeholder="0" disabled=(not editable)}}
     {{#if (eq system.range.kind "bespoke")}}
       <img src={{system.range.svg_uri}} />
     {{else}}
@@ -19,6 +19,16 @@
     {{/if}}
     <a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
   {{/if}}
-  {{formInput effect.field enriched=effect.enriched value=effect.value toggled=true}}
-  {{formGroup fields.item.fields.uuid value=system.item.uuid}}
+  {{#if (eq system.action "limit")}}
+    {{formGroup fields.break_value value=system.break_value disabled=(not editable)}}
+  {{/if}}
+  {{formInput
+    effect.field
+    enriched=effect.enriched
+    value=effect.value
+    toggled=true
+    disabled=(not editable)
+  }}
+  {{formGroup fields.item.fields.type value=system.item.type localize=true disabled=(not editable)}}
+  {{formGroup fields.item.fields.uuid value=system.item.uuid disabled=(not editable)}}
 </section>

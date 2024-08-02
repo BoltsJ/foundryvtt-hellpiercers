@@ -5,7 +5,7 @@
 >
   {{#each attacks}}
     <div class="attack">
-      <fieldset data--u-u-i-d={{attack.uuid}}>
+      <fieldset data-uuid={{attack.uuid}}>
         <legend>{{attack.name}}</legend>
         <div>{{ifThen
             (eq attack.system.range.kind "bespoke")
@@ -38,7 +38,7 @@
   {{/each}}
   {{#if special}}
     <div class="special">
-      <fieldset data--u-u-i-d={{special.uuid}}>
+      <fieldset data-uuid={{special.uuid}}>
         <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
         <div class="effect">{{{special.system.effect}}}</div>
         <a

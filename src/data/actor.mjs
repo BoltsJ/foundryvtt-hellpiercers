@@ -36,9 +36,17 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
       callsign: new fields.StringField({ required: true }),
       // Equipment
       class: new OwnedItemField({ initial: null, nullable: true }),
+      class_active: new OwnedItemField({ initial: null, nullable: true }),
+      class_passive: new OwnedItemField({ initial: null, nullable: true }),
+      class_limit: new OwnedItemField({ initial: null, nullable: true }),
       armor: new OwnedItemField({ initial: null, nullable: true }),
       weapon: new OwnedItemField({ initial: null, nullable: true }),
-      max_weapons: new fields.NumberField({ required: true, initial: 1, integer: true }),
+      meta: new fields.SchemaField({
+        cross_class: new fields.BooleanField({ required: true, initial: false }),
+        gear_slots: new fields.NumberField({ required: true, initial: 0, integer: true }),
+        limit_break: new fields.BooleanField({ required: true, initial: false }),
+        weapon_slots: new fields.NumberField({ required: true, initial: 1, integer: true }),
+      }),
     };
   }
 
@@ -46,14 +54,40 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
     this.health.max = this.class?.system.health ?? 10;
     this.speed = this.armor?.system?.speed ?? 3;
   }
+
+  async applyClass(cls) {
+    const actor = this.parent;
+    if (typeof cls === "string") cls = actor?.getEmbeddedDocument("Item", cls);
+    if (!cls || !actor || cls.actor !== actor) return;
+    const active_data = (await fromUuid(cls.system.active))?.toObject();
+    const passive_data = (await fromUuid(cls.system.passive))?.toObject();
+    const limit_data = (await fromUuid(cls.system.limit))?.toObject();
+    await Promise.AllSettled([
+      actor.system.class_active?.delete(),
+      actor.system.class_passive?.delete(),
+      actor.system.class_limit?.delete(),
+    ]);
+    const [active, passive, limit] = await actor.createEmbeddedDocuments("Item", [
+      active_data,
+      passive_data,
+      limit_data,
+    ]);
+    return actor.update({
+      system: {
+        class_active: active,
+        class_passive: passive,
+        class_limit: limit,
+      },
+    });
+  }
 }
 
 export class DemonModel extends foundry.abstract.TypeDataModel {
   static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ACTOR"];
   static defineSchema() {
     return {
-      biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
-      faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
+      biography: new fields.HTMLField({ required: true }),
+      faction: new fields.StringField({}),
       tags: new fields.SetField(new fields.StringField(), { initial: ["Tag"] }),
       health: new fields.SchemaField({
         value: new fields.NumberField({ required: true, initial: 10, integer: true }),
@@ -104,7 +138,7 @@ export class BossModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       biography: new fields.HTMLField({ required: true, label: "HELLPIERCERS.Biography" }),
-      faction: new fields.StringField({ label: "HELLPIERCERS.Faction" }),
+      faction: new fields.StringField({}),
       tags: new fields.SetField(new fields.StringField(), { initial: ["Boss"] }),
       health: new fields.SchemaField({
         value: new fields.NumberField({ required: true, initial: 10, integer: true }),

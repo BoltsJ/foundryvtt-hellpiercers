@@ -12,6 +12,7 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
         choices: {
           active: "HELLPIERCERS.ITEM.action.active",
           attack: "HELLPIERCERS.ITEM.action.attack",
+          limit: "HELLPIERCERS.ITEM.action.limit",
           movement: "HELLPIERCERS.ITEM.action.movement",
           passive: "HELLPIERCERS.ITEM.action.passive",
           special: "HELLPIERCERS.ITEM.action.special",
@@ -24,6 +25,7 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
         validate: v => v === null || foundry.dice.Roll.validate(v),
       }),
       range: new fields.EmbeddedDataField(RangeModel, { nullable: true, initial: null }),
+      break_value: new fields.NumberField({ initial: 10 }),
       effect: new fields.HTMLField({ required: true }),
       item: new fields.SchemaField({
         uuid: new fields.DocumentUUIDField({ nullable: true, initial: null }),
@@ -78,7 +80,7 @@ export class ArmorModel extends foundry.abstract.TypeDataModel {
         description: new fields.HTMLField({ required: true }),
       }),
       reversal: new fields.SchemaField({
-        enables: new fields.BooleanField({ initial: false }),
+        enabled: new fields.BooleanField({ initial: false }),
         charges: new fields.NumberField({ initial: 1, integer: true }),
         trigger: new fields.StringField({ initial: "Targeted by an enemy" }),
         effect: new fields.HTMLField(),
@@ -88,18 +90,14 @@ export class ArmorModel extends foundry.abstract.TypeDataModel {
 }
 
 export class ClassModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ITEM"];
   static defineSchema() {
     return {
       description: new fields.HTMLField({ required: true }),
       health: new fields.NumberField({ integer: true, initial: 15 }),
-      active: new fields.SchemaField({
-        name: new fields.StringField({ required: true }),
-        description: new fields.HTMLField({ required: true }),
-      }),
-      passive: new fields.SchemaField({
-        name: new fields.StringField({ required: true }),
-        description: new fields.HTMLField({ required: true }),
-      }),
+      active: new fields.DocumentUUIDField({ nullable: true, initial: null }),
+      passive: new fields.DocumentUUIDField({ nullable: true, initial: null }),
+      limit: new fields.DocumentUUIDField({ nullable: true, initial: null }),
     };
   }
 }

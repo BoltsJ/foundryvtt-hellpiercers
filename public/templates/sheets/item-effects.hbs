@@ -2,7 +2,7 @@
   <ol>
     <li class="flexrow header">{{localize "HELLPIERCERS.ACTOR.SHEET.effects.active"}}</li>
     {{#each effects as |effect|}}
-      <li class="effect flexrow" data--u-u-i-d={{effect.uuid}}>
+      <li class="effect flexrow" data-uuid={{effect.uuid}}>
         {{#if effect.img}}<img src={{effect.img}} height="20" width="20" />{{/if}}
         <span class="name">
           {{effect.name}}{{#if

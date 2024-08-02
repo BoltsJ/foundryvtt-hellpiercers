@@ -69,8 +69,11 @@
       "FIELDS": {
         "action": { "label": "Action Type" },
         "active": { "label": "Active", "name": { "label": "Active" } },
+        "break_value": { "label": "Break Value" },
         "damage": { "label": "Damage" },
         "description": { "label": "Description" },
+        "health": { "label": "Health" },
+        "limit": { "label": "Limit Break" },
         "passive": { "label": "Passive", "name": { "label": "Passive" } },
         "range": { "label": "Range" }
       },
@@ -81,6 +84,7 @@
       "action": {
         "active": "Active",
         "attack": "Attack",
+        "limit": "Limit Break",
         "movement": "Movement",
         "passive": "Passive",
         "special": "Special"

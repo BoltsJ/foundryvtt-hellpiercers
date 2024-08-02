@@ -1,6 +1,6 @@
 export class HellpiercersActor extends Actor {
   /** @override */
-  async toggleStatusEffect(statusId, { direction }) {
+  async toggleStatusEffect(statusId, { direction, active, overlay } = {}) {
     const status = CONFIG.statusEffects.find(e => e.id === statusId);
     if (!status)
       throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
@@ -21,13 +21,15 @@ export class HellpiercersActor extends Actor {
     }
 
     if (existing.length > 0) {
-      existing.forEach(e =>
+      existing.forEach(e => {
+        overlay ??= foundry.utils.getProperty(e, "flags.core.overlay");
+        const value = foundry.utils.getProperty(e, `flags.${game.system.id}.value`) ?? 1;
         foundry.utils.setProperty(
           e,
           `flags.${game.system.id}.value`,
-          (e.flags[game.system.id]?.value ?? 1) + direction
-        )
-      );
+          overlay ? (active ? null : 0) : value + (direction ?? (active ? 1 : -value))
+        );
+      });
 
       const deletions = existing
         .filter(e => (e.flags[game.system.id]?.value ?? 1) <= 0)
@@ -38,11 +40,12 @@ export class HellpiercersActor extends Actor {
         this.deleteEmbeddedDocuments("ActiveEffect", deletions),
         this.updateEmbeddedDocuments("ActiveEffect", updates),
       ]).then(r => r.flatMap(p => (p.status === "fulfilled" ? p.value : null)));
-    } else if (direction > 0) {
+    } else if ((direction > 0 || direction == null) && active !== false) {
       // Create the effect with a count of direction
       const cls = getDocumentClass("ActiveEffect");
       const effect = await cls.fromStatusEffect(statusId);
-      effect.updateSource({ [`flags.${game.system.id}.value`]: direction });
+      overlay ??= effect.getFlag("core", "overlay");
+      effect.updateSource({ [`flags.${game.system.id}.value`]: overlay ? null : direction ?? 1 });
       return cls.create(effect, { parent: this, keepId: true });
     }
   }
