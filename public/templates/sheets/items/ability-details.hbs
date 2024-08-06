@@ -18,6 +18,9 @@
       {{system.range.short_text}}
     {{/if}}
     <a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
+  {{else if (eq system.action "reversal")}}
+    {{formGroup fields.uses value=system.uses disabled=(not editable)}}
+    {{formGroup fields.trigger value=system.trigger disabled=(not editable)}}
   {{/if}}
   {{#if (eq system.action "limit")}}
     {{formGroup fields.break_value value=system.break_value disabled=(not editable)}}

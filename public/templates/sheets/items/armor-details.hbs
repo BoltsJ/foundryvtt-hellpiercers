@@ -1,0 +1,19 @@
+<section
+  class="tab details scrollable flexcol {{tab.cssClass}}"
+  data-group="primary"
+  data-tab="details"
+>
+  {{formGroup fields.speed value=system.speed disabled=(not editable)}}
+  <fieldset>
+    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.movement.label"}}</legend>
+    {{formInput fields.movement value=system.movement disabled=(not editable)}}
+  </fieldset>
+  <fieldset>
+    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.ability.label"}}</legend>
+    {{formInput fields.ability value=system.ability disabled=(not editable)}}
+  </fieldset>
+  <fieldset>
+    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.reversal.label"}}</legend>
+    {{formInput fields.reversal value=system.reversal disabled=(not editable)}}
+  </fieldset>
+</section>

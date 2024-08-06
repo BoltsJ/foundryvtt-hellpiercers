@@ -13,12 +13,12 @@
           <a
             class="control edit"
             data-action="onEmbedSheet"
-            data-tooltip={{localize 'DOCUMENT.Update' type=(localize "DOCUMENT.ActiveEffect")}}
+            data-tooltip={{localize "DOCUMENT.Update" type=(localize "DOCUMENT.ActiveEffect")}}
           ><i class="fas fa-edit"></i></a>
           <a
             class="control delete"
             data-action="onDeleteEmbed"
-            data-tooltip={{localize 'DOCUMENT.Delete' type=(localize "DOCUMENT.ActiveEffect")}}
+            data-tooltip={{localize "DOCUMENT.Delete" type=(localize "DOCUMENT.ActiveEffect")}}
           ><i class="fas fa-trash"></i></a>
         </li>
       {{/each}}
@@ -35,10 +35,7 @@
               effect.flags.hellpiercers.value
             }}:{{effect.flags.hellpiercers.value}}{{/if}}
           </span>
-          <a
-            data-action="onEmbedSheet"
-            data-uuid={{effect.parent.uuid}}
-          >{{effect.parent.name}}</a>
+          <a data-action="onEmbedSheet" data-uuid={{effect.parent.uuid}}>{{effect.parent.name}}</a>
           <input
             type="checkbox"
             data-action="onUpdateEmbed"

@@ -36,11 +36,20 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
       callsign: new fields.StringField({ required: true }),
       // Equipment
       class: new OwnedItemField({ initial: null, nullable: true }),
-      class_active: new OwnedItemField({ initial: null, nullable: true }),
-      class_passive: new OwnedItemField({ initial: null, nullable: true }),
-      class_limit: new OwnedItemField({ initial: null, nullable: true }),
       armor: new OwnedItemField({ initial: null, nullable: true }),
       weapon: new OwnedItemField({ initial: null, nullable: true }),
+      abilities: new fields.SchemaField({
+        class: new fields.SchemaField({
+          active: new OwnedItemField({ initial: null, nullable: true }),
+          passive: new OwnedItemField({ initial: null, nullable: true }),
+          limit: new OwnedItemField({ initial: null, nullable: true }),
+        }),
+        armor: new fields.SchemaField({
+          movement: new OwnedItemField({ initial: null, nullable: true }),
+          ability: new OwnedItemField({ initial: null, nullable: true }),
+          reversal: new OwnedItemField({ initial: null, nullable: true }),
+        }),
+      }),
       meta: new fields.SchemaField({
         cross_class: new fields.BooleanField({ required: true, initial: false }),
         gear_slots: new fields.NumberField({ required: true, initial: 0, integer: true }),
@@ -62,22 +71,37 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
     const active_data = (await fromUuid(cls.system.active))?.toObject();
     const passive_data = (await fromUuid(cls.system.passive))?.toObject();
     const limit_data = (await fromUuid(cls.system.limit))?.toObject();
-    await Promise.AllSettled([
-      actor.system.class_active?.delete(),
-      actor.system.class_passive?.delete(),
-      actor.system.class_limit?.delete(),
-    ]);
+    await Promise.allSettled(
+      actor.itemTypes.ability.filter(i => i.system.item.type === "class").map(i => i.delete())
+    );
     const [active, passive, limit] = await actor.createEmbeddedDocuments("Item", [
       active_data,
       passive_data,
       limit_data,
     ]);
     return actor.update({
-      system: {
-        class_active: active,
-        class_passive: passive,
-        class_limit: limit,
-      },
+      system: { class: cls, "abilities.class": { active, passive, limit } },
+    });
+  }
+
+  async applyArmor(armor) {
+    const actor = this.parent;
+    if (typeof armor === "string") armor = actor?.getEmbeddedDocument("Item", armor);
+    if (!armor || !actor || armor.actor !== actor) return;
+    const movement_data = (await fromUuid(armor.system.movement))?.toObject();
+    const ability_data = (await fromUuid(armor.system.ability))?.toObject();
+    const reversal_data = (await fromUuid(armor.system.reversal))?.toObject();
+    console.log([movement_data, ability_data, reversal_data]);
+    await Promise.allSettled(
+      actor.itemTypes.ability.filter(i => i.system.item.type === "armor").map(i => i.delete())
+    );
+    const [movement, ability, reversal] = await actor.createEmbeddedDocuments("Item", [
+      movement_data,
+      ability_data,
+      reversal_data,
+    ]);
+    return actor.update({
+      system: { armor, "abilities.armor": { movement, ability, reversal } },
     });
   }
 }
@@ -105,6 +129,7 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
           required: true,
           initial: "3",
           validate: v => foundry.dice.Roll.validate(v),
+          validationError: "must be a valid Roll formula",
         }),
         description: new fields.HTMLField({ required: true }),
       }),

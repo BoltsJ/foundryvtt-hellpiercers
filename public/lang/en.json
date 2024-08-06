@@ -74,8 +74,12 @@
         "description": { "label": "Description" },
         "health": { "label": "Health" },
         "limit": { "label": "Limit Break" },
+        "movement": { "label": "Movement" },
         "passive": { "label": "Passive", "name": { "label": "Passive" } },
-        "range": { "label": "Range" }
+        "range": { "label": "Range" },
+        "speed": { "label": "Speed" },
+        "trigger": { "label": "Trigger" },
+        "uses": { "label": "Charges" }
       },
       "TABS": {
         "details": "Details",
@@ -87,6 +91,7 @@
         "limit": "Limit Break",
         "movement": "Movement",
         "passive": "Passive",
+        "reversal": "Reversal",
         "special": "Special"
       }
     },

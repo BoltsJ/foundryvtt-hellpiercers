@@ -15,6 +15,7 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
           limit: "HELLPIERCERS.ITEM.action.limit",
           movement: "HELLPIERCERS.ITEM.action.movement",
           passive: "HELLPIERCERS.ITEM.action.passive",
+          reversal: "HELLPIERCERS.ITEM.action.reversal",
           special: "HELLPIERCERS.ITEM.action.special",
         },
       }),
@@ -23,8 +24,11 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
         nullable: true,
         initial: null,
         validate: v => v === null || foundry.dice.Roll.validate(v),
+        validationError: "must be a valid Roll formula",
       }),
       range: new fields.EmbeddedDataField(RangeModel, { nullable: true, initial: null }),
+      uses: new fields.NumberField({ initial: null, nullable: true }),
+      trigger: new fields.StringField({ initial: null, nullable: true }),
       break_value: new fields.NumberField({ initial: 10 }),
       effect: new fields.HTMLField({ required: true }),
       item: new fields.SchemaField({
@@ -55,6 +59,7 @@ export class WeaponModel extends foundry.abstract.TypeDataModel {
         required: true,
         initial: "0 + 1D6",
         validate: v => foundry.dice.Roll.validate(v),
+        validationError: "must be a valid Roll formula",
       }),
       range: new fields.ArrayField(new fields.EmbeddedDataField(RangeModel), { initial: [{}] }),
       active: new fields.SchemaField({
@@ -70,22 +75,20 @@ export class WeaponModel extends foundry.abstract.TypeDataModel {
 }
 
 export class ArmorModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ITEM"];
   static defineSchema() {
     return {
       description: new fields.HTMLField({ required: true }),
       speed: new fields.NumberField({ required: true }),
-      movement: new fields.HTMLField({ required: true }),
-      ability: new fields.SchemaField({
-        name: new fields.StringField({ required: true }),
-        description: new fields.HTMLField({ required: true }),
-      }),
-      reversal: new fields.SchemaField({
-        enabled: new fields.BooleanField({ initial: false }),
-        charges: new fields.NumberField({ initial: 1, integer: true }),
-        trigger: new fields.StringField({ initial: "Targeted by an enemy" }),
-        effect: new fields.HTMLField(),
-      }),
+      movement: new fields.DocumentUUIDField({ initial: null }),
+      ability: new fields.DocumentUUIDField({ initial: null }),
+      reversal: new fields.DocumentUUIDField({ initial: null }),
     };
+  }
+
+  static migrateData(data) {
+    if (data.ability?.name) data.ability = null;
+    if (data.reversal?.enabled) data.reversal = null;
   }
 }
 

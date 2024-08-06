@@ -55,6 +55,28 @@
         <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
         <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
       </legend>
+      <div>
+        <strong>{{localize "HELLPIERCERS.ITEM.action.movement"}}:</strong>
+        {{armor_movement.item.name}}
+        {{{armor_movement.enriched}}}
+      </div>
+      <strong>{{localize "HELLPIERCERS.ITEM.action.active"}}:</strong>
+      {{armor_ability.item.name}}
+      {{{armor_ability.enriched}}}
+      <div>
+      </div>
+      {{#if system.meta.reversal}}
+        <div>
+          <strong>{{localize "HELLPIERCERS.ITEM.action.reversal"}}
+            -
+            {{localize "HELLPIERCERS.ITEM.FIELDS.uses.label"}}:
+            {{armor_reversal.item.system.uses}}</strong>
+          <br />
+          <strong>{{localize "HELLPIERCERS.ITEM.FIELDS.trigger.label"}}:</strong>
+          <span>{{armor_reversal.item.system.trigger}}</span>
+          {{{armor_reversal.enriched}}}
+        </div>
+      {{/if}}
     {{else}}
       <legend>{{localize "HELLPIERCERS.ACTOR.SHEET.noarmor"}}</legend>
     {{/if}}
