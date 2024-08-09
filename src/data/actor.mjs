@@ -91,7 +91,6 @@ export class HumanModel extends foundry.abstract.TypeDataModel {
     const movement_data = (await fromUuid(armor.system.movement))?.toObject();
     const ability_data = (await fromUuid(armor.system.ability))?.toObject();
     const reversal_data = (await fromUuid(armor.system.reversal))?.toObject();
-    console.log([movement_data, ability_data, reversal_data]);
     await Promise.allSettled(
       actor.itemTypes.ability.filter(i => i.system.item.type === "armor").map(i => i.delete())
     );

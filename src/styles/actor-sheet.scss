@@ -29,7 +29,7 @@ header.sheet-header {
     scrollbar-width: thin;
     li.header {
       column-span: all;
-      border-bottom: 1px dashed;
+      border-bottom: 1px dashed var(--color-border-light-primary);
     }
     &.temporary {
       columns: 2;

@@ -61,10 +61,6 @@ Hooks.once("init", () => {
   CONFIG.Item.dataModels.weapon = data.WeaponModel;
   CONFIG.Item.documentClass = documents.HellpiercersItem;
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("hellpiercers", sheets.HellpiercersItemSheet, {
-    makeDefault: true,
-    label: "HELLPIERCERS.ItemSheet",
-  });
   Items.registerSheet("hellpiercers", sheets.AbilitySheet, {
     types: ["ability"],
     makeDefault: true,
@@ -79,6 +75,11 @@ Hooks.once("init", () => {
     types: ["class"],
     makeDefault: true,
     label: "HELLPIERCERS.SHEETS.Item.class",
+  });
+  Items.registerSheet("hellpiercers", sheets.GearSheet, {
+    types: ["gear"],
+    makeDefault: true,
+    label: "HELLPIERCERS.SHEETS.Item.gear",
   });
   Items.registerSheet("hellpiercers", sheets.WeaponSheet, {
     types: ["weapon"],
