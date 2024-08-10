@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
-import TARGET_ICON from "../../public/assets/icons/targeting.svg?raw";
-import USER_ICON from "../../public/assets/icons/spiked-halo.svg?raw";
+import TARGET_ICON from "../../public/assets/icons/range/targeting.svg?raw";
+import USER_ICON from "../../public/assets/icons/range/spiked-halo.svg?raw";
 
 export class RangeModel extends foundry.abstract.DataModel {
   static defineSchema() {
