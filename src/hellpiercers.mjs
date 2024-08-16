@@ -5,12 +5,11 @@ import { placeTemplate } from "./canvas/range-template.mjs";
 import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
-import { RangeEditorApp } from "./sheets/dialogs/RangeEditorApp.mjs";
 import * as sheets from "./sheets/index.mjs";
 import { getStatusEffects } from "./statuses.mjs";
 
 globalThis.hellpiercers = {
-  applications: { RangeEditorApp, sheets },
+  applications: { sheets },
   data,
   documents,
   placeTemplate,

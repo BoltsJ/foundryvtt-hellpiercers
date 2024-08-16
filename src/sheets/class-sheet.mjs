@@ -1,5 +1,4 @@
 import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
-import { RangeEditorApp } from "./dialogs/RangeEditorApp.mjs";
 
 /**
  * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor
@@ -37,12 +36,13 @@ export class ClassSheet extends HellpiercersItemSheet {
     return ctx;
   }
 
+  // eslint-disable-next-line no-unused-vars
   async _onEditRange(_ev, target) {
-    const index = target.dataset.rangeIndex;
-    const range = this.item.system.range[index];
-    const new_range = await RangeEditorApp.editRange(range);
-    const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
-    update["system.range"][index] = new_range.toObject();
-    await this.item.update(update);
+    // const index = target.dataset.rangeIndex;
+    // const range = this.item.system.range[index];
+    // const new_range = await RangeEditorApp.editRange(range);
+    // const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
+    // update["system.range"][index] = new_range.toObject();
+    // await this.item.update(update);
   }
 }

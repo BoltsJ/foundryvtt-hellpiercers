@@ -13,13 +13,8 @@
     "start": "npm run foundry & npm run build && vite",
     "foundry": "fvtt launch"
   },
-  "imports": {
-    "#runtime/*": "@typhonjs-fvtt/runtime/*",
-    "#standard/*": "@typhonjs-fvtt/svelte-standard/*"
-  },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.3",
-    "@rollup/plugin-node-resolve": "^15.2.1",
     "@sveltejs/vite-plugin-svelte": "^2.4.5",
     "eslint": "^8.57.0",
     "eslint-plugin-svelte": "^2.35.1",
@@ -29,8 +24,6 @@
     "vite": "^4.4.0"
   },
   "dependencies": {
-    "@typhonjs-fvtt/runtime": "^0.1.3",
-    "@typhonjs-fvtt/svelte-standard": "^0.1.0",
     "svelte": "^4.2.0"
   }
 }

@@ -85,11 +85,6 @@ export class ArmorModel extends foundry.abstract.TypeDataModel {
       reversal: new fields.DocumentUUIDField({ initial: null }),
     };
   }
-
-  static migrateData(data) {
-    if (data.ability?.name) data.ability = null;
-    if (data.reversal?.enabled) data.reversal = null;
-  }
 }
 
 export class ClassModel extends foundry.abstract.TypeDataModel {
@@ -106,6 +101,7 @@ export class ClassModel extends foundry.abstract.TypeDataModel {
 }
 
 export class GearModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ITEM"];
   static defineSchema() {
     return {
       kind: new fields.StringField({
@@ -127,6 +123,7 @@ export class GearModel extends foundry.abstract.TypeDataModel {
 }
 
 export class EquipmentModel extends foundry.abstract.TypeDataModel {
+  static LOCALIZATION_PREFIXES = ["HELLPIERCERS.ITEM"];
   static defineSchema() {
     return {
       description: new fields.HTMLField({ required: true }),

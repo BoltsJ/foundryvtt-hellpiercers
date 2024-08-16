@@ -187,8 +187,8 @@ export class BossModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareBaseData() {
-    this.attacks = this.attacks.map(a => a()).filter(a => !!a);
     // Idk why this doesn't properly initialize?
+    this.attacks = this.attacks.map(a => a()).filter(a => !!a);
   }
 }
 

@@ -1,4 +1,3 @@
-import { RangeEditorApp } from "./dialogs/RangeEditorApp.mjs";
 import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
 
 /**
@@ -43,9 +42,9 @@ export class AbilitySheet extends HellpiercersItemSheet {
   }
 
   async _onEditRange() {
-    const range = this.item.system.range;
-    const new_range = await RangeEditorApp.editRange(range);
-    const update = { "system.range": new_range };
-    await this.item.update(update);
+    // const range = this.item.system.range;
+    // const new_range = await RangeEditorApp.editRange(range);
+    // const update = { "system.range": new_range };
+    // await this.item.update(update);
   }
 }
