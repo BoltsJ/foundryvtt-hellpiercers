@@ -5,11 +5,11 @@ import { placeTemplate } from "./canvas/range-template.mjs";
 import { HellpiercersTemplateLayer } from "./canvas/template-layer.mjs";
 import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
-import * as sheets from "./sheets/index.mjs";
+import * as applications from "./applications/index.mjs";
 import { getStatusEffects } from "./statuses.mjs";
 
 globalThis.hellpiercers = {
-  applications: { sheets },
+  applications,
   data,
   documents,
   placeTemplate,
@@ -22,6 +22,8 @@ const ascii_logo = `
 `;
 Hooks.once("init", () => {
   console.log("hellpiercers | Initializing HELLPIERCERS System", ascii_logo);
+
+  const sheets = applications.sheets;
 
   CONFIG.ActiveEffect.legacyTransferral = false;
   CONFIG.statusEffects = getStatusEffects();
