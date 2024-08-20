@@ -8,7 +8,10 @@ export class BossSheet extends HellpiercersActorSheet {
   static PARTS = {
     header: { template: "systems/hellpiercers/templates/sheets/boss/header.hbs" },
     tabs: { template: "templates/generic/tab-navigation.hbs" },
-    abilities: { template: "systems/hellpiercers/templates/sheets/boss/abilities.hbs" },
+    abilities: {
+      template: "systems/hellpiercers/templates/sheets/boss/abilities.hbs",
+      scrollable: [""],
+    },
     biography: {
       template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
       scrollable: [""],
@@ -62,7 +65,7 @@ export class BossSheet extends HellpiercersActorSheet {
   }
 
   async _onAddAbility() {
-    const buttons = [{ label: "Cancel", action: "cancel" }];
+    const buttons = [{ label: "Cancel", action: "cancel", default: true }];
 
     if (this.actor.system.attacks.length < 3)
       buttons.unshift({ label: "HELLPIERCERS.ITEM.action.attack", action: "attack" });
@@ -71,11 +74,12 @@ export class BossSheet extends HellpiercersActorSheet {
 
     const ability_type = await foundry.applications.api.DialogV2.wait({
       window: { title: "HELLPIERCERS.DIALOG.new_ability.title" },
+      classes: ["hellpiercers", "new-ability"],
       content: game.i18n.localize("HELLPIERCERS.DIALOG.new_ability.content"),
       buttons,
+      rejectClose: false,
     });
     let data;
-    if (ability_type === "cancel") return;
     if (ability_type === "special")
       data = { name: "New Special", type: "ability", "system.action": "special" };
     if (ability_type === "attack")

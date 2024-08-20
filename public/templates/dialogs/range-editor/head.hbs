@@ -1,0 +1,7 @@
+<header>
+  {{formGroup fields.name value=range.name localize=true}}
+  {{formGroup fields.kind value=range.kind localize=true}}
+  {{#if (ne range.kind "bespoke")}}
+    {{formGroup fields.value value=range.value localize=true}}
+  {{/if}}
+</header>

@@ -98,13 +98,16 @@
     "RANGE": {
       "FIELDS": {
         "kind": { "label": "Range Type" },
-        "value": { "label": "Value" },
         "modifiers": {
           "label": "Modifiers",
-          "range": { "label": "Range" },
           "length": { "label": "Length" },
+          "push": { "label": "Push" },
+          "range": { "label": "Range" },
+          "recoil": { "label": "Recoil" },
           "width": { "label": "Width" }
-        }
+        },
+        "name": { "label": "Name" },
+        "value": { "label": "Value" }
       },
       "type": {
         "bespoke": "Bespoke",
@@ -133,7 +136,8 @@
       }
     },
     "DIALOG": {
-      "new_ability": { "title": "New Ability", "content": "Add a new Ability?" }
+      "new_ability": { "title": "New Ability", "content": "Add a new Ability?" },
+      "RangeEditor": { "title": "Edit Range" }
     },
     "STATUSES": {
       "aegis": "Aegis",

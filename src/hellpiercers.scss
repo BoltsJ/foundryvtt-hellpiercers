@@ -18,4 +18,10 @@
       @import "styles/ability-sheet";
     }
   }
+  &.range-editor {
+    @import "styles/range-editor";
+  }
+  &.new-ability {
+    @import "styles/new-ability";
+  }
 }

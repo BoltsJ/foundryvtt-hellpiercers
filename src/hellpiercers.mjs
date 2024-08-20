@@ -7,9 +7,11 @@ import * as data from "./data/index.mjs";
 import * as documents from "./documents/index.mjs";
 import * as applications from "./applications/index.mjs";
 import { getStatusEffects } from "./statuses.mjs";
+import { RangeEditor } from "./applications/dialogs/range-editor.mjs";
 
 globalThis.hellpiercers = {
   applications,
+  RangeEditor,
   data,
   documents,
   placeTemplate,

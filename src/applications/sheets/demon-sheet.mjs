@@ -1,4 +1,5 @@
 import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
+import { RangeEditor } from "../dialogs/range-editor.mjs";
 
 /**
  * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor
@@ -61,9 +62,9 @@ export class DemonSheet extends HellpiercersActorSheet {
   }
 
   async _onEditRange() {
-    // const range = this.document.system.strike.range;
-    // const new_range = await RangeEditorApp.editRange(range);
-    // const update = { "system.strike.range": new_range };
-    // await this.document.update(update);
+    const range = this.document.system.strike.range;
+    const new_range = await RangeEditor.editRange(range);
+    const update = { "system.strike.range": new_range };
+    await this.document.update(update);
   }
 }

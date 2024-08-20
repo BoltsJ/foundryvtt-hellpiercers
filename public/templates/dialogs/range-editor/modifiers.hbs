@@ -1,0 +1,55 @@
+<section>
+  <fieldset>
+    <legend>{{localize "HELLPIERCERS.RANGE.FIELDS.modifiers.label"}}</legend>
+    {{#if show.range}}
+      {{formGroup
+        fields.modifiers.fields.range
+        value=range.modifiers.range
+        placeholder="—"
+        localize=true
+      }}
+    {{else}}
+      <input type="hidden" data-dtype="Number" name="modifiers.range" />
+    {{/if}}
+    {{#if show.length}}
+      {{formGroup
+        fields.modifiers.fields.length
+        value=range.modifiers.length
+        placeholder="1"
+        localize=true
+      }}
+    {{else}}
+      <input type="hidden" data-dtype="Number" name="modifiers.length" />
+    {{/if}}
+    {{#if show.width}}
+      {{formGroup
+        fields.modifiers.fields.width
+        value=range.modifiers.width
+        placeholder="1"
+        localize=true
+      }}
+    {{else}}
+      <input type="hidden" data-dtype="Number" name="modifiers.width" />
+    {{/if}}
+    {{#if show.push}}
+      {{formGroup
+        fields.modifiers.fields.push
+        value=range.modifiers.push
+        placeholder="—"
+        localize=true
+      }}
+    {{else}}
+      <input type="hidden" data-dtype="Number" name="modifiers.push" />
+    {{/if}}
+    {{#if show.recoil}}
+      {{formGroup
+        fields.modifiers.fields.recoil
+        value=range.modifiers.recoil
+        placeholder="—"
+        localize=true
+      }}
+    {{else}}
+      <input type="hidden" data-dtype="Number" name="modifiers.recoil" />
+    {{/if}}
+  </fieldset>
+</section>

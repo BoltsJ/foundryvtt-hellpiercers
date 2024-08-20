@@ -1,12 +1,15 @@
 const fields = foundry.data.fields;
 
-import TARGET_ICON from "../../public/assets/icons/range/targeting.svg?raw";
-import USER_ICON from "../../public/assets/icons/range/spiked-halo.svg?raw";
+import TARGET_ICON from "/assets/icons/range/targeting.svg?raw";
+import USER_ICON from "/assets/icons/range/spiked-halo.svg?raw";
 
 export class RangeModel extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      label: new fields.StringField({ initial: "Range" }),
+      name: new fields.StringField({
+        initial: "Range",
+        label: "HELLPIERCERS.RANGE.FIELDS.name.label",
+      }),
       kind: new fields.StringField({
         label: "HELLPIERCERS.RANGE.FIELDS.kind.label",
         initial: "bespoke",
