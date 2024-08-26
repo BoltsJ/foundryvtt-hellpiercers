@@ -11,3 +11,7 @@ See the [roadmap](ROADMAP.md) for more info
 
 This project uses icons from https://game-icons.net/ under [CC BY
 3.0](http://creativecommons.org/licenses/by/3.0/)
+
+[Medieval Sharp](https://fonts.google.com/specimen/MedievalSharp) font by
+Wojciech Kalinowski used under the [Open Font
+License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)

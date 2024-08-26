@@ -97,4 +97,14 @@ Hooks.once("init", () => {
   // Tokens
   CONFIG.Token.objectClass = placeables.HellpiercersToken;
   CONFIG.Token.hudClass = placeables.HellpiercersTokenHUD;
+
+  FontConfig.loadFont("MedievalSharp", {
+    editor: true,
+    fonts: [
+      {
+        style: "normal",
+        urls: [`systems/${game.system.id}/fonts/MedievalSharp/MedievalSharp-Regular.ttf`],
+      },
+    ],
+  });
 });

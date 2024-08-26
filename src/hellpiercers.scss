@@ -2,6 +2,10 @@
   --hellpiercers-test-property: true;
 }
 
+body.system-hellpiercers {
+  --font-h1: "MedievalSharp", cursive;
+}
+
 .hellpiercers {
   &.sheet.actor {
     @import "styles/actor-sheet";

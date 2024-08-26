@@ -3,11 +3,11 @@
   data-group="primary"
   data-tab="details"
 >
-{{formGroup fields.kind value=system.kind localize=true disabled=(not editable)}}
-{{!-- {{formGroup fields.target value=system.target disabled=(not (and editable actor))}} --}}
-{{#if editable}}
-{{formInput effect.field value=effect.value enriched=effect.enriched toggled=true}}
-{{else}}
-{{{effect.enriched}}}
-{{/if}}
+  {{formGroup fields.kind value=system.kind localize=true disabled=(not editable)}}
+  {{!-- {{formGroup fields.target value=system.target disabled=(not (and editable actor))}} --}}
+  {{#if editable}}
+    {{formInput effect.field value=effect.value enriched=effect.enriched toggled=true}}
+  {{else}}
+    {{{effect.enriched}}}
+  {{/if}}
 </section>
