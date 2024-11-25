@@ -1,5 +1,12 @@
 :root {
   --hellpiercers-test-property: true;
+  --hellpiercers-sheet-box-border: #584a75;
+  --hellpiercers-sheet-box-divider: #3e3453;
+}
+.theme-light {
+  --hellpiercers-test-property: false;
+  --hellpiercers-sheet-box-border: #777777;
+  --hellpiercers-sheet-box-divider: #aaaaaa;
 }
 
 body.system-hellpiercers {
@@ -9,6 +16,9 @@ body.system-hellpiercers {
 .hellpiercers {
   &.sheet.actor {
     @import "styles/actor-sheet";
+    &.human {
+      @import "styles/human-sheet";
+    }
     &.demon {
       @import "styles/demon-sheet";
     }

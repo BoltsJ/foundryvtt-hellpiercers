@@ -14,7 +14,7 @@ export class HumanSheet extends HellpiercersActorSheet {
     },
     biography: {
       template: "systems/hellpiercers/templates/sheets/actor-biography.hbs",
-      scrollable: [""],
+      scrollable: [".editor-content", ".editor"],
     },
     effects: {
       template: "systems/hellpiercers/templates/sheets/actor-effects.hbs",

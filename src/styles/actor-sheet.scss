@@ -15,6 +15,24 @@ header.sheet-header {
   }
 }
 
+nav.sheet-tabs {
+  padding: 0 1rem;
+  border-top: 1px solid var(--color-text-selection-bg);
+  border-bottom: 1px solid var(--color-text-selection-bg);
+
+  a {
+    flex: 1;
+    &:hover {
+      text-shadow: unset;
+    }
+    &.active {
+      background: var(--color-text-selection-bg);
+      color: var(--color-text-selection);
+      text-shadow: unset;
+    }
+  }
+}
+
 .tab.biography {
   flex: 1;
   prose-mirror {
@@ -32,7 +50,9 @@ header.sheet-header {
     scrollbar-width: thin;
     li.header {
       column-span: all;
-      border-bottom: 1px dashed var(--color-border-light-primary);
+      border-bottom: 1px solid var(--hellpiercers-sheet-box-divider);
+      border-top: 1px solid var(--hellpiercers-sheet-box-divider);
+      background: color(from var(--hellpiercers-sheet-box-divider) srgb r g b / 0.25);
     }
     &.temporary {
       columns: 2;
