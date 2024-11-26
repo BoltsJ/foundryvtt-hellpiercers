@@ -5,9 +5,9 @@ header.sheet-header {
     "portrait charname charname charname charname"
     "portrait hp speed scale tags";
   gap: 0.25rem;
-  @import "./sheets/header-boxes";
+  @import "components/header-boxes";
 }
 
 .tab.abilities {
-  @import "compact-editor";
+  @import "components/compact-editor";
 }

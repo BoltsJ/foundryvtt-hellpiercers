@@ -15,21 +15,21 @@ body.system-hellpiercers {
 
 .hellpiercers {
   &.sheet.actor {
-    @import "styles/actor-sheet";
+    @import "styles/sheets/actor";
     &.human {
-      @import "styles/human-sheet";
+      @import "styles/sheets/human";
     }
     &.demon {
-      @import "styles/demon-sheet";
+      @import "styles/sheets/demon";
     }
     &.boss {
-      @import "styles/boss-sheet";
+      @import "styles/sheets/boss";
     }
   }
   &.sheet.item {
-    @import "styles/item-sheet";
+    @import "styles/sheets/item";
     &.ability {
-      @import "styles/ability-sheet";
+      @import "styles/sheets/ability";
     }
   }
   &.range-editor {
