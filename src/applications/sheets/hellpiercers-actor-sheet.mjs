@@ -16,6 +16,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
       onCreateEmbed: this.prototype._onCreateEmbed,
       onDeleteEmbed: this.prototype._onDeleteEmbed,
       onEditImage: this.prototype._onEditImage,
+      onEditTags: this._onEditTags,
       onEmbedSheet: this.prototype._onEmbedSheet,
       onUpdateEmbed: this.prototype._onUpdateEmbed,
     },
@@ -91,6 +92,24 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
       },
     });
     return fp.browse();
+  }
+
+  /** @this {HellpiercersActorSheet} */
+  static async _onEditTags() {
+    if (!this.isEditable) return;
+    const fields = this.actor.system.schema.fields;
+    const input = fields.tags.toInput({ value: this.actor.system.tags });
+    const buttons = [
+      {
+        label: "Save",
+        callback: (_e, button) => {
+          console.log(button.form.elements["system.tags"].value);
+          this.actor.update({ "system.tags": button.form.elements["system.tags"].value });
+        },
+      },
+    ];
+    const content = ` ${input.outerHTML}`;
+    await foundry.applications.api.DialogV2.wait({ content, buttons });
   }
 
   async _onCreateEmbed(_ev, target) {
