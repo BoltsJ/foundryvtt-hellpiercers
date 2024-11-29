@@ -109,7 +109,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
       },
     ];
     const content = ` ${input.outerHTML}`;
-    await foundry.applications.api.DialogV2.wait({ content, buttons });
+    await foundry.applications.api.DialogV2.wait({ content, buttons, rejectClose: false });
   }
 
   async _onCreateEmbed(_ev, target) {

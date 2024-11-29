@@ -29,6 +29,8 @@ header.sheet-header {
   }
 }
 
+@import "components/sheet-tabs";
+
 .tab.details {
   flex: 1;
   prose-mirror {
@@ -59,32 +61,4 @@ header.sheet-header {
   }
 }
 
-.tab.effects {
-  ol {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    li.header {
-      border-bottom: 1px dashed;
-    }
-    li {
-      img {
-        flex: 0;
-        margin: auto 0.25rem;
-      }
-      a.control {
-        flex: 0;
-        padding: 0.1rem;
-      }
-      input[type="checkbox"] {
-        flex: 0;
-      }
-    }
-    li.new-effect {
-      button {
-        width: auto;
-        break-inside: avoid;
-      }
-    }
-  }
-}
+@import "components/effects-tab";
