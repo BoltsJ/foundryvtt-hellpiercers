@@ -3,18 +3,18 @@
   data-group="primary"
   data-tab="details"
 >
-  {{formGroup fields.health value=system.health disabled=(not editable)}}
-  {{formGroup
-    fields.active
-    value=system.active
-    classes="stacked"
-    disabled=(or actor (not editable))
-  }}
-  {{formGroup
-    fields.passive
-    value=system.passive
-    classes="stacked"
-    disabled=(or actor (not editable))
-  }}
-  {{formGroup fields.limit value=system.limit classes="stacked" disabled=(or actor (not editable))}}
+  <div class="input-box health"><label>{{localize "HELLPIERCERS.ITEM.FIELDS.health.label"}}</label>
+    {{formInput fields.health value=system.health disabled=(not editable)}}
+  </div>
+  <div class="input-box active"><label>{{localize "HELLPIERCERS.ITEM.FIELDS.active.label"}}</label>
+    {{formInput fields.active value=system.active disabled=(or actor (not editable))}}
+  </div>
+  <div class="input-box passive"><label>{{localize
+        "HELLPIERCERS.ITEM.FIELDS.passive.label"
+      }}</label>
+    {{formInput fields.passive value=system.passive disabled=(or actor (not editable))}}
+  </div>
+  <div class="input-box limit"><label>{{localize "HELLPIERCERS.ITEM.FIELDS.limit.label"}}</label>
+    {{formInput fields.limit value=system.limit disabled=(or actor (not editable))}}
+  </div>
 </section>

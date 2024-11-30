@@ -73,6 +73,7 @@
         "damage": { "label": "Damage" },
         "description": { "label": "Description" },
         "health": { "label": "Health" },
+        "kind": { "label": "Type" },
         "limit": { "label": "Limit Break" },
         "movement": { "label": "Movement" },
         "passive": { "label": "Passive", "name": { "label": "Passive" } },

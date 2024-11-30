@@ -3,17 +3,20 @@
   data-group="primary"
   data-tab="details"
 >
-  {{formGroup fields.speed value=system.speed disabled=(not editable)}}
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.movement.label"}}</legend>
+  <div class="input-box speed">
+    <label for="system.speed">{{localize "HELLPIERCERS.ITEM.FIELDS.speed.label"}}</label>
+    {{formInput fields.speed value=system.speed disabled=(not editable)}}
+  </div>
+  <div class="input-box movement ability-drop" data-target="system.movement">
+    <label>{{localize "HELLPIERCERS.ITEM.FIELDS.movement.label"}}</label>
     {{formInput fields.movement value=system.movement disabled=(not editable)}}
-  </fieldset>
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.ability.label"}}</legend>
+  </div>
+  <div class="input-box ability ability-drop" data-target="system.ability">
+    <label>{{localize "HELLPIERCERS.ITEM.FIELDS.ability.label"}}</label>
     {{formInput fields.ability value=system.ability disabled=(not editable)}}
-  </fieldset>
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.reversal.label"}}</legend>
+  </div>
+  <div class="input-box reversal ability-drop" data-target="system.reversal">
+    <label>{{localize "HELLPIERCERS.ITEM.FIELDS.reversal.label"}}</label>
     {{formInput fields.reversal value=system.reversal disabled=(not editable)}}
-  </fieldset>
+  </div>
 </section>

@@ -1,12 +1,16 @@
 :root {
-  --hellpiercers-test-property: true;
   --hellpiercers-sheet-box-border: #584a75;
   --hellpiercers-sheet-box-divider: #3e3453;
+  .hellpiercers.application {
+    --hellpiercers-test-property: true;
+  }
 }
 .theme-light {
-  --hellpiercers-test-property: false;
   --hellpiercers-sheet-box-border: #777777;
   --hellpiercers-sheet-box-divider: #aaaaaa;
+  .hellpiercers.application {
+    --hellpiercers-test-property: false;
+  }
 }
 
 body.system-hellpiercers {

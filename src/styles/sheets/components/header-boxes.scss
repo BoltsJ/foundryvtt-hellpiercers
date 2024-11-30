@@ -8,6 +8,7 @@ $labelBg: color(from $dividerColor srgb r g b / 0.25);
     border: none;
     text-align: center;
     font-size: var(--font-size-18);
+    transition: initial;
     &:focus {
       outline: none;
       box-shadow: none;
@@ -56,11 +57,16 @@ div.pronouns {
 }
 div.portrait {
   grid-area: portrait;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   img.portrait {
+    flex: 1;
+    aspect-ratio: 1 / 1;
     height: 100px;
-    width: 100px;
     object-fit: cover;
     object-position: 50% top;
+      margin: 0;
   }
 }
 div.hp {

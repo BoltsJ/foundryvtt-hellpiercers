@@ -109,7 +109,13 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
       },
     ];
     const content = ` ${input.outerHTML}`;
-    await foundry.applications.api.DialogV2.wait({ content, buttons, rejectClose: false });
+    await foundry.applications.api.DialogV2.wait({
+      window: { title: `Edit tags for ${this.actor.name}` },
+      content,
+      id: `${this.actor.uuid}-tag-editor`,
+      buttons,
+      rejectClose: false,
+    });
   }
 
   async _onCreateEmbed(_ev, target) {

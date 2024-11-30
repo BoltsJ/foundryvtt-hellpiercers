@@ -1,33 +1,47 @@
-<section class="tab details scrollable {{tab.cssClass}}" data-group="primary" data-tab="details">
-  {{formGroup fields.damage value=system.damage}}
-  <div class="flexrow">
+<section
+  class="tab details scrollable flexcol {{tab.cssClass}}"
+  data-group="primary"
+  data-tab="details"
+>
+  <div class="input-box damage">
+    <label for="system.damage">{{localize "HELLPIERCERS.ITEM.FIELDS.damage.label"}}</label>
+    {{formInput fields.damage value=system.damage}}
+  </div>
+  <div class="input-box range">
+    <div class="label">{{localize "HELLPIERCERS.ITEM.FIELDS.range.label"}}</div>
     {{#each system.range as |range|}}
       <div class="range flexcol">
         <span>{{range.label}}</span>
         {{#if (eq range.kind "bespoke")}}
-          <img src={{range.svg_uri}} class="range-preview" />
+          <img
+            src={{range.svg_uri}}
+            class="range-preview"
+            data-action="editRange"
+            data-range-index={{@index}}
+            data-tooltip="Edit"
+          />
         {{else}}
           <span>{{range.short_text}}</span>
+          <a
+            class="control edit-range"
+            data-action="editRange"
+            data-range-index={{@index}}
+            data-tooltip="Edit"
+          >
+            <i class="fas fa-edit"></i>
+          </a>
         {{/if}}
-        <a
-          class="control edit-range"
-          data-action="editRange"
-          data-range-index={{@index}}
-          data-tooltip="Edit"
-        >
-          <i class="fas fa-edit"></i>
-        </a>
       </div>
     {{/each}}
   </div>
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.active.label"}}</legend>
+  <div class="input-box active">
+    <label>{{localize "HELLPIERCERS.ITEM.FIELDS.active.label"}}</label>
     {{formInput fields.active.fields.name value=system.active.name}}
     {{formInput active.field enriched=active.enriched value=active.value toggled=true}}
-  </fieldset>
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ITEM.FIELDS.passive.label"}}</legend>
+  </div>
+  <div class="input-box passive">
+    <label>{{localize "HELLPIERCERS.ITEM.FIELDS.passive.label"}}</label>
     {{formInput fields.passive.fields.name value=system.passive.name}}
     {{formInput passive.field enriched=passive.enriched value=passive.value toggled=true}}
-  </fieldset>
+  </div>
 </section>

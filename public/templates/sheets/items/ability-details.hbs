@@ -3,27 +3,47 @@
   data-group="primary"
   data-tab="details"
 >
-  {{formGroup
-    fields.action
-    value=system.action
-    blank=false
-    localize=true
-    disabled=(or (not editable) actor)
-  }}
+  <div class="input-box action"><label for="system.action">{{localize
+        "HELLPIERCERS.ITEM.FIELDS.action.label"
+      }}</label>
+    {{formInput
+      fields.action
+      value=system.action
+      blank=false
+      localize=true
+      disabled=(or (not editable) actor)
+    }}
+  </div>
   {{#if (eq system.action "attack")}}
-    {{formGroup fields.damage value=system.damage placeholder="0" disabled=(not editable)}}
-    {{#if (eq system.range.kind "bespoke")}}
-      <img src={{system.range.svg_uri}} />
-    {{else}}
-      {{system.range.short_text}}
-    {{/if}}
-    <a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
+    <div class="input-box damage"><label for="system.damage">{{localize
+          "HELLPIERCERS.ITEM.FIELDS.damage.label"
+        }}</label>
+      {{formInput fields.damage value=system.damage placeholder="0" disabled=(not editable)}}
+      {{#if (eq system.range.kind "bespoke")}}
+        <img src={{system.range.svg_uri}} />
+      {{else}}
+        {{system.range.short_text}}
+      {{/if}}
+      <a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
+    </div>
   {{else if (eq system.action "reversal")}}
-    {{formGroup fields.uses value=system.uses disabled=(not editable)}}
-    {{formGroup fields.trigger value=system.trigger disabled=(not editable)}}
+    <div class="input-box uses"><label for="system.uses">{{localize
+          "HELLPIERCERS.ITEM.FIELDS.uses.label"
+        }}</label>
+      {{formInput fields.uses value=system.uses disabled=(not editable)}}
+    </div>
+    <div class="input-box trigger"><label for="system.trigger">{{localize
+          "HELLPIERCERS.ITEM.FIELDS.trigger.label"
+        }}</label>
+      {{formInput fields.trigger value=system.trigger disabled=(not editable)}}
+    </div>
   {{/if}}
   {{#if (eq system.action "limit")}}
-    {{formGroup fields.break_value value=system.break_value disabled=(not editable)}}
+    <div class="input-box break_value"><label for="system.break_value">{{localize
+          "HELLPIERCERS.ITEM.FIELDS.break_value.label"
+        }}</label>
+      {{formInput fields.break_value value=system.break_value disabled=(not editable)}}
+    </div>
   {{/if}}
   {{formInput
     effect.field
@@ -32,6 +52,13 @@
     toggled=true
     disabled=(not editable)
   }}
-  {{formGroup fields.item.fields.type value=system.item.type localize=true disabled=(not editable)}}
-  {{formGroup fields.item.fields.uuid value=system.item.uuid disabled=(not editable)}}
+  <div class="input-box item"><label>{{localize "HELLPIERCERS.ITEM.FIELDS.kind.label"}}</label>
+    {{formInput
+      fields.item.fields.type
+      value=system.item.type
+      localize=true
+      disabled=(not editable)
+    }}
+    {{formInput fields.item.fields.uuid value=system.item.uuid disabled=(not editable)}}
+  </div>
 </section>

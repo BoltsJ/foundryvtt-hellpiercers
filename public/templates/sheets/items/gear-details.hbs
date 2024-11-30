@@ -3,7 +3,10 @@
   data-group="primary"
   data-tab="details"
 >
-  {{formGroup fields.kind value=system.kind localize=true disabled=(not editable)}}
+  <div class="input-box">
+    <label for="system.kind">{{localize "HELLPIERCERS.ITEM.FIELDS.kind.label"}}</label>
+    {{formInput fields.kind value=system.kind localize=true disabled=(not editable)}}
+  </div>
   {{!-- {{formGroup fields.target value=system.target disabled=(not (and editable actor))}} --}}
   {{#if editable}}
     {{formInput effect.field value=effect.value enriched=effect.enriched toggled=true}}
