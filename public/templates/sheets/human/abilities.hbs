@@ -1,17 +1,11 @@
 <section
-  class="tab abilities {{tab.cssClass}} scrollable"
+  class="tab abilities flexcol {{tab.cssClass}} scrollable"
   data-group="primary"
   data-tab="abilities"
 >
-  <div class="weapon flexcol" data-uuid={{weapon.uuid}}>
-    <div class="flexrow">
-      <select name="system.weapon">
-        {{selectOptions
-          weaponChoices
-          selected=system.weapon._id
-          blank=(localize "TYPES.Item.weapon")
-        }}
-      </select>
+  <div class="item-block weapon flexcol collapse" data-uuid={{weapon.uuid}}>
+    <div class="label flexrow">
+      <span>{{localize "HELLPIERCERS.ACTOR.FIELDS.weapon.label"}}</span>
       {{#if weapon}}
         <a class="weapon-damage control" data-drag="attack" data-action="onBeginAttack">
           <i class="fas fa-dice"></i>
@@ -33,83 +27,125 @@
         <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
       {{/if}}
     </div>
+    <div class="value">
+      <select name="system.weapon">
+        {{selectOptions
+          weaponChoices
+          selected=system.weapon._id
+          blank=(localize "TYPES.Item.weapon")
+        }}
+      </select>
+    </div>
     {{#if weapon}}
-      <div>
+      <div class="label">
         <strong>Active</strong>:
         <em>{{weapon.system.active.name}}</em>
-        —
+      </div>
+      <div class="value">
         {{{weapon.system.active.description}}}
       </div>
-      <div>
+      <div class="label">
         <strong>Passive</strong>:
         <em>{{weapon.system.passive.name}}</em>
-        —
+      </div>
+      <div>
         {{{weapon.system.passive.description}}}
       </div>
     {{/if}}
   </div>
-  <fieldset class="armor" data-uuid={{armor.uuid}}>
-    {{#if system.armor}}
-      <legend>
-        <span>{{armor.name}}</span>
+  <div class="item-block armor flexcol" data-uuid={{armor.uuid}}>
+    <div class="label flexrow">
+      <span>{{localize "HELLPIERCERS.ACTOR.FIELDS.armor.label"}}</span>
+      {{#if system.armor}}
         <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
         <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
-      </legend>
-      <div>
+      {{/if}}
+    </div>
+    <div class="value">
+      <span>
+        {{#if system.armor}}
+          {{armor.name}}
+        {{else}}
+          {{localize "HELLPIERCERS.ACTOR.SHEET.noarmor"}}
+        {{/if}}
+      </span>
+    </div>
+    {{#if system.armor}}
+      <div class="label">
         <strong>{{localize "HELLPIERCERS.ITEM.action.movement"}}:</strong>
         {{armor_movement.item.name}}
+      </div>
+      <div>
         {{{armor_movement.enriched}}}
       </div>
-      <strong>{{localize "HELLPIERCERS.ITEM.action.active"}}:</strong>
-      {{armor_ability.item.name}}
-      {{{armor_ability.enriched}}}
+      <div class="label">
+        <strong>{{localize "HELLPIERCERS.ITEM.action.active"}}:</strong>
+        {{armor_ability.item.name}}
+      </div>
       <div>
+        {{{armor_ability.enriched}}}
       </div>
       {{#if system.meta.reversal}}
-        <div>
+        <div class="label">
           <strong>{{localize "HELLPIERCERS.ITEM.action.reversal"}}
             -
             {{localize "HELLPIERCERS.ITEM.FIELDS.uses.label"}}:
             {{armor_reversal.item.system.uses}}</strong>
-          <br />
+        </div>
+        <div>
           <strong>{{localize "HELLPIERCERS.ITEM.FIELDS.trigger.label"}}:</strong>
           <span>{{armor_reversal.item.system.trigger}}</span>
+        </div>
+        <div>
           {{{armor_reversal.enriched}}}
         </div>
       {{/if}}
-    {{else}}
-      <legend>{{localize "HELLPIERCERS.ACTOR.SHEET.noarmor"}}</legend>
     {{/if}}
-  </fieldset>
-  <fieldset class="class" data-uuid={{class.uuid}}>
-    {{#if system.class}}
-      <legend>
-        <span>{{class.name}}</span>
+  </div>
+
+  <div class="item-block class flexcol" data-uuid={{class.uuid}}>
+    <div class="label flexrow">
+      <span>{{localize "HELLPIERCERS.ACTOR.FIELDS.class.label"}}</span>
+      {{#if system.class}}
         <a class="control" data-action="onEmbedSheet"><i class="fas fa-edit"></i></a>
         <a class="control" data-action="onDeleteEmbed"><i class="fas fa-trash"></i></a>
-      </legend>
-      <div>
+      {{/if}}
+    </div>
+    <div class="value">
+      <span>
+        {{#if system.class}}
+          {{class.name}}
+        {{else}}
+          {{localize "HELLPIERCERS.ACTOR.SHEET.noclass"}}
+        {{/if}}
+      </span>
+    </div>
+    {{#if system.class}}
+      <div class="label">
         <strong>{{localize "HELLPIERCERS.ITEM.action.active"}}:</strong>
         {{class_active.item.name}}
-        {{{class_active.enriched}}}
       </div>
       <div>
+        {{{class_active.enriched}}}
+      </div>
+      <div class="label">
         <strong> {{localize "HELLPIERCERS.ITEM.action.passive"}}:</strong>
         {{class_passive.item.name}}
+      </div>
+      <div>
         {{{class_passive.enriched}}}
       </div>
       {{#if system.meta.limit_break}}
-        <div>
+        <div class="label">
           <strong>{{localize "HELLPIERCERS.ITEM.action.limit"}}:</strong>
           {{class_limit.item.name}}
-          <br />
+        </div>
+        <div>
           <strong>{{localize "HELLPIERCERS.ITEM.FIELDS.break_value.label"}}:</strong>
           {{class_limit.item.system.break_value}}
           {{{class_limit.enriched}}}
         </div>
       {{/if}}
-    {{else}}
-      <legend>{{localize "HELLPIERCERS.ACTOR.SHEET.noclass"}}</legend>
     {{/if}}
-  </fieldset>
+  </div>
 </section>

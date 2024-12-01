@@ -57,7 +57,8 @@
           "active": "Active Effects",
           "item": "Item Effects",
           "temporary": "Temporary Effects"
-        }
+        },
+        "noclass": "No Class"
       },
       "TABS": {
         "abilities": "Abilities",
