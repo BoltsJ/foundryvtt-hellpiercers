@@ -1,24 +1,25 @@
 <section
-  class="tab abilities {{tab.cssClass}} scrollable"
+  class="tab abilities flexcol {{tab.cssClass}} scrollable"
   data-group="primary"
   data-tab="abilities"
 >
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.label"}}</legend>
-    {{formGroup fields.strike.fields.name value=system.strike.name}}
-    <label for="range">{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.range.label"}}</label>
+  <div class="item-block">
+    <div class="label">{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.label"}}</div>
+    {{formInput fields.strike.fields.name value=system.strike.name}}
+    <div class="label">{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.range.label"}}</div>
     <div>{{ifThen
         (eq system.strike.range.kind "bespoke")
         (concat "<img src=" system.strike.range.svg_uri ">")
         system.strike.range.short_text
       }}</div>
     <a class="control" data-action="editRange"><i class="fas fa-edit"></i></a>
-    {{formGroup fields.strike.fields.damage value=system.strike.damage}}
+    <div class="label">{{localize "HELLPIERCERS.ACTOR.FIELDS.strike.damage.label"}}</div>
+    {{formInput fields.strike.fields.damage value=system.strike.damage}}
     {{formInput strike.field enriched=strike.enriched value=strike.value toggled=true}}
-  </fieldset>
-  <fieldset>
-    <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
-    {{formGroup fields.special.fields.name value=system.special.name}}
+  </div>
+  <div class="item-block">
+    <div class="label">{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</div>
+    {{formInput fields.special.fields.name value=system.special.name}}
     {{formInput special.field enriched=special.enriched value=special.value toggled=true}}
-  </fieldset>
+  </div>
 </section>
