@@ -111,6 +111,7 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
     const content = ` ${input.outerHTML}`;
     await foundry.applications.api.DialogV2.wait({
       window: { title: `Edit tags for ${this.actor.name}` },
+      classes: ["hellpiercers", "tag-editor"],
       content,
       id: `${this.actor.uuid}-tag-editor`,
       buttons,

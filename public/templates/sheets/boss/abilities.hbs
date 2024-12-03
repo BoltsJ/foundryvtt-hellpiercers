@@ -1,46 +1,20 @@
 <section
-  class="tab abilities {{tab.cssClass}} scrollable"
+  class="tab abilities flexcol {{tab.cssClass}} scrollable"
   data-group="primary"
   data-tab="abilities"
 >
   {{#each attacks}}
-    <div class="attack">
-      <fieldset data-uuid={{attack.uuid}}>
-        <legend>{{attack.name}}</legend>
-        <div>{{ifThen
-            (eq attack.system.range.kind "bespoke")
-            (concat "<img src=" attack.system.range.svg_uri ">")
-            attack.system.range.short_text
-          }}</div>
-        {{#if attack.system.damage}}<div class="damage">Damage:
-            {{attack.system.damage}}</div>{{/if}}
-        <div class="effect">{{{effect}}}</div>
-        <div class="flexrow">
-          <a
-            class="control"
-            data-action="onEmbedSheet"
-            data-tooltip={{localize "DOCUMENT.Update" type=(localize "TYPES.Item.ability")}}
-          >
-            <i class="fas fa-edit"></i>
-          </a>
-          <a
-            class="control"
-            data-action="onDeleteEmbed"
-            data-tooltip={{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.ability")}}
-          ><i class="fas fa-trash"></i></a>
-        </div>
-        {{#if attack.range}}
-          <img src={{attack.range.svg_uri}} />
-        {{/if}}
-        {{attack.damage}}
-      </fieldset>
-    </div>
-  {{/each}}
-  {{#if special}}
-    <div class="special">
-      <fieldset data-uuid={{special.uuid}}>
-        <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</legend>
-        <div class="effect">{{{special.system.effect}}}</div>
+    <div class="item-block attack" data-uuid={{attack.uuid}}>
+      <div class="label">{{attack.name}}</div>
+      <div>{{ifThen
+          (eq attack.system.range.kind "bespoke")
+          (concat "<img src=" attack.system.range.svg_uri ">")
+          attack.system.range.short_text
+        }}</div>
+      {{#if attack.system.damage}}<div class="damage">Damage:
+          {{attack.system.damage}}</div>{{/if}}
+      <div class="effect">{{{effect}}}</div>
+      <div class="flexrow">
         <a
           class="control"
           data-action="onEmbedSheet"
@@ -53,15 +27,42 @@
           data-action="onDeleteEmbed"
           data-tooltip={{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.ability")}}
         ><i class="fas fa-trash"></i></a>
-      </fieldset>
+      </div>
+      {{#if attack.range}}
+        <img src={{attack.range.svg_uri}} />
+      {{/if}}
+      {{attack.damage}}
+    </div>
+  {{/each}}
+  {{#if special}}
+    <div class="item-block special" data-uuid={{special.uuid}}>
+      <div class="label">{{localize "HELLPIERCERS.ACTOR.FIELDS.special.label"}}</div>
+      <div class="effect">{{{special.system.effect}}}</div>
+      <a
+        class="control"
+        data-action="onEmbedSheet"
+        data-tooltip={{localize "DOCUMENT.Update" type=(localize "TYPES.Item.ability")}}
+      >
+        <i class="fas fa-edit"></i>
+      </a>
+      <a
+        class="control"
+        data-action="onDeleteEmbed"
+        data-tooltip={{localize "DOCUMENT.Delete" type=(localize "TYPES.Item.ability")}}
+      >
+        <i class="fas fa-trash"></i>
+      </a>
     </div>
   {{/if}}
-  <div class="agnosia">
-    <fieldset>
-      <legend>{{localize "HELLPIERCERS.ACTOR.FIELDS.agnosia.label"}}</legend>
-      {{formGroup fields.agnosia.fields.value value=system.agnosia.value}}
-      {{formInput agnosia.field value=agnosia.value enriched=agnosia.enriched toggled=true}}
-    </fieldset>
+  <div class="item-block agnosia">
+    <div class="label">{{localize "HELLPIERCERS.ACTOR.FIELDS.agnosia.label"}}</div>
+    {{formInput agnosia.field value=agnosia.value enriched=agnosia.enriched toggled=true}}
+    <div class="label" for="system.agnosia.value">
+      {{localize "HELLPIERCERS.ACTOR.FIELDS.agnosia.value.label"}}
+    </div>
+    <div class="value">
+      {{formInput fields.agnosia.fields.value value=system.agnosia.value}}
+    </div>
   </div>
   <div>
     <button class="control" data-action="addAbility"><i class="fas fa-plus"></i>&nbsp;Add Ability</button>
