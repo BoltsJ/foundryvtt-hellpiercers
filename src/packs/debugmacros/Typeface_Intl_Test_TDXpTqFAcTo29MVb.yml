@@ -1,0 +1,35 @@
+name: Typeface Intl Test
+type: chat
+command: >-
+  <h1 style="font-family: var(--font-h1)">Oto przykład tekstu służącego do
+  testowania obsługi międzynarodowych glifów.</h1>
+
+  <h1 style="font-family: var(--font-h1)">Это пример текста для проверки
+  поддержки международных глифов.</h1>
+
+  <h1 style="font-family: var(--font-h1)">Đây là ví dụ về văn bản để kiểm tra
+  khả năng hỗ trợ cho ký tự tượng hình quốc tế.</h1>
+
+  <h1 style="font-family: var(--font-h1)">Detta är ett exempel på text för att
+  testa stöd för internationella glyfer.</h1>
+img: icons/svg/hanging-sign.svg
+author: 0uq1NcpEgiMQWXgA
+scope: global
+folder: null
+ownership:
+  default: 0
+  0uq1NcpEgiMQWXgA: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: hellpiercers
+  systemVersion: 0.alpha1
+  createdTime: 1733494024278
+  modifiedTime: 1733494024304
+  lastModifiedBy: 0uq1NcpEgiMQWXgA
+_id: TDXpTqFAcTo29MVb
+sort: 200000
+_key: '!macros!TDXpTqFAcTo29MVb'
+
