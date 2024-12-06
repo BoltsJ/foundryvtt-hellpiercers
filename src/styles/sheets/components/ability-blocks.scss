@@ -1,0 +1,44 @@
+$borderColor: var(--hellpiercers-sheet-box-border);
+$dividerColor: var(--hellpiercers-sheet-box-divider);
+$labelBg: color(from $dividerColor srgb r g b / 0.25);
+
+.tab.abilities {
+  gap: 0.25rem;
+  .item-block {
+    border: 1px solid $borderColor;
+    &.weapon {
+      select {
+        background: none;
+        border: none;
+        text-align: center;
+        font-size: var(--font-size-18);
+        transition: initial;
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .label,
+    label {
+      grid-area: label;
+      border-bottom: 1px solid $dividerColor;
+      background: $labelBg;
+      padding: 0rem 0.5rem;
+    }
+    .value {
+      padding: 0rem 0.5rem;
+    }
+    input {
+      background: none;
+      border: none;
+      border-radius: unset;
+      transition: unset;
+      font-size: var(--font-size-18);
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+}
