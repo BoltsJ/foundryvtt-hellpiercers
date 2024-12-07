@@ -4,4 +4,51 @@ fieldset {
 
 section.grid {
   display: grid;
+  grid-template:
+    ". top ." min-content
+    "left spaces right" 1fr
+    ". bot ." min-content /
+    min-content 1fr min-content;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  .controls {
+    justify-content: center;
+    a.control {
+      flex: 0;
+    }
+  }
+  .top-controls {
+    grid-area: top;
+  }
+  .bot-controls {
+    grid-area: bot;
+  }
+  .left-controls {
+    grid-area: left;
+  }
+  .right-controls {
+    grid-area: right;
+  }
+  .grid-spaces {
+    display: grid;
+    grid-area: spaces;
+    align-items: center;
+    justify-content: center;
+    button.space {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0px;
+      background: unset;
+      &:hover {
+        box-shadow: none;
+        border: 1px solid var(--button-border-color);
+        // color: var(--button-text-color);
+        background: var(--hellpiercers-range-button-background);
+      }
+    }
+  }
 }

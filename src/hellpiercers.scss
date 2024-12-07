@@ -1,6 +1,8 @@
 :root {
   --hellpiercers-sheet-box-border: #584a75;
   --hellpiercers-sheet-box-divider: #3e3453;
+  --hellpiercers-range-button-background: #a599bf;
+  // --hellpiercers-range-button-color: #a599bf;
   .hellpiercers.application {
     --hellpiercers-test-property: true;
   }
@@ -8,6 +10,8 @@
 .theme-light {
   --hellpiercers-sheet-box-border: #777777;
   --hellpiercers-sheet-box-divider: #aaaaaa;
+  --hellpiercers-range-button-background: #545454;
+  // --hellpiercers-range-button-color: #545454;
   .hellpiercers.application {
     --hellpiercers-test-property: false;
   }

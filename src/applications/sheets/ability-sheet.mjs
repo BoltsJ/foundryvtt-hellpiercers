@@ -1,4 +1,5 @@
 import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
+import { RangeEditor } from "../dialogs/range-editor.mjs";
 
 /**
  * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor
@@ -21,7 +22,7 @@ export class AbilitySheet extends HellpiercersItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ["ability"],
     actions: {
-      editRange: this.prototype._onEditRange,
+      editRange: this.#editRange,
     },
   };
 
@@ -41,10 +42,15 @@ export class AbilitySheet extends HellpiercersItemSheet {
     return ctx;
   }
 
-  async _onEditRange() {
-    // const range = this.item.system.range;
-    // const new_range = await RangeEditorApp.editRange(range);
-    // const update = { "system.range": new_range };
-    // await this.item.update(update);
+  /** @this AbilitySheet */
+  static async #editRange() {
+    const range = this.item.system.range;
+    try {
+      const new_range = await RangeEditor.editRange(range);
+      const update = { "system.range": new_range };
+      await this.item.update(update);
+    } catch (e) {
+      console.warn("Editing range cancelled");
+    }
   }
 }

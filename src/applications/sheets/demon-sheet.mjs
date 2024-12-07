@@ -23,7 +23,7 @@ export class DemonSheet extends HellpiercersActorSheet {
   static DEFAULT_OPTIONS = {
     classes: ["demon"],
     actions: {
-      editRange: this.prototype._onEditRange,
+      editRange: this.#editRange,
     },
   };
 
@@ -61,10 +61,15 @@ export class DemonSheet extends HellpiercersActorSheet {
     return ctx;
   }
 
-  async _onEditRange() {
+  /** @this DemonSheet */
+  static async #editRange() {
     const range = this.document.system.strike.range;
-    const new_range = await RangeEditor.editRange(range);
-    const update = { "system.strike.range": new_range };
-    await this.document.update(update);
+    try {
+      const new_range = await RangeEditor.editRange(range);
+      const update = { "system.strike.range": new_range };
+      await this.document.update(update);
+    } catch (e) {
+      console.warn("Editing range cancelled");
+    }
   }
 }

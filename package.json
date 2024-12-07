@@ -8,7 +8,7 @@
     "generate:yml": "./scripts/unpack.mjs",
     "clean": "rm -fr dist",
     "format": "prettier --write src/",
-    "lint": "eslint --max-warnings 0 src/**/*.{mjs,svelte}",
+    "lint": "eslint --max-warnings 0 src/**/*.mjs",
     "lint:style": "prettier --check src/",
     "start": "npm run foundry & npm run build && vite",
     "foundry": "fvtt launch"

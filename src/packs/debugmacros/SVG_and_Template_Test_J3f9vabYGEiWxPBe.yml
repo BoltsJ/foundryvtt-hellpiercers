@@ -6,60 +6,10 @@ command: |-
     value: 2,
     modifiers: { scale: actor?.system.scale },
   });
-  const kind = range.schema.fields.kind.toFormGroup(
-    { classes: ["stacked"], localize: true },
-    { value: range.kind, localize: true }
-  );
-  const val = range.schema.fields.value.toFormGroup(
-    { classes: ["stacked"], localize: true },
-    { value: range.value }
-  );
-  const r_val = range.schema.fields.modifiers.fields.range.toFormGroup(
-    { classes: ["stacked"], localize: true },
-    { value: range.modifiers.range }
-  );
-  const length = range.schema.fields.modifiers.fields.length.toFormGroup(
-    { classes: ["stacked"], localize: true },
-    { value: range.modifiers.length }
-  );
-  const width = range.schema.fields.modifiers.fields.width.toFormGroup(
-    { classes: ["stacked"], localize: true },
-    { value: range.modifiers.width }
-  );
 
-  const content = `
-  <fieldset><legend>Range</legend>
-    ${kind.outerHTML}
-    ${val.outerHTML}
-  </fieldset>
-  <fieldset><legend>Modifiers</legend>
-    ${r_val.outerHTML}
-    ${length.outerHTML}
-    ${width.outerHTML}
-  </fieldset>
-  `;
+  range.updateSource(await hellpiercers.RangeEditor.editRange(range));
 
   const Dialog = foundry.applications.api.DialogV2;
-
-  await Dialog.wait({
-    content,
-    buttons: [
-      {
-        label: "View",
-        callback: (_e, button, form) => {
-          console.log(button.form.elements);
-          range.updateSource({
-            kind: button.form.elements.kind.value,
-            value: button.form.elements.value.value,
-            "modifiers.range": button.form.elements["modifiers.range"].value || null,
-            "modifiers.length": button.form.elements["modifiers.length"].value || null,
-            "modifiers.width": button.form.elements["modifiers.width"].value || null,
-          });
-        },
-      },
-    ],
-    rejectClose: false,
-  });
 
   await Dialog.prompt({
     content: `<img src="${range.svg_uri}">`,
@@ -77,11 +27,11 @@ flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.330'
+  coreVersion: '12.331'
   systemId: hellpiercers
   systemVersion: 0.alpha1
   createdTime: 1721853137918
-  modifiedTime: 1721973515643
+  modifiedTime: 1733606995800
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: J3f9vabYGEiWxPBe
 sort: 200000

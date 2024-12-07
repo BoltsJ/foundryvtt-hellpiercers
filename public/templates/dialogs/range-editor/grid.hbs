@@ -1,0 +1,36 @@
+<section class="grid">
+  {{#if (eq range.kind "bespoke")}}
+    <div class="controls flexrow top-controls">
+      <a class="control" data-action="addRow" data-loc="top"><i class="fa-solid fa-plus"></i></a>
+      <a class="control" data-action="delRow" data-loc="top"><i class="fa-solid fa-minus"></i></a>
+    </div>
+    <div class="controls flexrow bot-controls">
+      <a class="control" data-action="addRow" data-loc="bot"><i class="fa-solid fa-plus"></i></a>
+      <a class="control" data-action="delRow" data-loc="bot"><i class="fa-solid fa-minus"></i></a>
+    </div>
+    <div class="controls flexcol left-controls">
+      <a class="control" data-action="addCol" data-loc="left"><i class="fa-solid fa-plus"></i></a>
+      <a class="control" data-action="delCol" data-loc="left"><i class="fa-solid fa-minus"></i></a>
+    </div>
+    <div class="controls flexcol right-controls">
+      <a class="control" data-action="addCol" data-loc="right"><i class="fa-solid fa-plus"></i></a>
+      <a class="control" data-action="delCol" data-loc="right"><i class="fa-solid fa-minus"></i></a>
+    </div>
+  {{/if}}
+  <div
+    class="grid-spaces"
+    style="grid-template: repeat({{grid.rows}}, 1.5rem) / repeat({{grid.columns}}, 1.5rem);"
+  >
+    {{#each spaces as |space|}}
+      <button
+        type="button"
+        class="space {{space.class}}"
+        data-row={{space.row}}
+        data-col={{space.col}}
+        data-sym={{space.symbol}}
+        {{disabled (ne @root.range.kind "bespoke")}}
+        data-action="toggleSpace"
+      >{{space.symbol}}</button>
+    {{/each}}
+  </div>
+</section>

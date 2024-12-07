@@ -1,4 +1,5 @@
 import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
+import { RangeEditor } from "../dialogs/range-editor.mjs";
 
 /**
  * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor
@@ -18,7 +19,7 @@ export class WeaponSheet extends HellpiercersItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ["weapon"],
     actions: {
-      editRange: this.prototype._onEditRange,
+      editRange: this.#editRange,
     },
   };
 
@@ -56,13 +57,17 @@ export class WeaponSheet extends HellpiercersItemSheet {
     return ctx;
   }
 
-  // eslint-disable-next-line no-unused-vars
-  async _onEditRange(_ev, target) {
-    // const index = target.dataset.rangeIndex;
-    // const range = this.item.system.range[index];
-    // const new_range = await RangeEditorApp.editRange(range);
-    // const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
-    // update["system.range"][index] = new_range.toObject();
-    // await this.item.update(update);
+  /** @this WeaponSheet */
+  static async #editRange(_ev, target) {
+    const index = target.dataset.rangeIndex;
+    const range = this.item.system.range[index];
+    try {
+      const new_range = await RangeEditor.editRange(range);
+      const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
+      update["system.range"][index] = new_range.toObject();
+      await this.item.update(update);
+    } catch (e) {
+      console.warn("Editing range cancelled");
+    }
   }
 }

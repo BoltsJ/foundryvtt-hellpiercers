@@ -35,14 +35,4 @@ export class ClassSheet extends HellpiercersItemSheet {
     if (partId === "effects") ctx.effects = this.item.effects;
     return ctx;
   }
-
-  // eslint-disable-next-line no-unused-vars
-  async _onEditRange(_ev, target) {
-    // const index = target.dataset.rangeIndex;
-    // const range = this.item.system.range[index];
-    // const new_range = await RangeEditorApp.editRange(range);
-    // const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
-    // update["system.range"][index] = new_range.toObject();
-    // await this.item.update(update);
-  }
 }
