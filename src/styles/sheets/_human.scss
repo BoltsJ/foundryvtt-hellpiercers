@@ -1,3 +1,4 @@
+@use "sass:meta";
 header.sheet-header {
   display: grid;
   grid-template: min-content min-content / auto min-content min-content 1fr min-content;
@@ -5,5 +6,5 @@ header.sheet-header {
     "portrait charname charname charname pronouns"
     "portrait hp speed tags tags";
   gap: 0.25rem;
-  @import "components/header-boxes";
+  @include meta.load-css("components/header-boxes");
 }

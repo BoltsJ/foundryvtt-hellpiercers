@@ -10,7 +10,7 @@
   },
   "authors": [{ "name": "Bolts" }],
   "esmodules": ["hellpiercers.mjs"],
-  "styles": ["style.css"],
+  "styles": ["hellpiercers.css"],
   "packs": [
     {
       "name": "debugmacros",

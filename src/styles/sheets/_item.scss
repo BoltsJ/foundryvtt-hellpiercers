@@ -1,3 +1,4 @@
+@use "sass:meta";
 $borderColor: var(--hellpiercers-sheet-box-border);
 $dividerColor: var(--hellpiercers-sheet-box-divider);
 $labelBg: color(from $dividerColor srgb r g b / 0.25);
@@ -69,7 +70,7 @@ header.sheet-header {
   }
 }
 
-@import "components/sheet-tabs";
+@include meta.load-css("components/sheet-tabs");
 
 .tab.details {
   flex: 1;
@@ -128,4 +129,4 @@ header.sheet-header {
   }
 }
 
-@import "components/effects-tab";
+@include meta.load-css("components/effects-tab");

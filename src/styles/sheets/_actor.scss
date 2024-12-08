@@ -1,0 +1,20 @@
+@use "sass:meta";
+label {
+  flex: 0 0 auto;
+}
+a.control {
+  flex: 0 0 auto;
+}
+
+@include meta.load-css("components/sheet-tabs");
+
+.tab.biography {
+  flex: 1;
+  prose-mirror {
+    overflow: scroll;
+    flex: 1;
+  }
+}
+
+@include meta.load-css("components/ability-blocks");
+@include meta.load-css("components/effects-tab");

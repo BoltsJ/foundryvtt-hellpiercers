@@ -1,4 +1,3 @@
-import { svelte, vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import fs from "fs";
 import path from "path";
 import { defineConfig } from "vite";
@@ -29,7 +28,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    svelte({ preprocess: vitePreprocess() }),
     {
       name: "foundry-hmr",
       handleHotUpdate({ file }) {

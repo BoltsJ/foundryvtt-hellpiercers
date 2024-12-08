@@ -45,7 +45,7 @@ export class HellpiercersActor extends Actor {
       const cls = getDocumentClass("ActiveEffect");
       const effect = await cls.fromStatusEffect(statusId);
       overlay ??= effect.getFlag("core", "overlay");
-      effect.updateSource({ [`flags.${game.system.id}.value`]: overlay ? null : direction ?? 1 });
+      effect.updateSource({ [`flags.${game.system.id}.value`]: overlay ? null : (direction ?? 1) });
       return cls.create(effect, { parent: this, keepId: true });
     }
   }

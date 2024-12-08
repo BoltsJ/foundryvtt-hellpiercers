@@ -1,3 +1,4 @@
+@use "sass:meta";
 :root {
   --hellpiercers-sheet-box-border: #584a75;
   --hellpiercers-sheet-box-divider: #3e3453;
@@ -23,27 +24,27 @@ body.system-hellpiercers {
 
 .hellpiercers {
   &.sheet.actor {
-    @import "styles/sheets/actor";
+    @include meta.load-css("styles/sheets/actor");
     &.human {
-      @import "styles/sheets/human";
+      @include meta.load-css("styles/sheets/human");
     }
     &.demon {
-      @import "styles/sheets/demon";
+      @include meta.load-css("styles/sheets/demon");
     }
     &.boss {
-      @import "styles/sheets/boss";
+      @include meta.load-css("styles/sheets/boss");
     }
   }
   &.sheet.item {
-    @import "styles/sheets/item";
+    @include meta.load-css("styles/sheets/item");
     &.ability {
-      @import "styles/sheets/ability";
+      @include meta.load-css("styles/sheets/ability");
     }
   }
   &.range-editor {
-    @import "styles/range-editor";
+    @include meta.load-css("styles/range-editor");
   }
   &.new-ability {
-    @import "styles/new-ability";
+    @include meta.load-css("styles/new-ability");
   }
 }
