@@ -5,9 +5,9 @@
 
 - [x] Enemy sheets
 - [x] Basic class items
-- [ ] Class mastery
+- [x] Class mastery (Still needs UI)
 - [x] Attack templates
-- [ ] Targeting
+- [x] Targeting
 - [ ] Attack dialogs
 
 
