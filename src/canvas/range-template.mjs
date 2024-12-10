@@ -1,17 +1,16 @@
-import { RangeModel } from "../data/range-model.mjs";
 import { HellpiercersMeasuredTemplate } from "./placeables/measured-template.mjs";
 
+/** @import { Range } from "../data/range-model.mjs" */
+
 class RangeTemplate extends HellpiercersMeasuredTemplate {
+  /** @returns {Promise<MeasuredTemplateDocument>} */
   placeTemplate() {
-    this.originalLayer = canvas.activeLayer;
+    if (this.document.id)
+      throw new Error("Template placement can't be done for already placed templates");
+    const originalLayer = canvas.activeLayer;
     this.layer.activate();
     this.draw();
     this.layer.preview.addChild(this);
-    return this.activateListeners();
-  }
-
-  /** @returns {Promise<MeasuredTemplateDocument>} */
-  activateListeners() {
     return new Promise((resolve, reject) => {
       const handlers = {};
       handlers.move = ev => {
@@ -49,7 +48,7 @@ class RangeTemplate extends HellpiercersMeasuredTemplate {
         canvas.stage.off("mousedown", handlers.confirm);
         canvas.app.view.oncontextmenu = null;
         canvas.app.view.onwheel = null;
-        this.originalLayer.activate();
+        originalLayer.activate();
       };
 
       canvas.stage.on("mousemove", handlers.move);
@@ -60,9 +59,9 @@ class RangeTemplate extends HellpiercersMeasuredTemplate {
   }
 }
 
-/** @param {RangeModel | object} range */
-export async function placeTemplate(range, actor = null) {
-  range = new RangeModel(range);
+/** @param {Range | object} range */
+export async function placeTemplate(range, { actor = null, flags = {} } = {}) {
+  range.modifiers ??= {};
   range.modifiers.scale ??= actor?.system.scale;
   /** @type {typeof MeasuredTemplateDocument} */
   const cls = getDocumentClass("MeasuredTemplate");
@@ -70,8 +69,8 @@ export async function placeTemplate(range, actor = null) {
     {
       t: "cone",
       angle: 1,
-      distance: 1,
-      flags: { hellpiercers: { range } },
+      distance: 0.5,
+      flags: foundry.utils.mergeObject(flags, { hellpiercers: { range } }),
     },
     { parent: canvas.scene }
   );

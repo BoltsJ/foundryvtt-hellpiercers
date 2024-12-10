@@ -52,6 +52,23 @@ export class HellpiercersToken extends Token {
     style.wordWrapWidth = this.w * 2.5;
     return style;
   }
+
+  /**
+   * Get an array of occupied space centers. Only implemented for square grids
+   * \@deprecated V13 has a builtin
+   */
+  getOccupiedSpaces() {
+    const spaces = [];
+    for (let i = 0; i < this.document.width; ++i) {
+      for (let j = 0; j < this.document.height; ++j) {
+        spaces.push({
+          x: this.position.x + (i + 0.5) * canvas.grid.sizeX,
+          y: this.position.y + (j + 0.5) * canvas.grid.sizeY,
+        });
+      }
+    }
+    return spaces;
+  }
 }
 
 export class HellpiercersTokenHUD extends TokenHUD {

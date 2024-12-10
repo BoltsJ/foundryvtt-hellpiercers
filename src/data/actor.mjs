@@ -1,4 +1,4 @@
-import { RangeModel } from "./range-model.mjs";
+import { Range } from "./range-model.mjs";
 
 const fields = foundry.data.fields;
 
@@ -121,7 +121,7 @@ export class DemonModel extends foundry.abstract.TypeDataModel {
       actions: new fields.NumberField({ initial: 1, integer: true }),
       strike: new fields.SchemaField({
         name: new fields.StringField({ initial: "Strike" }),
-        range: new fields.EmbeddedDataField(RangeModel, {
+        range: new fields.EmbeddedDataField(Range, {
           initial: { kind: "targets", value: 1, modifiers: { range: 0 } },
         }),
         damage: new fields.StringField({

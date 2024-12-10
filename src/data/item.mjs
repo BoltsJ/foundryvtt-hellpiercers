@@ -1,4 +1,4 @@
-import { RangeModel } from "./range-model.mjs";
+import { Range } from "./range-model.mjs";
 
 const fields = foundry.data.fields;
 
@@ -26,7 +26,7 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
         validate: v => v === null || foundry.dice.Roll.validate(v),
         validationError: "must be a valid Roll formula",
       }),
-      range: new fields.EmbeddedDataField(RangeModel, { nullable: true, initial: null }),
+      range: new fields.EmbeddedDataField(Range, { nullable: true, initial: null }),
       uses: new fields.NumberField({ initial: null, nullable: true }),
       trigger: new fields.StringField({ initial: null, nullable: true }),
       break_value: new fields.NumberField({ initial: 10 }),
@@ -61,7 +61,7 @@ export class WeaponModel extends foundry.abstract.TypeDataModel {
         validate: v => foundry.dice.Roll.validate(v),
         validationError: "must be a valid Roll formula",
       }),
-      range: new fields.ArrayField(new fields.EmbeddedDataField(RangeModel), { initial: [{}] }),
+      range: new fields.ArrayField(new fields.EmbeddedDataField(Range), { initial: [{}] }),
       active: new fields.SchemaField({
         name: new fields.StringField({ required: true }),
         description: new fields.HTMLField({ required: true }),

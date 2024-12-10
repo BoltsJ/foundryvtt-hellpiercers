@@ -1,6 +1,6 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-/** @import { RangeModel } from "../../data/range-model.mjs" */
+/** @import { Range } from "../../data/range-model.mjs" */
 
 export class RangeEditor extends HandlebarsApplicationMixin(ApplicationV2) {
   static PARTS = {
@@ -27,7 +27,7 @@ export class RangeEditor extends HandlebarsApplicationMixin(ApplicationV2) {
     },
   };
 
-  /** @type {RangeModel} */
+  /** @type {Range} */
   #range;
   /** @type {string[][]} */
   #grid = [["@"]];
@@ -38,7 +38,7 @@ export class RangeEditor extends HandlebarsApplicationMixin(ApplicationV2) {
 
   /**
    * Static helper to get a promise that resoves to a new range with the changes applied
-   * @returns {Promise<RangeModel>}
+   * @returns {Promise<Range>}
    */
   static editRange(range) {
     const app = new this(range);
@@ -51,8 +51,7 @@ export class RangeEditor extends HandlebarsApplicationMixin(ApplicationV2) {
 
   constructor(range, options = {}) {
     super(options);
-    if (!(range instanceof hellpiercers.data.RangeModel))
-      range = new hellpiercers.data.RangeModel(range);
+    if (!(range instanceof hellpiercers.data.Range)) range = new hellpiercers.data.Range(range);
     this.#range = range.clone();
     this.#grid = range.ascii;
   }
@@ -86,7 +85,6 @@ export class RangeEditor extends HandlebarsApplicationMixin(ApplicationV2) {
 
   /** @this {RangeEditor} */
   static async #formHandler(ev, _form, formData) {
-    console.log(ev);
     const data = formData.object;
     if (data.kind === "bespoke") data.spaces = g2a(this.#grid);
     this.#range.updateSource(data);

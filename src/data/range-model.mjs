@@ -3,7 +3,7 @@ const fields = foundry.data.fields;
 import TARGET_ICON from "/assets/icons/range/targeting.svg?raw";
 import USER_ICON from "/assets/icons/range/spiked-halo.svg?raw";
 
-export class RangeModel extends foundry.abstract.DataModel {
+export class Range extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       name: new fields.StringField({

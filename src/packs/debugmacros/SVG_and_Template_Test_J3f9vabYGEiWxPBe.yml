@@ -1,13 +1,13 @@
 name: SVG and Template Test
 type: script
 command: |-
-  const range = new hellpiercers.data.RangeModel({
+  const range = await hellpiercers.applications.RangeEditor.editRange({
     kind: "line",
     value: 2,
     modifiers: { scale: actor?.system.scale },
-  });
+  }).catch(() => {});
 
-  range.updateSource(await hellpiercers.RangeEditor.editRange(range));
+  if (!range) return;
 
   const Dialog = foundry.applications.api.DialogV2;
 
@@ -31,7 +31,7 @@ _stats:
   systemId: hellpiercers
   systemVersion: 0.alpha1
   createdTime: 1721853137918
-  modifiedTime: 1733606995800
+  modifiedTime: 1733784102237
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: J3f9vabYGEiWxPBe
 sort: 200000
