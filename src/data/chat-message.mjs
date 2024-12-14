@@ -1,4 +1,4 @@
-import { Damage } from "../damage/damage.mjs";
+import { Damage } from "./damage.mjs";
 
 export class DamageMessageModel extends foundry.abstract.TypeDataModel {
   static defineSchema() {
