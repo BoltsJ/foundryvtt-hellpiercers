@@ -48,3 +48,16 @@ body.system-hellpiercers {
     @include meta.load-css("styles/new-ability");
   }
 }
+
+.tab.sidebar-tab.chat-sidebar .chat-message {
+  section.damage {
+    .condition {
+      display: flex;
+      flex-direction: row;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

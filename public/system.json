@@ -27,14 +27,13 @@
       "boss": { "htmlFields": ["biography", "agnosia.effect", "special.description"] },
       "faction": { "htmlFields": ["description"] }
     },
+    "ChatMessage": { "damage": {} },
     "Item": {
       "ability": { "htmlFields": ["effect"] },
-      "armor": {
-        "htmlFields": ["description", "movement", "ability.description", "reversal.effect"]
-      },
-      "class": { "htmlFields": ["description", "active.description", "passive.description"] },
+      "armor": { "htmlFields": ["description"] },
+      "class": { "htmlFields": ["description"] },
       "gear": { "htmlFields": ["description", "effect"] },
-      "weapon": { "htmlFields": ["description", "ability.description"] }
+      "weapon": { "htmlFields": ["description", "active.description", "passive.description"] }
     }
   },
   "relationships": {
@@ -42,11 +41,7 @@
   },
   "socket": false,
   "initiative": null,
-  "grid": {
-    "distance": 1,
-    "units": "",
-    "diagonals": 6
-  },
+  "grid": { "diagonals": 6, "distance": 1, "type": 1, "units": "" },
   "primaryTokenAttribute": "system.health",
   "secondaryTokenAttribute": "",
   "flags": { "hotReload": { "extensions": ["json", "hbs"], "paths": ["lang", "templates"] } },

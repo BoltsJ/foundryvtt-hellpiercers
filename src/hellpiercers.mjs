@@ -90,6 +90,10 @@ Hooks.once("init", () => {
     label: "HELLPIERCERS.SHEETS.Item.weapon",
   });
 
+  // ChatMessages
+  CONFIG.ChatMessage.documentClass = documents.HellpiercersChatMessage;
+  CONFIG.ChatMessage.dataModels.damage = data.DamageMessageModel;
+
   // Templates
   CONFIG.Canvas.layers.templates.layerClass = HellpiercersTemplateLayer;
   CONFIG.MeasuredTemplate.objectClass = placeables.HellpiercersMeasuredTemplate;
@@ -108,3 +112,5 @@ Hooks.once("init", () => {
     ],
   });
 });
+
+Hooks.on("renderChatMessage", (message, [html]) => message.addListeners(html));

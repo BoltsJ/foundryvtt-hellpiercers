@@ -1,2 +1,3 @@
-export { HellpiercersActor } from "./hellpiercers-actor.mjs";
-export { HellpiercersItem } from "./hellpiercers-item.mjs";
+export { HellpiercersActor } from "./actor.mjs";
+export { HellpiercersChatMessage } from "./chat-message.mjs";
+export { HellpiercersItem } from "./item.mjs";

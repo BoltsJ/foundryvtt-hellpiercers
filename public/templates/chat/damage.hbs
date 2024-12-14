@@ -1,0 +1,21 @@
+<section class="damage">
+  <div class="title">{{title}}</div>
+  <div class="label">Damage</div>
+  <div class="dice-roll">
+    <div class="dice-result">
+      <div class="dice-formula">{{roll.formula}}</div>
+      {{{rolldata}}}
+      <h4 class="dice-total">{{roll.total}}</h4>
+    </div>
+  </div>
+  {{#if conditions.length}}
+    <div class="label">Conditions</div>
+    {{#each conditions}}
+      <div class="condition">
+        <img src={{img}} />
+        <span class="name">{{localize name}}:{{value}}</span>
+      </div>
+    {{/each}}
+  {{/if}}
+  <div class="button-row"></div>
+</section>

@@ -49,4 +49,12 @@ export class HellpiercersActor extends Actor {
       return cls.create(effect, { parent: this, keepId: true });
     }
   }
+
+  /** @import {Damage} from "../damage/damage.mjs" */
+  /** @param {Damage} damage */
+  applyDamage(damage) {
+    if (!(damage instanceof hellpiercers.data.Damage))
+      damage = new hellpiercers.data.Damage(damage);
+    damage.apply(this);
+  }
 }
