@@ -45,6 +45,13 @@ export class AbilityModel extends foundry.abstract.TypeDataModel {
       }),
     };
   }
+
+  prepareBaseData() {
+    if (this.item.uuid) {
+      const type = fromUuidSync(this.item.uuid)?.type;
+      if (type) this.item.type = type;
+    }
+  }
 }
 
 /**

@@ -1,10 +1,6 @@
 import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
 import { RangeEditor } from "../dialogs/range-editor.mjs";
 
-/**
- * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor
- */
-
 export class DemonSheet extends HellpiercersActorSheet {
   static PARTS = {
     header: { template: "systems/hellpiercers/templates/sheets/demon/header.hbs" },
@@ -64,12 +60,11 @@ export class DemonSheet extends HellpiercersActorSheet {
   /** @this DemonSheet */
   static async #editRange() {
     const range = this.document.system.strike.range;
-    try {
-      const new_range = await RangeEditor.editRange(range);
-      const update = { "system.strike.range": new_range };
-      await this.document.update(update);
-    } catch (e) {
-      console.warn("Editing range cancelled");
-    }
+    const new_range = await RangeEditor.editRange(range).catch(() =>
+      console.warn("Editing range cancelled")
+    );
+    if (!new_range) return;
+    const update = { "system.strike.range": new_range };
+    await this.document.update(update);
   }
 }

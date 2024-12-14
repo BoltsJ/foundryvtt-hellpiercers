@@ -45,12 +45,11 @@ export class AbilitySheet extends HellpiercersItemSheet {
   /** @this AbilitySheet */
   static async #editRange() {
     const range = this.item.system.range;
-    try {
-      const new_range = await RangeEditor.editRange(range);
-      const update = { "system.range": new_range };
-      await this.item.update(update);
-    } catch (e) {
-      console.warn("Editing range cancelled");
-    }
+    const new_range = await RangeEditor.editRange(range).catch(() =>
+      console.warn("Editing range cancelled")
+    );
+    if (!new_range) return;
+    const update = { "system.range": new_range };
+    await this.item.update(update);
   }
 }

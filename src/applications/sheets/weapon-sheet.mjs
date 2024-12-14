@@ -61,13 +61,12 @@ export class WeaponSheet extends HellpiercersItemSheet {
   static async #editRange(_ev, target) {
     const index = target.dataset.rangeIndex;
     const range = this.item.system.range[index];
-    try {
-      const new_range = await RangeEditor.editRange(range);
-      const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
-      update["system.range"][index] = new_range.toObject();
-      await this.item.update(update);
-    } catch (e) {
-      console.warn("Editing range cancelled");
-    }
+    const new_range = await RangeEditor.editRange(range).catch(() =>
+      console.warn("Editing range cancelled")
+    );
+    if (!new_range) return;
+    const update = { "system.range": this.item.system.range.map(r => r.toObject()) };
+    update["system.range"][index] = new_range.toObject();
+    await this.item.update(update);
   }
 }

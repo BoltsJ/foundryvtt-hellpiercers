@@ -219,7 +219,6 @@ export class HellpiercersActorSheet extends api.HandlebarsApplicationMixin(sheet
    * @param {DragEvent} event       The originating DragEvent
    * @protected
    */
-  // eslint-disable-next-line no-unused-vars
   _onDragStart(event) {
     const el = event.currentTarget;
     if ("link" in event.target.dataset) return;
