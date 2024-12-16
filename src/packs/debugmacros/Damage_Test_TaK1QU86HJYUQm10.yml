@@ -1,16 +1,17 @@
 name: Damage Test
 type: script
 command: |-
-  if (!token) return;
-  Hooks.once("renderChatMessage", console.log);
-  const roll = await new foundry.dice.Roll("1d8").evaluate();
-  const damage = new hellpiercers.data.Damage({
-    value: roll.total,
-    roll: JSON.stringify(roll.toJSON()),
-    conditions: { bleed: 1 },
-  });
+  for (const token of canvas.tokens.controlled) {
+    Hooks.once("renderChatMessage", console.log);
+    const roll = await new foundry.dice.Roll("1d8").evaluate();
+    const damage = new hellpiercers.data.Damage({
+      value: roll.total,
+      roll: JSON.stringify(roll.toJSON()),
+      conditions: { bleed: 1 },
+    });
 
-  await damage.toMessage(roll, token.actor?.uuid);
+    await damage.toMessage(roll, token.actor?.uuid);
+  }
 img: icons/svg/sword.svg
 author: 0uq1NcpEgiMQWXgA
 scope: global
@@ -26,7 +27,7 @@ _stats:
   systemId: hellpiercers
   systemVersion: 0.alpha1
   createdTime: 1734198443436
-  modifiedTime: 1734198443436
+  modifiedTime: 1734320687304
   lastModifiedBy: 0uq1NcpEgiMQWXgA
 _id: TaK1QU86HJYUQm10
 sort: 0
