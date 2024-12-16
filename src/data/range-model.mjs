@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
-import TARGET_ICON from "/assets/icons/range/targeting.svg?raw";
 import USER_ICON from "/assets/icons/range/spiked-halo.svg?raw";
+import TARGET_ICON from "/assets/icons/range/targeting.svg?raw";
 
 export class Range extends foundry.abstract.DataModel {
   static defineSchema() {
@@ -191,11 +191,11 @@ export class Range extends foundry.abstract.DataModel {
         grid.appendChild(square);
         if (img) {
           let image = new DOMParser().parseFromString(img, "image/svg+xml").activeElement;
-          image.setAttribute("height", square_size);
-          image.setAttribute("width", square_size);
-          image.setAttribute("x", 5 + col * square_size);
-          image.setAttribute("y", 5 + row * square_size);
-          grid.appendChild(image);
+          image?.setAttribute("height", square_size);
+          image?.setAttribute("width", square_size);
+          image?.setAttribute("x", 5 + col * square_size);
+          image?.setAttribute("y", 5 + row * square_size);
+          if (image) grid.appendChild(image);
         }
       }
     }

@@ -1,5 +1,5 @@
-import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
 import { RangeEditor } from "../dialogs/range-editor.mjs";
+import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
 
 export class DemonSheet extends HellpiercersActorSheet {
   static PARTS = {

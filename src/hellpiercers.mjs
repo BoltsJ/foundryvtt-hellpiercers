@@ -91,8 +91,8 @@ Hooks.once("init", () => {
   });
 
   // ChatMessages
-  CONFIG.ChatMessage.documentClass = documents.HellpiercersChatMessage;
   CONFIG.ChatMessage.dataModels.damage = data.DamageMessageModel;
+  CONFIG.ChatMessage.documentClass = documents.HellpiercersChatMessage;
 
   // Templates
   CONFIG.Canvas.layers.templates.layerClass = HellpiercersTemplateLayer;

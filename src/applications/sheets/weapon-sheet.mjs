@@ -1,5 +1,5 @@
-import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
 import { RangeEditor } from "../dialogs/range-editor.mjs";
+import { HellpiercersItemSheet } from "./hellpiercers-item-sheet.mjs";
 
 /**
  * @typedef {import("../documents/index.mjs").HellpiercersActor} HellpiercersActor

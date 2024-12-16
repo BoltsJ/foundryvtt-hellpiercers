@@ -49,9 +49,7 @@ export class Damage extends foundry.abstract.DataModel {
     }
     console.log(this.conditions);
     const status_msg = statuses.length ? " and " + statuses.join(", ") : "";
-    cm.create({
-      content: damage_msg + status_msg + ".",
-    });
+    cm.create({ content: damage_msg + status_msg + "." });
   }
 
   /** @import Roll from "../../client-esm/dice/roll.mjs" */
@@ -66,7 +64,7 @@ export class Damage extends foundry.abstract.DataModel {
       conditions.push(condition);
     }
     const content = await renderTemplate("systems/hellpiercers/templates/chat/damage.hbs", {
-      title: `Damaging ${fromUuidSync(target)?.name ?? "UNKNOWN"}`,
+      title: `Damaging ${fromUuidSync(target)?.getActiveTokens().pop()?.name ?? "UNKNOWN"}`,
       damage: this,
       conditions,
       roll,

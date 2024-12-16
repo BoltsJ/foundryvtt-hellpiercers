@@ -20,17 +20,10 @@ export class HellpiercersMeasuredTemplate extends MeasuredTemplate {
     });
   }
 
-  getCenterPoints() {
-    return this._getGridHighlightPositions().map(p => ({
-      x: p.x + canvas.grid.sizeX * 0.5,
-      y: p.y + canvas.grid.sizeY * 0.5,
-    }));
-  }
-
   get bounds() {
     if (!this.document.getFlag(game.system.id, "range")) return super.bounds;
     const range = new Range(this.document.getFlag(game.system.id, "range"));
-    /** @type {GridOffset} */
+    /** @type {{i: number; j: number}} */
     const offset = canvas.grid.getOffset(this.document);
     const direction = Math.round(this.document.direction / 90) - 1;
     const shape = range.shape.map(s => {

@@ -1,0 +1,8 @@
+<section class="targets">
+  {{#each targets}}
+    <div class="target" data-token-id={{this.id}}>
+      <img class="portrait" src={{this.actor.img}} />
+      <div class="name">{{this.name}}</div>
+    </div>
+  {{/each}}
+</section>

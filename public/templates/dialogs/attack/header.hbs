@@ -1,0 +1,21 @@
+<header>
+  <div class="item-name">{{#if item}}{{item.name}}{{else}}Strike{{/if}}</div>
+  <div class="formula">{{formula}}</div>
+  <div class="range">
+    <div class="label">{{localize "HELLPIERCERS.ITEM.FIELDS.range.label"}}</div>
+    {{#each range}}
+      {{#if aoe}}
+        <button
+          type="button"
+          data-action="placeTemplate"
+          data-index={{@index}}
+          data-tooltip="<img src={{range.svg_uri}}>"
+        >
+          <i class="fa-solid fa-ruler-combined"></i>{{range.name}}
+        </button>
+      {{else}}
+        {{range.short_text}}
+      {{/if}}
+    {{/each}}
+  </div>
+</header>

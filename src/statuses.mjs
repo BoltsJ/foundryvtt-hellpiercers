@@ -34,6 +34,7 @@
 
 /**
  * Tranform the status effects below into valid data for CONFIG.statusEffects
+ * @returns {{id: string; name: string; img: string; flags: object}}
  */
 export function getStatusEffects() {
   return statusEffects.map(e => {

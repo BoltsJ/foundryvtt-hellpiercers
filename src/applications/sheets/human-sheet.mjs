@@ -1,3 +1,4 @@
+import { AttackDialog } from "../dialogs/attack.mjs";
 import { HellpiercersActorSheet } from "./hellpiercers-actor-sheet.mjs";
 
 /**
@@ -24,6 +25,9 @@ export class HumanSheet extends HellpiercersActorSheet {
 
   static DEFAULT_OPTIONS = {
     classes: ["human"],
+    actions: {
+      onBeginAttack: this.#onAttack,
+    },
   };
 
   async _preparePartContext(partId, ctx) {
@@ -91,10 +95,25 @@ export class HumanSheet extends HellpiercersActorSheet {
     return ctx;
   }
 
+  /**
+   * @this {HumanSheet}
+   * @param {MouseEvent} ev
+   * @param {HTMLElement} target
+   */
+  static async #onAttack(_ev, target) {
+    const { uuid: item_uuid } = target.closest("[data-uuid]")?.dataset ?? {};
+    console.log(item_uuid);
+    const item = await fromUuid(item_uuid);
+    if (!item) throw new Error("Invalid item or uuid");
+    this.minimize();
+    await AttackDialog.attack({ actor: this.actor, item });
+    this.maximize();
+  }
+
   async _onItemDrop(uuid) {
     /** @type {import("../documents/index.mjs").HellpiercersItem} */
-    const item = await fromUuid(uuid);
-    const [created] = await this.actor.createEmbeddedDocuments("Item", [item.toObject()]);
+    const itemSource = await fromUuid(uuid);
+    const [created] = await this.actor.createEmbeddedDocuments("Item", [itemSource.toObject()]);
     if (created.type === "class") {
       await this.actor.system.class?.delete();
       // await this.actor.update({ "system.class": created });

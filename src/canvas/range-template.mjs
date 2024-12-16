@@ -70,7 +70,9 @@ export async function placeTemplate(range, { actor = null, flags = {} } = {}) {
       t: "cone",
       angle: 1,
       distance: 0.5,
-      flags: foundry.utils.mergeObject(flags, { hellpiercers: { range } }),
+      flags: foundry.utils.mergeObject(foundry.utils.expandObject(flags), {
+        hellpiercers: { range },
+      }),
     },
     { parent: canvas.scene }
   );
