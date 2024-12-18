@@ -19,7 +19,7 @@ export class Damage extends foundry.abstract.DataModel {
   }
 
   /** @param {HellpiercersActor} target */
-  async apply(target) {
+  async apply(target, { message_id = null } = {}) {
     if (!target.canUserModify(game.user, "update")) throw new Error("Cannot modify actor");
     const armor = target.statuses.has("armor");
     const bleed = target.statuses.has("bleed");
@@ -36,10 +36,10 @@ export class Damage extends foundry.abstract.DataModel {
       }
       await target.toggleStatusEffect(cond, data);
     }
-    await this.#printConfirmation(this.value + mod);
+    await this.#printConfirmation(this.value + mod, message_id);
   }
 
-  async #printConfirmation(value) {
+  async #printConfirmation(value, message_id) {
     const cm = getDocumentClass("ChatMessage");
     const damage_msg = `Applied <strong>${value}</strong> damage`;
     const statuses = [];
@@ -47,9 +47,12 @@ export class Damage extends foundry.abstract.DataModel {
       console.log(cond);
       statuses.push(`<strong>${cond}:${this.conditions[cond]}</strong>`);
     }
-    console.log(this.conditions);
     const status_msg = statuses.length ? " and " + statuses.join(", ") : "";
-    cm.create({ content: damage_msg + status_msg + "." });
+    cm.create({
+      type: "response",
+      content: damage_msg + status_msg + ".",
+      "system.message": message_id,
+    });
   }
 
   /** @import Roll from "../../client-esm/dice/roll.mjs" */

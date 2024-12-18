@@ -27,7 +27,7 @@
       "boss": { "htmlFields": ["biography", "agnosia.effect", "special.description"] },
       "faction": { "htmlFields": ["description"] }
     },
-    "ChatMessage": { "damage": {} },
+    "ChatMessage": { "damage": {}, "response": {} },
     "Item": {
       "ability": { "htmlFields": ["effect"] },
       "armor": { "htmlFields": ["description"] },

@@ -92,6 +92,7 @@ Hooks.once("init", () => {
 
   // ChatMessages
   CONFIG.ChatMessage.dataModels.damage = data.DamageMessageModel;
+  CONFIG.ChatMessage.dataModels.response = data.ResponseMessageModel;
   CONFIG.ChatMessage.documentClass = documents.HellpiercersChatMessage;
 
   // Templates
